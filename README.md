@@ -17,7 +17,7 @@ Save NSData to documents or cache folder:
 
 Read saved NSData:
 
-    NSData *data = [NSData lsReadDataFromDirectory:NSDocumentDirectory fileName:[test lsMD5]];
+    NSData *data = [NSData lsReadDataFromDirectory:NSDocumentDirectory fileName:@"data"];
 
 Get beginning or end of day, month or year:
 
