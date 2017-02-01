@@ -85,6 +85,26 @@
     return [ranges copy];
 }
 
+- (NSAttributedString *)lsAttributedStringWithPrefixImage:(UIImage *)image
+{
+    return [self lsAttributedStringByReplacingCharactersInRange:NSMakeRange(0, 0) withImage:image];
+}
+
+- (NSAttributedString *)lsAttributedStringWithSuffixImage:(UIImage *)image
+{
+    return [self lsAttributedStringByReplacingCharactersInRange:NSMakeRange(self.length, 0) withImage:image];
+}
+
+- (NSAttributedString *)lsAttributedStringByReplacingCharactersInRange:(NSRange)range withImage:(UIImage *)image
+{
+    NSTextAttachment *attachment = [NSTextAttachment new];
+    attachment.image = image;
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
+    [attributedString replaceCharactersInRange:range withAttributedString:attachmentString];
+    return [attributedString copy];
+}
+
 - (NSAttributedString *)lsAttributedStringWithDefaultTagStylesheet
 {
     return [self lsAttributedStringWithDefaultTagStylesheetAndBaseFont:[UIFont systemFontOfSize:14]];

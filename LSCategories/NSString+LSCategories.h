@@ -58,6 +58,31 @@
 - (NSArray *)lsRangesOfAllSubstringsBetweenStartString:(NSString *)startString endString:(NSString *)endString;
 
 /**
+ Returns attributed string with inline image inserted at the beginning of string.
+ 
+ @param image Image to insert.
+ @return Attributed string with inline image inserted at the beginning of string.
+ */
+- (NSAttributedString *)lsAttributedStringWithPrefixImage:(UIImage *)image;
+
+/**
+ Returns attributed string with inline image inserted at the end of string.
+ 
+ @param image Image to insert.
+ @return Attributed string with inline image inserted at the end of string.
+ */
+- (NSAttributedString *)lsAttributedStringWithSuffixImage:(UIImage *)image;
+
+/**
+ Returns attributed string with inline image inserted in specified range.
+ 
+ @param range Range which should be replaced.
+ @param image Image which should be used for replacing.
+ @return Attributed string with inline image inserted in specified range.
+ */
+- (NSAttributedString *)lsAttributedStringByReplacingCharactersInRange:(NSRange)range withImage:(UIImage *)image;
+
+/**
  Returns attributed string created with default tag stylesheet.
 
  @return Attributed string created with default tag stylesheet.
