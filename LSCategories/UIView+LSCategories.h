@@ -40,8 +40,9 @@
  Starts infinite rotation with given duration of a single rotation.
 
  @param duration Duration of a single rotation.
+ @param clockwise YES for clockwise rotation, NO otherwise.
  */
-- (void)lsStartInfiniteRotationWithDuration:(CFTimeInterval)duration;
+- (void)lsStartInfiniteRotationWithDuration:(CFTimeInterval)duration clockwise:(BOOL)clockwise;
 
 /**
  Stops infinite rotation.

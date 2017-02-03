@@ -67,11 +67,11 @@
     }
 }
 
-- (void)lsStartInfiniteRotationWithDuration:(CFTimeInterval)duration
+- (void)lsStartInfiniteRotationWithDuration:(CFTimeInterval)duration clockwise:(BOOL)clockwise
 {
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.fromValue = @0;
-    rotationAnimation.toValue = @(2 * M_PI);
+    rotationAnimation.fromValue = clockwise ? @0 : @(2 * M_PI);
+    rotationAnimation.toValue = clockwise ? @(2 * M_PI) : @0;
     rotationAnimation.duration = duration;
     rotationAnimation.repeatCount = INFINITY;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];

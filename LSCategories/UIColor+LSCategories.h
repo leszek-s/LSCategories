@@ -128,7 +128,7 @@
 
  @return Inverted color.
  */
-- (UIColor *)invertedColor;
+- (UIColor *)lsInvertedColor;
 
 /**
  Returns random color.

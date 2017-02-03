@@ -61,14 +61,14 @@
 {
     CGFloat h = 0, s = 0, b = 0, a = 0;
     [self getHue:&h saturation:&s brightness:&b alpha:&a];
-    return h;
+    return s;
 }
 
 - (CGFloat)lsBrightness
 {
     CGFloat h = 0, s = 0, b = 0, a = 0;
     [self getHue:&h saturation:&s brightness:&b alpha:&a];
-    return h;
+    return b;
 }
 
 - (uint32_t)lsRgba
@@ -164,7 +164,7 @@
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
 }
 
-- (UIColor *)invertedColor
+- (UIColor *)lsInvertedColor
 {
     CGFloat r = 0, g = 0, b = 0, a = 0;
     [self getRed:&r green:&g blue:&b alpha:&a];
