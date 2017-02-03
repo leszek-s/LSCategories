@@ -154,4 +154,27 @@
     });
 }
 
+- (NSData *)lsDataXORedWithKey:(NSData *)key
+{
+    NSMutableData *result = [self mutableCopy];
+    
+    unsigned char *bytes = (unsigned char *)result.mutableBytes;
+    unsigned char *keyStart = (unsigned char *)key.bytes;
+    unsigned char *keyEnd = keyStart + key.length;
+    unsigned char *keyBytes = keyStart;
+    NSUInteger length = result.length;
+    
+    for (int i = 0; i < length; i++)
+    {
+        *bytes = *bytes ^ *keyBytes;
+        bytes++;
+        keyBytes++;
+        if (keyBytes == keyEnd)
+        {
+            keyBytes = keyStart;
+        }
+    }
+    return [result copy];
+}
+
 @end

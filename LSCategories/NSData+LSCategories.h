@@ -128,4 +128,12 @@
  */
 + (void)lsDataFromUrl:(NSURL *)url handler:(void (^)(NSData *data, NSError *error))handler;
 
+/**
+ Returns data XORed with given key.
+
+ @param key Key for XORing.
+ @return Data XORed with given key.
+ */
+- (NSData *)lsDataXORedWithKey:(NSData *)key;
+
 @end

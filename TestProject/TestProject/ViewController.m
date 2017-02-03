@@ -101,6 +101,10 @@
     NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory]);
     [NSData lsCleanDirectory:NSDocumentDirectory];
     NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory]);
+    NSData *xorKey = [@"tEsT" lsDataUTF8];
+    NSData *xored = [data lsDataXORedWithKey:xorKey];
+    NSLog(@"lsDataXORedWithKey %@", xored);
+    NSLog(@"lsDataXORedWithKey %@", [xored lsDataXORedWithKey:xorKey]);
     
     [NSDictionary lsDictionaryFromJsonUrl:[NSURL URLWithString:@"https://jsonplaceholder.typicode.com/posts/1/comments"] handler:^(NSDictionary *jsonDictionary, NSError *error) {
         NSLog(@"lsDictionaryFromJsonUrl: %@", jsonDictionary);
