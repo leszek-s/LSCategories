@@ -68,6 +68,24 @@
     return image;
 }
 
++ (UIImage *)lsTriangleImageWithColor:(UIColor *)color size:(CGSize)size
+{
+    if (!color || size.height < 1 || size.width < 1)
+        return nil;
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, size.height);
+    CGContextAddLineToPoint(context, size.width * 0.5, 0);
+    CGContextAddLineToPoint(context, size.width, size.height);
+    CGContextClosePath(context);
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillPath(context);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 + (UIImage *)lsGradientImageWithSize:(CGSize)size startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
 {
     if (!startColor || !endColor)

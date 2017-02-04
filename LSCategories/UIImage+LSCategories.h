@@ -41,6 +41,15 @@
 + (UIImage *)lsImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
+ Returns image with triangle with given color and size.
+
+ @param color Color to fill the triangle.
+ @param size Size of the triangle.
+ @return Image with triangle with given color and size.
+ */
++ (UIImage *)lsTriangleImageWithColor:(UIColor *)color size:(CGSize)size;
+
+/**
  Returns image with gradient with two given colors and directions specified by points.
 
  @param size Size of the image.

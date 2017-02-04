@@ -137,13 +137,15 @@
     NSLog(@"lsAssociatedDictionary: %@", [test lsAssociatedDictionary]);
     
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
-    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(100, 100) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
+    UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 35)];
+    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(80, 80) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
     UIImage *rotated = [gradient lsRotatedImageWithRadians:M_PI_2 / 2];
     UIImage *resized = [gradient lsResizedImageWithSize:CGSizeMake(200, 100)];
     UIImage *resizedProportional = [resized lsResizedProportionalImageWithMaxSize:CGSizeMake(500, 500)];
     UIImage *resizedWithWidth = [resized lsResizedProportionalImageWithWidth:500];
     UIImage *resizedWithHeight = [resized lsResizedProportionalImageWithHeight:500];
     NSLog(@"lsImageWithColor: %@", green);
+    NSLog(@"lsTriangleImageWithColor: %@", triangle);
     NSLog(@"lsGradientImageWithSize: %@", gradient);
     NSLog(@"lsRotatedImageWithRadians: %@", rotated);
     NSLog(@"lsResizedImageWithSize: %@", resized);
@@ -158,6 +160,7 @@
     NSLog(@"lsAverageColor: %@", [green lsAverageColor]);
     
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:green]];
+    [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:triangle]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:gradient]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:rotated]];
     UIImageView *rotatedImageView = self.stackView.arrangedSubviews.lastObject;
@@ -169,10 +172,14 @@
     
     UILabel *label2 = [UILabel new];
     [self.stackView addArrangedSubview:label2];
-    [label2 lsAddBorderOnEdge:UIRectEdgeTop color:[UIColor greenColor] width:2];
-    [label2 lsAddBorderOnEdge:UIRectEdgeBottom color:[UIColor blueColor] width:2];
-    [label2 lsAnimateCounterWithStartValue:0 endValue:10000 duration:3 completionBlock:^{
-        [label2 lsStartInfiniteRotationWithDuration:2 clockwise:YES];
+    label2.attributedText = [@"text with  inline image" lsAttributedStringByReplacingCharactersInRange:NSMakeRange(10, 0) withImage:[rotated lsResizedProportionalImageWithHeight:label2.font.pointSize]];
+    
+    UILabel *label3 = [UILabel new];
+    [self.stackView addArrangedSubview:label3];
+    [label3 lsAddBorderOnEdge:UIRectEdgeTop color:[UIColor greenColor] width:2];
+    [label3 lsAddBorderOnEdge:UIRectEdgeBottom color:[UIColor blueColor] width:2];
+    [label3 lsAnimateCounterWithStartValue:0 endValue:10000 duration:3 completionBlock:^{
+        [label3 lsStartInfiniteRotationWithDuration:2 clockwise:YES];
         [self.stackView.arrangedSubviews.firstObject lsStartInfiniteRotationWithDuration:2 clockwise:NO];
     }];
     
