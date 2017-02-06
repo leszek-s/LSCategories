@@ -186,7 +186,7 @@
     [UIView lsRepeatWithDuration:2 delay:3 framesPerSecond:60 block:^(CGFloat progress) {
         CGFloat p = progress > 0.5 ? 1 - progress : progress;
         rotatedImageView.transform = CGAffineTransformMakeScale(1 - p, 1 - p);
-    }];
+    } completionBlock:nil];
 }
 
 @end

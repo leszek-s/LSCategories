@@ -74,8 +74,9 @@
  @param delay Delay after which execution should be started.
  @param framesPerSecond Frames per seconds at which block should be repeated.
  @param block Block which should be executed with progress parameter from 0.0 to 1.0.
+ @param completionBlock Block which should be executed when finished.
  */
-+ (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block;
++ (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock;
 
 /**
  Repeats executing given block with given duration and frames per second.
@@ -84,7 +85,8 @@
  @param duration Duration for how long block should be executed.
  @param framesPerSecond Frames per seconds at which block should be repeated.
  @param block Block which should be executed with progress parameter from 0.0 to 1.0.
+ @param completionBlock Block which should be executed when finished.
  */
-+ (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block;
++ (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock;
 
 @end

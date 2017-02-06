@@ -111,14 +111,14 @@
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
 }
 
-+ (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block
++ (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self lsRepeatWithDuration:duration framesPerSecond:framesPerSecond block:block];
+        [self lsRepeatWithDuration:duration framesPerSecond:framesPerSecond block:block completionBlock:completionBlock];
     });
 }
 
-+ (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block
++ (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock
 {
     if (!block)
         return;
@@ -137,7 +137,11 @@
         progress = MIN(1.0, ABS(interval / duration));
         block(progress);
         if (progress >= 1.0)
+        {
             dispatch_source_cancel(timer);
+            if (completionBlock)
+                completionBlock();
+        }
     });
     dispatch_resume(timer);
 }

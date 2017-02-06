@@ -38,4 +38,5 @@
 #import "UIFont+LSCategories.h"
 #import "UIImage+LSCategories.h"
 #import "UILabel+LSCategories.h"
+#import "UINavigationController+LSCategories.h"
 #import "UIView+LSCategories.h"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
 		1BFCB05C1E44F3E700357597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05B1E44F3E700357597 /* main.m */; };
 		1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05E1E44F3E700357597 /* AppDelegate.m */; };
 		1BFCB0621E44F3E700357597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0611E44F3E700357597 /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LSCategories.h"; sourceTree = "<group>"; };
+		1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LSCategories.m"; sourceTree = "<group>"; };
 		1BFCB0571E44F3E700357597 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFCB05B1E44F3E700357597 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BFCB05D1E44F3E700357597 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 				1BFCB0841E44F40300357597 /* UIImage+LSCategories.m */,
 				1BFCB0851E44F40300357597 /* UILabel+LSCategories.h */,
 				1BFCB0861E44F40300357597 /* UILabel+LSCategories.m */,
+				1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */,
+				1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */,
 				1BFCB0871E44F40300357597 /* UIView+LSCategories.h */,
 				1BFCB0881E44F40300357597 /* UIView+LSCategories.m */,
 			);
@@ -229,6 +234,7 @@
 				1BFCB08E1E44F40300357597 /* NSString+LSCategories.m in Sources */,
 				1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */,
 				1BFCB0911E44F40300357597 /* UIImage+LSCategories.m in Sources */,
+				1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */,
 				1BFCB05C1E44F3E700357597 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +392,7 @@
 				1BFCB0701E44F3E700357597 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

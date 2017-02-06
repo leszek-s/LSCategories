@@ -29,9 +29,7 @@
 {
     [UIView lsRepeatWithDuration:duration framesPerSecond:60 block:^(CGFloat progress) {
         self.text = @(startValue + (NSInteger)(progress * (endValue - startValue))).stringValue;
-        if (progress == 1.0 && completionBlock)
-            completionBlock();
-    }];
+    } completionBlock:completionBlock];
 }
 
 - (void)lsParseBasicHTMLTags
