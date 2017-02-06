@@ -49,7 +49,7 @@ Rotate UIImage:
 
 Use NSString with basic HTML tags to create NSAttributedString:
 
-    self.label.attributedText = [@"Text with <strong>basic</strong>, <em>HTML</em>" lsAttributedStringWithDefaultTagStylesheet];
+    self.label.attributedText = [@"Text with <strong>basic</strong> <em>HTML</em>" lsAttributedStringWithDefaultTagStylesheet];
 
 Use NSString with custom tags to create NSAttributedString:
 
@@ -63,7 +63,7 @@ Add a border to UIView only on one edge:
 
     [self.someView lsAddBorderOnEdge:UIRectEdgeBottom color:[UIColor blueColor] width:2];
 
-These are only few things you can do with LSCategories. See [DOCUMENTATION](http://cocoadocs.org/docsets/LSCategories/) for more.
+These are only few things you can do with LSCategories. See [DOCUMENTATION](http://cocoadocs.org/docsets/LSCategories/) for more. You can also check TestProject for few other examples.
 
 ## License
 LSCategories is available under the MIT license. See [LICENSE](https://github.com/fins/LSCategories/blob/master/LICENSE).
