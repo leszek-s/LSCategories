@@ -138,7 +138,7 @@
     
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
     UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 35)];
-    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(80, 80) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
+    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(60, 60) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
     UIImage *rotated = [gradient lsRotatedImageWithRadians:M_PI_2 / 2];
     UIImage *resized = [gradient lsResizedImageWithSize:CGSizeMake(200, 100)];
     UIImage *resizedProportional = [resized lsResizedProportionalImageWithMaxSize:CGSizeMake(500, 500)];
@@ -187,6 +187,19 @@
         CGFloat p = progress > 0.5 ? 1 - progress : progress;
         rotatedImageView.transform = CGAffineTransformMakeScale(1 - p, 1 - p);
     } completionBlock:nil];
+}
+
+- (IBAction)testAction:(id)sender
+{
+    UIViewController *vc = [UIViewController new];
+    vc.view.backgroundColor = [UIColor lsRandomColor];
+    [self.navigationController lsPushViewController:vc animated:YES completionBlock:^{
+        vc.view.backgroundColor = [UIColor lsRandomColor];
+        NSLog(@"lsPushViewController");
+        [self.navigationController lsPopViewControllerAnimated:YES completionBlock:^{
+            NSLog(@"lsPopViewControllerAnimated");
+        }];
+    }];
 }
 
 @end
