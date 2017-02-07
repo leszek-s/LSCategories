@@ -114,14 +114,6 @@
 + (void)lsStringFromUrl:(NSURL *)url handler:(void (^)(NSString *string, NSError *error))handler;
 
 /**
- Returns string encoded for usage in url parameter.
-
- @param parameter Parameter to encode.
- @return String encoded for usage in url parameter.
- */
-+ (NSString *)lsEncodedUrlParameter:(id)parameter;
-
-/**
  Returns random string with given length.
 
  @param length Length.

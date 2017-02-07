@@ -191,13 +191,6 @@
     }];
 }
 
-+ (NSString *)lsEncodedUrlParameter:(id)parameter
-{
-    NSString *string = [NSString stringWithFormat:@"%@", parameter];
-    NSString *encoded = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)string, NULL, CFSTR("!*'();:@&=+$,/?%#[]\" "), kCFStringEncodingUTF8));
-    return encoded;
-}
-
 + (NSString *)lsRandomStringWithLength:(NSUInteger)length
 {
     NSString *alphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV0123456789~`!@#$%^&*()_+=-[]{}:;/.,<>?";
