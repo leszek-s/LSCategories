@@ -50,6 +50,15 @@
 + (UIImage *)lsTriangleImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
+ Returns image with ellipse with given color and size.
+
+ @param color Color to fill the ellipse.
+ @param size Size of the ellipse.
+ @return Image with ellipse with given color and size.
+ */
++ (UIImage *)lsEllipseImageWithColor:(UIColor *)color size:(CGSize)size;
+
+/**
  Returns image with gradient with two given colors and directions specified by points.
 
  @param size Size of the image.

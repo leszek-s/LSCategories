@@ -86,6 +86,21 @@
     return image;
 }
 
++ (UIImage *)lsEllipseImageWithColor:(UIColor *)color size:(CGSize)size
+{
+    if (!color || size.height < 1 || size.width < 1)
+        return nil;
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextBeginPath(context);
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillEllipseInRect(context, CGRectMake(0, 0, size.width, size.height));
+    CGContextFillPath(context);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 + (UIImage *)lsGradientImageWithSize:(CGSize)size startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
 {
     if (!startColor || !endColor)
