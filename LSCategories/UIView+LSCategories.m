@@ -146,4 +146,24 @@
     dispatch_resume(timer);
 }
 
+- (void)lsSetFrameX:(CGFloat)x
+{
+    self.frame = CGRectMake(x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+}
+
+- (void)lsSetFrameY:(CGFloat)y
+{
+    self.frame = CGRectMake(self.frame.origin.x, y, self.frame.size.width, self.frame.size.height);
+}
+
+- (void)lsSetFrameWidth:(CGFloat)width
+{
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, self.frame.size.height);
+}
+
+- (void)lsSetFrameHeight:(CGFloat)height
+{
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, height);
+}
+
 @end

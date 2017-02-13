@@ -89,4 +89,32 @@
  */
 + (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock;
 
+/**
+ Sets x value of frame property.
+
+ @param x Value to set.
+ */
+- (void)lsSetFrameX:(CGFloat)x;
+
+/**
+ Sets y value of frame property.
+
+ @param y Value to set.
+ */
+- (void)lsSetFrameY:(CGFloat)y;
+
+/**
+ Sets width value of frame property.
+ 
+ @param width Value to set.
+ */
+- (void)lsSetFrameWidth:(CGFloat)width;
+
+/**
+ Sets height value of frame property.
+ 
+ @param height Value to set.
+ */
+- (void)lsSetFrameHeight:(CGFloat)height;
+
 @end

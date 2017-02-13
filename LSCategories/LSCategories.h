@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #define lsClamp(x, min, max) (MIN(MAX((x), (min)), (max)))
 #define lsDegreesToRadians(degrees) ((degrees) / 180.0 * M_PI)
