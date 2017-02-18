@@ -23,6 +23,26 @@
 @interface UIView (LSCategories)
 
 /**
+ Shows activity indicator in the center of the view.
+ */
+- (void)lsShowActivityIndicator;
+
+/**
+ Shows activity indicator with custom style in the center of the view.
+
+ @param style Activity indicator style.
+ @param color Activity indicator color.
+ @param backgroundColor Color of rounded rectangle view behind activity indicator.
+ @param coverColor Color of cover view behind activity indicator that will cover the whole view.
+ */
+- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor;
+
+/**
+ Hides activity indicator showed on the view.
+ */
+- (void)lsHideActivityIndicator;
+
+/**
  Adds border on top, bottom, left or right with given color and width.
 
  @param edge Edge on which border should be added.

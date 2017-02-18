@@ -195,9 +195,9 @@
     vc.view.backgroundColor = [UIColor lsRandomColor];
     [self.navigationController lsPushViewController:vc animated:YES completionBlock:^{
         vc.view.backgroundColor = [UIColor lsRandomColor];
-        NSLog(@"lsPushViewController");
+        NSLog(@"lsPushViewController completionBlock");
         [self.navigationController lsPopViewControllerAnimated:YES completionBlock:^{
-            NSLog(@"lsPopViewControllerAnimated");
+            NSLog(@"lsPopViewControllerAnimated completionBlock");
         }];
     }];
 }

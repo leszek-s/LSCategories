@@ -23,6 +23,52 @@
 @implementation UIView (LSCategories)
 
 #define lsUItag 0x6c735549
+#define lsAItag 0x6c734149
+
+- (void)lsShowActivityIndicator
+{
+    [self lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor]];
+}
+
+- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor
+{
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+    [activityIndicator startAnimating];
+    activityIndicator.color = color;
+    activityIndicator.center = [self convertPoint:self.center fromView:self.superview];
+    activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    activityIndicator.tag = lsAItag;
+    
+    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, activityIndicator.bounds.size.width * 2, activityIndicator.bounds.size.height * 2)];
+    background.layer.cornerRadius = 6;
+    background.backgroundColor = backgroundColor;
+    background.center = [self convertPoint:self.center fromView:self.superview];
+    background.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    background.tag = lsAItag;
+    
+    UIView *cover = [[UIView alloc] initWithFrame:self.bounds];
+    cover.backgroundColor = coverColor;
+    cover.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    cover.tag = lsAItag;
+    
+    [self addSubview:cover];
+    [self addSubview:background];
+    [self addSubview:activityIndicator];
+}
+
+- (void)lsHideActivityIndicator
+{
+    NSMutableArray *views = [NSMutableArray new];
+    for (UIView *view in self.subviews)
+    {
+        if (view.tag == lsAItag)
+            [views addObject:view];
+    }
+    for (UIView *view in views)
+    {
+        [view removeFromSuperview];
+    }
+}
 
 - (void)lsAddBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width
 {

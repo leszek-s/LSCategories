@@ -22,6 +22,7 @@
 #import <objc/runtime.h>
 
 static char lsAssociatedDictionaryKey;
+static char lsEventsDictionaryKey;
 
 @implementation NSObject (LSCategories)
 
@@ -34,6 +35,80 @@ static char lsAssociatedDictionaryKey;
         objc_setAssociatedObject(self, &lsAssociatedDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return dict;
+}
+
+- (NSMutableDictionary *)lsEventsDictionary
+{
+    NSMutableDictionary *dict = objc_getAssociatedObject(self, &lsEventsDictionaryKey);
+    if (!dict)
+    {
+        dict = [NSMutableDictionary new];
+        objc_setAssociatedObject(self, &lsEventsDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return dict;
+}
+
+- (NSString *)lsSubscribeForEvent:(NSString *)event handler:(void (^)(id data))handler
+{
+    if (!event || !handler)
+        return nil;
+    
+    NSMutableDictionary *eventsDictionary = [self lsEventsDictionary];
+    NSMutableArray *events = eventsDictionary[event];
+    if (!events)
+    {
+        events = [NSMutableArray new];
+        eventsDictionary[event] = events;
+    }
+    NSString *eventId = [NSUUID UUID].UUIDString;
+    [events addObject:@[eventId, [handler copy]]];
+    return eventId;
+}
+
+- (void)lsSendEvent:(NSString *)event data:(id)data
+{
+    NSMutableDictionary *eventsDictionary = [self lsEventsDictionary];
+    NSMutableArray *events = eventsDictionary[event];
+    for (NSArray *ev in events)
+    {
+        void (^handler)(id data) = ev.lastObject;
+        handler(data);
+    }
+}
+
+- (void)lsRemoveSubscriptionWithId:(NSString *)subscriptionId
+{
+    if (!subscriptionId)
+        return;
+    
+    NSMutableDictionary *eventsDictionary = [self lsEventsDictionary];
+    for (NSMutableArray *events in eventsDictionary.allValues)
+    {
+        NSArray *eventsCopy = [events copy];
+        for (NSArray *ev in eventsCopy)
+        {
+            if ([ev.firstObject isEqual:subscriptionId])
+            {
+                [events removeObject:ev];
+                return;
+            }
+        }
+    }
+}
+
+- (void)lsRemoveAllSubscriptionsForEvent:(NSString *)event
+{
+    if (!event)
+        return;
+    
+    NSMutableDictionary *eventsDictionary = [self lsEventsDictionary];
+    eventsDictionary[event] = nil;
+}
+
+- (void)lsRemoveAllSubscriptions
+{
+    NSMutableDictionary *eventsDictionary = [self lsEventsDictionary];
+    [eventsDictionary removeAllObjects];
 }
 
 @end
