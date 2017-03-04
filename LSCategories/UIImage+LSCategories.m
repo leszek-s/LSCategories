@@ -117,6 +117,11 @@
     return image;
 }
 
+- (UIImage *)lsRotatedImageWithDegrees:(CGFloat)degrees
+{
+    return [self lsRotatedImageWithRadians:degrees / 180.0 * M_PI];
+}
+
 - (UIImage *)lsRotatedImageWithRadians:(CGFloat)radians
 {
     CGAffineTransform transform = CGAffineTransformMakeRotation(radians);
@@ -127,6 +132,30 @@
     CGContextTranslateCTM(context, size.width / 2.0, size.height / 2.0);
     CGContextRotateCTM(context, radians);
     [self drawInRect:CGRectMake(-self.size.width / 2.0, -self.size.height / 2.0, self.size.width, self.size.height)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (UIImage *)lsImageFlippedHorizontally
+{
+    UIGraphicsBeginImageContext(self.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, self.size.width, 0.0);
+    CGContextScaleCTM(context, -1.0, 1.0);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (UIImage *)lsImageFlippedVertically
+{
+    UIGraphicsBeginImageContext(self.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0.0, self.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
@@ -187,7 +216,25 @@
     return data;
 }
 
-- (NSData *)lsRGBARawPixelsData
++ (UIImage *)lsImageWithRGBARawData:(NSData *)rgbaRawData size:(CGSize)size
+{
+    if (rgbaRawData.length % 4 || rgbaRawData.length == 0 || rgbaRawData.length != size.width * size.height * 4)
+        return nil;
+    
+    NSUInteger bitsPerComponent = 8;
+    NSUInteger bitsPerPixel = 32;
+    NSUInteger bytesPerRow = 4 * size.width;
+    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, rgbaRawData.bytes, size.width * size.height * 4, NULL);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGImageRef imageRef = CGImageCreate(size.width, size.height, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpace,kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big, provider, NULL, NO, kCGRenderingIntentDefault);
+    UIImage *image = [UIImage imageWithCGImage:imageRef];
+    CGDataProviderRelease(provider);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRelease(imageRef);
+    return image;
+}
+
+- (NSData *)lsRGBARawData
 {
     CGImageRef imageRef = self.CGImage;
     NSUInteger width = CGImageGetWidth(imageRef);
@@ -206,7 +253,7 @@
 
 - (UIColor *)lsColorAtPixel:(CGPoint)pixel
 {
-    NSData *pixelData = [self lsRGBARawPixelsData];
+    NSData *pixelData = [self lsRGBARawData];
     unsigned char *bytes = (unsigned char *)pixelData.bytes;
     NSUInteger width = CGImageGetWidth(self.CGImage);
     NSUInteger pixelIndex = ((NSUInteger)pixel.y * width + (NSUInteger)pixel.x) * 4;

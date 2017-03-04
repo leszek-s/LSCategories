@@ -145,9 +145,17 @@
             handler(nil, nil);
         return;
     }
+    
+    static dispatch_semaphore_t semaphore = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        semaphore = dispatch_semaphore_create(4);
+    });
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         NSError *error = nil;
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+        dispatch_semaphore_signal(semaphore);
         dispatch_async(dispatch_get_main_queue(), ^(void){
             handler(data, error);
         });

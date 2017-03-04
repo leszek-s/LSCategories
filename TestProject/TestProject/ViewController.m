@@ -138,7 +138,9 @@
     
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
     UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 35)];
-    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(60, 60) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
+    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(60, 60) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
+    UIImage *flippedHorizontally = [gradient lsImageFlippedHorizontally];
+    UIImage *flippedVertically = [gradient lsImageFlippedVertically];
     UIImage *rotated = [gradient lsRotatedImageWithRadians:M_PI_2 / 2];
     UIImage *resized = [gradient lsResizedImageWithSize:CGSizeMake(200, 100)];
     UIImage *resizedProportional = [resized lsResizedProportionalImageWithMaxSize:CGSizeMake(500, 500)];
@@ -147,6 +149,8 @@
     NSLog(@"lsImageWithColor: %@", green);
     NSLog(@"lsTriangleImageWithColor: %@", triangle);
     NSLog(@"lsGradientImageWithSize: %@", gradient);
+    NSLog(@"lsImageFlippedHorizontally: %@", flippedHorizontally);
+    NSLog(@"lsImageFlippedVertically: %@", flippedVertically);
     NSLog(@"lsRotatedImageWithRadians: %@", rotated);
     NSLog(@"lsResizedImageWithSize: %@", resized);
     NSLog(@"lsResizedProportionalImageWithMaxSize: %@", resizedProportional);
@@ -155,7 +159,8 @@
     NSLog(@"lsPNG: %@", @([resized lsPNG].length));
     NSLog(@"lsJPEGWithCompressionLevel: %@", @([resized lsJPEGWithCompressionLevel:0.8].length));
     NSLog(@"lsJPEGWithDesiredMaxSize: %@", @([resized lsJPEGWithDesiredMaxSize:2000 allowAboveMax:YES].length));
-    NSLog(@"lsRGBARawPixelsData: %@", [green lsRGBARawPixelsData]);
+    NSLog(@"lsRGBARawData: %@", [green lsRGBARawData]);
+    NSLog(@"lsImageWithRGBARawData %@", [UIImage lsImageWithRGBARawData:[green lsRGBARawData] size:CGSizeMake(2, 100)]);
     NSLog(@"lsColorAtPixel: %@", [green lsColorAtPixel:CGPointMake(5, 5)]);
     NSLog(@"lsAverageColor: %@", [green lsAverageColor]);
     

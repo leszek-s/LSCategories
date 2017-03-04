@@ -71,12 +71,34 @@
 + (UIImage *)lsGradientImageWithSize:(CGSize)size startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 /**
+ Returns image rotated with degrees.
+ 
+ @param degrees Degrees.
+ @return Image rotated with degrees.
+ */
+- (UIImage *)lsRotatedImageWithDegrees:(CGFloat)degrees;
+
+/**
  Returns image rotated with radians.
 
  @param radians Radians.
  @return Image rotated with radians.
  */
 - (UIImage *)lsRotatedImageWithRadians:(CGFloat)radians;
+
+/**
+ Returns image flipped horizontally.
+
+ @return Image flipped horizontally.
+ */
+- (UIImage *)lsImageFlippedHorizontally;
+
+/**
+ Returns image flipped vertically.
+
+ @return Image flipped vertically.
+ */
+- (UIImage *)lsImageFlippedVertically;
 
 /**
  Returns image resized to given size.
@@ -135,11 +157,20 @@
 - (NSData *)lsJPEGWithDesiredMaxSize:(NSUInteger)maxSize allowAboveMax:(BOOL)allowAboveMax;
 
 /**
+ Returns image created from raw pixel data in RGBA format.
+
+ @param rgbaRawData RGBA raw pixel data.
+ @param size Size of the image.
+ @return Image created from raw pixel data or nil if given data does not match given size.
+ */
++ (UIImage *)lsImageWithRGBARawData:(NSData *)rgbaRawData size:(CGSize)size;
+
+/**
  Returns raw pixel data in RGBA format.
 
  @return Raw pixel data in RGBA format.
  */
-- (NSData *)lsRGBARawPixelsData;
+- (NSData *)lsRGBARawData;
 
 /**
  Returns color of pixel at given position.

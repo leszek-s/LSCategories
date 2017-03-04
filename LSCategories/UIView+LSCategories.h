@@ -57,6 +57,14 @@
 - (void)lsRemoveBordersOnEdges;
 
 /**
+ Rotates the view 360 degrees with given duration.
+ 
+ @param duration Duration of the rotation.
+ @param clockwise YES for clockwise rotation, NO otherwise.
+ */
+- (void)lsRotate360DegreesWithDuration:(CFTimeInterval)duration clockwise:(BOOL)clockwise;
+
+/**
  Starts infinite rotation with given duration of a single rotation.
 
  @param duration Duration of a single rotation.

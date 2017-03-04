@@ -113,6 +113,17 @@
     }
 }
 
+- (void)lsRotate360DegreesWithDuration:(CFTimeInterval)duration clockwise:(BOOL)clockwise
+{
+    CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.fromValue = clockwise ? @0 : @(2 * M_PI);
+    rotationAnimation.toValue = clockwise ? @(2 * M_PI) : @0;
+    rotationAnimation.duration = duration;
+    rotationAnimation.repeatCount = 1;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    [self.layer addAnimation:rotationAnimation forKey:@"ls360RotationAnimation"];
+}
+
 - (void)lsStartInfiniteRotationWithDuration:(CFTimeInterval)duration clockwise:(BOOL)clockwise
 {
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
