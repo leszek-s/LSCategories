@@ -67,7 +67,6 @@ Perform various common operations related to UIColor:
 UIColor *color = [UIColor lsColorWithHexString:@"#FF0000"];
 UIColor *otherColor = [UIColor lsColorWithRgba:0xFF00FF33];
 UIColor *randomColor = [UIColor lsRandomColor];
-UIColor *randomColor = [UIColor lsRandomColor];
 UIColor *inverted = [randomColor lsInvertedColor];
 NSString *hexString = [inverted lsRgbaHexString];
 uint32_t rgba = [randomColor lsRgba];
@@ -142,6 +141,8 @@ Add a border to UIView only on one edge:
 Make infinite rotations on your views easily or if you need a loader view just use some standard rotating loader to cover a view when you load your data:
 ```objc
 [self.rotatingView lsStartInfiniteRotationWithDuration:2 clockwise:YES];
+// ...
+[self.rotatingView lsStopInfiniteRotation];
 [self.view lsShowActivityIndicator];
 // ...
 [self.view lsHideActivityIndicator];
