@@ -22,18 +22,24 @@ NSAttributedString *withSuffix = [@"text" lsAttributedStringWithSuffixImage:[UII
 NSAttributedString *withImageInside = [@"text with image" lsAttributedStringByReplacingCharactersInRange:NSMakeRange(10, 0) withImage:[UIImage imageNamed:@"image.png"]];
 ```
 
-Obfuscate NSData or NSString with XOR or ROT13:
+Obfuscate NSData or NSString with XOR or ROT13 and filter strings from unwanted characters:
 ```objc
 NSData *data = [@"Some data to xor" lsDataUTF8];
 NSData *key = [@"key" lsDataUTF8];
 NSData *xoredData = [data lsDataXORedWithKey:key];
 NSString *rot13 = [@"Some string" lsROT13String];
+NSString *lettersOnly = [test lsStringByRemovingNonLetters];
+NSString *numbersOnly = [test lsStringByRemovingNonNumeric];
+NSString *numbersAndLettersOnly = [test lsStringByRemovingNonAlphanumeric];
+NSString *customFilter = [test lsStringByRemovingCharactersNotInString:@"0123456789+- "];
 ```
 
-Save and read NSData to documents or cache folders:
+Save and read NSData to documents or cache folders with a single line of code:
 ```objc
-[someData lsSaveToDirectory:NSDocumentDirectory fileName:@"data" useExcludeFromBackup:NO];
-NSData *data = [NSData lsReadDataFromDirectory:NSDocumentDirectory fileName:@"data"];
+[someData lsSaveToDirectory:NSDocumentDirectory fileName:@"data.bin" useExcludeFromBackup:NO];
+NSData *data = [NSData lsReadDataFromDirectory:NSDocumentDirectory fileName:@"data.bin"];
+NSArray *directoryContent = [NSData lsContentOfDirectory:NSDocumentDirectory];
+[NSData lsCleanDirectory:NSDocumentDirectory];
 ```
 
 Perform various common operations on NSDate easily:
@@ -45,6 +51,9 @@ NSDate *startOfYear = [date lsBeginningOfYear];
 NSDate *endOfDay = [date lsEndOfDay];
 NSDate *endOfMonth = [date lsEndOfMonth];
 NSDate *endOfYear = [date lsEndOfYear];
+NSDate *threeDaysLater = [date lsDateByAddingDays:3];
+NSDate *twoMonthsLater = [date lsDateByAddingMonths:2];
+NSDate *oneYearEarlier = [date lsDateByAddingYears:-1];
 NSInteger year = [date lsYear];
 NSInteger month = [date lsMonth];
 NSInteger day = [date lsDay];
@@ -106,15 +115,12 @@ Get NSData, NSString with HTML, NSDictionary from JSON or UIImage from given URL
 [NSData lsDataFromUrl:[NSURL URLWithString:@"https://google.com"] handler:^(NSData *data, NSError *error) {
     // do something
 }];
-
 [NSString lsStringFromUrl:[NSURL URLWithString:@"https://github.com"] handler:^(NSString *string, NSError *error) {
     // do something
 }];
-
 [NSDictionary lsDictionaryFromJsonUrl:[NSURL URLWithString:@"https://dummyurl.com/json"] handler:^(NSDictionary *jsonDictionary, NSError *error) {
     // do something
 }];
-
 [UIImage lsImageFromUrl:[NSURL URLWithString:@"https://dummyurl.com/image.jpg"] useCache:YES handler:^(UIImage *image, NSError *error) {
     // do something
 }];
@@ -128,7 +134,6 @@ self.label.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>ht
 NSAttributedString *attributedString = [@"Text with <strong>basic</strong> <em>HTML</em>" lsAttributedStringWithDefaultTagStylesheet];
 
 NSAttributedString *withCustomTags = [@"Text with <custom>custom</custom> tag" lsAttributedStringWithTagStylesheet:@{ @"custom" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle), NSFontAttributeName : [UIFont systemFontOfSize:20] }}];
-}];
 ```
 
 Add a border to UIView only on one edge:
