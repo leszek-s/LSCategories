@@ -133,6 +133,14 @@
 - (UIImage *)lsResizedProportionalImageWithWidth:(CGFloat)width;
 
 /**
+ Returns cropped image with given rectangle.
+
+ @param rect Rectangle to use for cropping.
+ @return Cropped image.
+ */
+- (UIImage *)lsCroppedImageWithRect:(CGRect)rect;
+
+/**
  Returns PNG data.
 
  @return PNG data.

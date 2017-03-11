@@ -192,6 +192,15 @@
     return [self lsResizedImageWithSize:CGSizeMake(width, height)];
 }
 
+- (UIImage *)lsCroppedImageWithRect:(CGRect)rect
+{
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, self.scale);
+    [self drawAtPoint:CGPointMake(-rect.origin.x, -rect.origin.y)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (NSData *)lsPNG
 {
     return UIImagePNGRepresentation(self);

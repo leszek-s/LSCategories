@@ -102,6 +102,7 @@ UIImage *resized = [image lsResizedImageWithSize:CGSizeMake(200, 100)];
 UIImage *resizedProportional = [image lsResizedProportionalImageWithMaxSize:CGSizeMake(500, 500)];
 UIImage *resizedWithWidth = [image lsResizedProportionalImageWithWidth:500];
 UIImage *resizedWithHeight = [image lsResizedProportionalImageWithHeight:500];
+UIImage *cropped = [image lsCroppedImageWithRect:CGRectMake(0, 20, 60, 20)];
 NSData *pngData = [image lsPNG];
 NSData *jpegData = [image lsJPEGWithCompressionLevel:0.8];
 NSData *jpegDataWithSize = [image lsJPEGWithDesiredMaxSize:2000 allowAboveMax:NO];
