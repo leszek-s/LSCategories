@@ -159,7 +159,7 @@ Make infinite rotations on your views easily or if you need a loader view just u
 Change custom properties of any object over time (for example for animating something which cannot be animated in a standard way):
 ```objc
 [UIView lsRepeatWithDuration:2 delay:3 framesPerSecond:60 block:^(CGFloat progress) {
-	self.label.text = @(progress * 1000).stringValue;
+    self.label.text = @(progress * 1000).stringValue;
 } completionBlock:nil];
 // actually for animating incrementing or decrementing a number
 // on a UILabel like above you can also use a shortcut
@@ -171,7 +171,7 @@ Send events from any object (not only UIControls) and subscribe to events sent b
 [self lsSendEvent:@"DataRefreshedEvent" data:nil];
 // ...
 [someObject lsSubscribeForEvent:@"DataRefreshedEvent" handler:^(id data) {
-	// do something
+    // do something
 }];
 ```
 
