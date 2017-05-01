@@ -84,12 +84,13 @@ CGFloat saturation = [color lsSaturation];
 CGFloat brightness = [color lsBrightness];
 ```
 
-Generate UIImages with color, gradient, triangle or ellipse:
+Generate UIImages with color, gradient, triangle, ellipse and avatar placeholder images with initials from given name:
 ```objc
 UIImage *red = [UIImage lsImageWithColor:[UIColor redColor] size:CGSizeMake(10, 10)];
 UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(100, 100) startColor:[UIColor redColor] endColor:[UIColor greenColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(0, 1)];
 UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 30)];
 UIImage *ellipse = [UIImage lsEllipseImageWithColor:[UIColor blueColor] size:CGSizeMake(70, 30)];
+UIImage *avatar = [UIImage lsInitialsAvatarImageWithText:@"John Doe"];
 ```
 
 Perform common operations on existing UIImages:
