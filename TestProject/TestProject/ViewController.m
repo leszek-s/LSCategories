@@ -139,6 +139,7 @@
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
     UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 35)];
     UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(60, 60) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
+    UIImage *avatar = [[UIImage lsInitialsAvatarImageWithText:@"John Doe"] lsResizedProportionalImageWithHeight:50];
     UIImage *flippedHorizontally = [gradient lsImageFlippedHorizontally];
     UIImage *flippedVertically = [gradient lsImageFlippedVertically];
     UIImage *rotated = [gradient lsRotatedImageWithRadians:M_PI_2 / 2];
@@ -167,6 +168,7 @@
     NSLog(@"lsAverageColor: %@", [green lsAverageColor]);
     
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:green]];
+    [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:avatar]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:triangle]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:gradient]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:rotated]];

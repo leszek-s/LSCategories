@@ -251,6 +251,14 @@
     return filtered;
 }
 
+- (NSString *)lsStringByRemovingNonAlphanumericAndNonWhitespace
+{
+    NSMutableCharacterSet *set = [[NSCharacterSet alphanumericCharacterSet] mutableCopy];
+    [set formUnionWithCharacterSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *filtered = [[self componentsSeparatedByCharactersInSet:set.invertedSet] componentsJoinedByString:@""];
+    return filtered;
+}
+
 - (NSString *)lsStringByRemovingNonNumeric
 {
     NSString *filtered = [[self componentsSeparatedByCharactersInSet:[NSCharacterSet decimalDigitCharacterSet].invertedSet] componentsJoinedByString:@""];

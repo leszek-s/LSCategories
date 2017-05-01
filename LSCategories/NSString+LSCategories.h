@@ -157,6 +157,13 @@
 - (NSString *)lsStringByRemovingNonAlphanumeric;
 
 /**
+ Return string with alphanumeric and whitespace characters only.
+
+ @return String with alphanumeric and whitespace characters only.
+ */
+- (NSString *)lsStringByRemovingNonAlphanumericAndNonWhitespace;
+
+/**
  Return string with numeric characters only.
  
  @return String with numeric characters only.

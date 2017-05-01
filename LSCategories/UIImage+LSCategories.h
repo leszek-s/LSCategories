@@ -71,6 +71,26 @@
 + (UIImage *)lsGradientImageWithSize:(CGSize)size startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 /**
+ Returns image with avatar placeholder with initials from given name and background color generated from this name.
+
+ @param text Name for generating avatar placeholder.
+ @return Image with avatar placeholder.
+ */
++ (UIImage *)lsInitialsAvatarImageWithText:(NSString *)text;
+
+/**
+ Returns image with given text drawed in the center.
+
+ @param text Text to draw.
+ @param textColor Text color.
+ @param backgroundColor Background color.
+ @param font Text font.
+ @param size Size of the image.
+ @return Image with given text drawed in the center.
+ */
++ (UIImage *)lsImageWithText:(NSString *)text textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font size:(CGSize)size;
+
+/**
  Returns image rotated with degrees.
  
  @param degrees Degrees.

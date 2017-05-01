@@ -20,6 +20,8 @@
 
 #import "UIImage+LSCategories.h"
 #import "NSData+LSCategories.h"
+#import "NSString+LSCategories.h"
+#import "UIColor+LSCategories.h"
 
 @implementation UIImage (LSCategories)
 
@@ -112,6 +114,36 @@
     layer.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];
     UIGraphicsBeginImageContext(size);
     [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
++ (UIImage *)lsInitialsAvatarImageWithText:(NSString *)text
+{
+    NSString *filtered = [text lsStringByRemovingNonAlphanumericAndNonWhitespace];
+    NSArray *words = [filtered componentsSeparatedByString:@" "];
+    NSString *first = words.count > 0 && [words[0] length] > 0 ? [words[0] substringToIndex:1] : @"";
+    NSString *second = words.count > 1 && [words[1] length] > 0 ? [words[1] substringToIndex:1] : @"";
+    NSString *initials = [NSString stringWithFormat:@"%@%@", [first uppercaseString], [second uppercaseString]];
+    UIColor *color = [UIColor lsColorWithHexString:[[text lsMD5] substringToIndex:6]];
+    UIColor *backgroundColor = [UIColor colorWithHue:color.lsHue saturation:0.3 brightness:0.9 alpha:1.0];
+    return [self lsImageWithText:initials textColor:[UIColor whiteColor] backgroundColor:backgroundColor font:[UIFont boldSystemFontOfSize:150] size:CGSizeMake(300, 300)];
+}
+
++ (UIImage *)lsImageWithText:(NSString *)text textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font size:(CGSize)size
+{
+    if (!text || !textColor || !backgroundColor || !font || size.height < 1 || size.width < 1)
+        return nil;
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [backgroundColor CGColor]);
+    CGContextFillRect(context, rect);
+    NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+    style.alignment = NSTextAlignmentCenter;
+    style.minimumLineHeight = size.height / 2.0 + font.lineHeight / 2.0;
+    [text drawInRect:rect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:textColor, NSParagraphStyleAttributeName:style}];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
