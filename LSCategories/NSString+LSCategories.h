@@ -186,6 +186,20 @@
 - (NSString *)lsStringByRemovingCharactersNotInString:(NSString *)string;
 
 /**
+ Returns CRC32 checksum from string.
+ 
+ @return CRC32 checksum from string.
+ */
+- (uint32_t)lsCRC32;
+
+/**
+ Returns Adler32 checksum from string.
+ 
+ @return Adler32 checksum from string.
+ */
+- (uint32_t)lsAdler32;
+
+/**
  Returns MD2 hash from string.
  
  @return MD2 hash from string.

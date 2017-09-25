@@ -23,6 +23,20 @@
 @interface NSData (LSCategories)
 
 /**
+ Returns CRC32 checksum from data.
+ 
+ @return CRC32 checksum from data.
+ */
+- (uint32_t)lsCRC32;
+
+/**
+ Returns Adler32 checksum from data.
+ 
+ @return Adler32 checksum from data.
+ */
+- (uint32_t)lsAdler32;
+
+/**
  Returns MD2 hash from data.
 
  @return MD2 hash from data.

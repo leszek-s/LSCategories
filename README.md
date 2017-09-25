@@ -3,7 +3,7 @@
 ## Features
 Some things which can be easily done with LSCategories are listed below.
 
-Create various type of hashes with single line of code from NSString or NSData:
+Create various type of hashes and checksums with a single line of code from NSString or NSData:
 ```objc
 NSString *sha1 = [@"Test string" lsSHA1];
 NSString *sha224 = [@"Test string" lsSHA224];
@@ -13,6 +13,8 @@ NSString *sha512 = [@"Test string" lsSHA512];
 NSString *md2 = [@"Test string" lsMD2];
 NSString *md4 = [@"Test string" lsMD4];
 NSString *md5 = [@"Test string" lsMD5];
+uint32_t crc32 = [@"Test string" lsCRC32];
+uint32_t adler32 = [@"Test string" lsAdler32];
 ```
 
 Put an image inside a string easily:
@@ -108,7 +110,7 @@ UIImage *cropped = [image lsCroppedImageWithRect:CGRectMake(0, 20, 60, 20)];
 NSData *pngData = [image lsPNG];
 NSData *jpegData = [image lsJPEGWithCompressionLevel:0.8];
 NSData *jpegDataWithSize = [image lsJPEGWithDesiredMaxSize:2000 allowAboveMax:NO];
-NSData *rgbaRawData = [green lsRGBARawData];
+NSData *rgbaRawData = [image lsRGBARawData];
 UIImage *imageFromRawData = [UIImage lsImageWithRGBARawData:rgbaRawData size:CGSizeMake(20, 30)];
 UIColor *averageImageColor = [image lsAverageColor];
 ```
@@ -156,6 +158,10 @@ Make infinite rotations on your views easily or if you need a loader view just u
 [self.view lsHideActivityIndicator];
 // or if you want some customization...
 [self.view lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor redColor] backgroundColor:[UIColor whiteColor] coverColor:[UIColor yellowColor]];
+// you can also cover the whole screen instead of a single view with a global activity indicator like this
+[UIView lsShowSharedActivityIndicator];
+// and hide it with
+[UIView lsHideSharedActivityIndicator];
 ```
 
 Change custom properties of any object over time (for example for animating something which cannot be animated in a standard way):
@@ -166,6 +172,16 @@ Change custom properties of any object over time (for example for animating some
 // actually for animating incrementing or decrementing a number
 // on a UILabel like above you can also use a shortcut
 [self.label lsAnimateCounterWithStartValue:10 endValue:1000 duration:2 completionBlock:nil];
+```
+
+Use UINavigationController with completion blocks:
+```objc
+[self.navigationController lsPushViewController:vc animated:YES completionBlock:^{
+	// do something
+}];
+[self.navigationController lsPopViewControllerAnimated:YES completionBlock:^{
+	// do something
+}];
 ```
 
 Send events from any object (not only UIControls) and subscribe to events sent by given object with a handler:

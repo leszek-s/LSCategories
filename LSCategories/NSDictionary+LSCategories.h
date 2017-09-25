@@ -46,4 +46,11 @@
  */
 - (NSString *)lsJsonString;
 
+/**
+ Returns dictionary with keys and values swapped.
+ 
+ @return Dictionary with keys and values swapped.
+ */
+- (NSDictionary *)lsDictionaryWithSwappedKeysAndValues;
+
 @end

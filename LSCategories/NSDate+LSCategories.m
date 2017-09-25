@@ -385,6 +385,16 @@
     return [formatter stringFromDate:self];
 }
 
++ (NSDate *)lsDateCombinedWithDate:(NSDate *)date time:(NSDate *)time
+{
+    NSDateComponents *dateComponents = [date lsDateComponents];
+    NSDateComponents *timeComponents = [time lsDateComponents];
+    dateComponents.hour = timeComponents.hour;
+    dateComponents.minute = timeComponents.minute;
+    dateComponents.second = timeComponents.second;
+    return [dateComponents.calendar dateFromComponents:dateComponents];
+}
+
 + (NSDate *)lsDateWithString:(NSString *)string format:(NSString *)format
 {
     static NSDateFormatter *formatter = nil;

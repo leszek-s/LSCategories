@@ -23,6 +23,16 @@
 @interface UIView (LSCategories)
 
 /**
+ Shows global activity indicator in the center of the screen.
+ */
++ (void)lsShowSharedActivityIndicator;
+
+/**
+ Hides global activity indicator showed in the center of the screen.
+ */
++ (void)lsHideSharedActivityIndicator;
+
+/**
  Shows activity indicator in the center of the view.
  */
 - (void)lsShowActivityIndicator;

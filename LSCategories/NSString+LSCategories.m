@@ -277,6 +277,16 @@
     return filtered;
 }
 
+- (uint32_t)lsCRC32
+{
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lsCRC32];
+}
+
+- (uint32_t)lsAdler32
+{
+    return [[self dataUsingEncoding:NSUTF8StringEncoding] lsAdler32];
+}
+
 - (NSString *)lsMD2
 {
     return [[self dataUsingEncoding:NSUTF8StringEncoding] lsMD2];

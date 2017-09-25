@@ -53,4 +53,11 @@
     return string;
 }
 
+- (NSDictionary *)lsDictionaryWithSwappedKeysAndValues
+{
+    NSArray *keys = self.allKeys;
+    NSArray *values = [self objectsForKeys:keys notFoundMarker:[NSNull null]];
+    return [NSDictionary dictionaryWithObjects:keys forKeys:values];
+}
+
 @end

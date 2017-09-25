@@ -24,6 +24,43 @@
 
 @implementation NSData (LSCategories)
 
+- (uint32_t)lsCRC32
+{
+    uint32_t crc, table[256];
+    for (int i = 0; i <= 255; i++)
+    {
+        crc = i;
+        for (int j = 0; j < 8; j++)
+        {
+            crc = (crc >> 1) ^ (-(crc & 1) & 0xEDB88320);
+        }
+        table[i] = crc;
+    }
+    
+    crc = 0xFFFFFFFF;
+    u_char *byte = (u_char *)self.bytes;
+    NSUInteger length = self.length;
+    for (int i = 0; i < length; i++)
+    {
+        crc = (crc >> 8) ^ table[(crc & 0xFF) ^ *byte++];
+    }
+    return ~crc;
+}
+
+- (uint32_t)lsAdler32
+{
+    uint32_t a = 1, b = 0;
+    u_char *byte = (u_char *)self.bytes;
+    NSUInteger length = self.length;
+    
+    for (int i = 0; i < length; i++)
+    {
+        a = (a + *byte++) % 65521;
+        b = (b + a) % 65521;
+    }
+    return (b << 16) | a;
+}
+
 - (NSString *)lsMD2
 {
     unsigned char digest[CC_MD2_DIGEST_LENGTH];

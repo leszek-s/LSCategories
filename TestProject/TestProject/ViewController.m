@@ -21,6 +21,8 @@
     [super viewDidLoad];
     
     NSString *test = @"test123!test456!";
+    NSLog(@"crc32: %08X", [test lsCRC32]);
+    NSLog(@"adler32: %08X", [test lsAdler32]);
     NSLog(@"md2: %@", [test lsMD2]);
     NSLog(@"md4: %@", [test lsMD4]);
     NSLog(@"md5: %@", [test lsMD5]);
@@ -138,8 +140,9 @@
     
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
     UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 35)];
-    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(60, 60) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
+    UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(50, 50) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
     UIImage *avatar = [[UIImage lsInitialsAvatarImageWithText:@"John Doe"] lsResizedProportionalImageWithHeight:50];
+    UIImage *text = [UIImage lsImageWithText:@"HELLO WORLD!" textColor:[UIColor whiteColor] backgroundColor:[UIColor blueColor] font:[UIFont boldSystemFontOfSize:20] size:CGSizeMake(200, 30)];
     UIImage *flippedHorizontally = [gradient lsImageFlippedHorizontally];
     UIImage *flippedVertically = [gradient lsImageFlippedVertically];
     UIImage *rotated = [gradient lsRotatedImageWithRadians:M_PI_2 / 2];
@@ -151,6 +154,8 @@
     NSLog(@"lsImageWithColor: %@", green);
     NSLog(@"lsTriangleImageWithColor: %@", triangle);
     NSLog(@"lsGradientImageWithSize: %@", gradient);
+    NSLog(@"lsInitialsAvatarImageWithText: %@", avatar);
+    NSLog(@"lsImageWithText: %@", text);
     NSLog(@"lsImageFlippedHorizontally: %@", flippedHorizontally);
     NSLog(@"lsImageFlippedVertically: %@", flippedVertically);
     NSLog(@"lsRotatedImageWithRadians: %@", rotated);
@@ -169,6 +174,7 @@
     
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:green]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:avatar]];
+    [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:text]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:triangle]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:gradient]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:rotated]];
@@ -202,11 +208,13 @@
 {
     UIViewController *vc = [UIViewController new];
     vc.view.backgroundColor = [UIColor lsRandomColor];
+    [UIView lsShowSharedActivityIndicator];
     [self.navigationController lsPushViewController:vc animated:YES completionBlock:^{
         vc.view.backgroundColor = [UIColor lsRandomColor];
         NSLog(@"lsPushViewController completionBlock");
         [self.navigationController lsPopViewControllerAnimated:YES completionBlock:^{
             NSLog(@"lsPopViewControllerAnimated completionBlock");
+            [UIView lsHideSharedActivityIndicator];
         }];
     }];
 }

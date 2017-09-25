@@ -468,6 +468,15 @@
 - (NSString *)lsStringWithISO8601;
 
 /**
+ Returns date combined from date and time.
+ 
+ @param date Date.
+ @param time Time.
+ @return Date combined from date and time.
+ */
++ (NSDate *)lsDateCombinedWithDate:(NSDate *)date time:(NSDate *)time;
+
+/**
  Returns date from string in given format.
 
  @param string String with date/time.

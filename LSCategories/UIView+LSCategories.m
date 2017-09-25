@@ -25,6 +25,39 @@
 #define lsUItag 0x6c735549
 #define lsAItag 0x6c734149
 
+static NSInteger lsSharedHudCounter = 0;
+static UIView *lsSharedHudView = nil;
+
++ (void)lsShowSharedActivityIndicator
+{
+    lsSharedHudCounter++;
+    if (lsSharedHudView)
+        return;
+    
+    UIView *hv = [[UIApplication sharedApplication] keyWindow];
+    if (hv)
+    {
+        lsSharedHudView = hv;
+        [hv lsShowActivityIndicator];
+    }
+}
+
++ (void)lsHideSharedActivityIndicator
+{
+    lsSharedHudCounter--;
+    if (lsSharedHudCounter < 0)
+        lsSharedHudCounter = 0;
+    
+    if (lsSharedHudCounter != 0)
+        return;
+    
+    if (lsSharedHudView)
+    {
+        [lsSharedHudView lsHideActivityIndicator];
+        lsSharedHudView = nil;
+    }
+}
+
 - (void)lsShowActivityIndicator
 {
     [self lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor]];
