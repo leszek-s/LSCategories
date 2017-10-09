@@ -186,6 +186,13 @@
 - (NSString *)lsStringByRemovingCharactersNotInString:(NSString *)string;
 
 /**
+ Returns a number from a string with a hexadecimal integer.
+ 
+ @return Number from a string with a hexadecimal integer.
+ */
+- (NSNumber *)lsNumberFromHexString;
+
+/**
  Returns CRC32 checksum from string.
  
  @return CRC32 checksum from string.

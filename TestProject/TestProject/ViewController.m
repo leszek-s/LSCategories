@@ -31,6 +31,7 @@
     NSLog(@"sha256: %@", [test lsSHA256]);
     NSLog(@"sha384: %@", [test lsSHA384]);
     NSLog(@"sha512: %@", [test lsSHA512]);
+    NSLog(@"number: %@", [@"ffffffff" lsNumberFromHexString]);
     NSLog(@"rot13: %@", [test lsROT13String]);
     NSLog(@"reversed: %@", [test lsReversedString]);
     NSLog(@"lsStringByRemovingNonLetters: %@", [test lsStringByRemovingNonLetters]);

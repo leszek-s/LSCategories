@@ -18,27 +18,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define lsClamp(x, min, max) (MIN(MAX((x), (min)), (max)))
-#define lsDegreesToRadians(degrees) ((degrees) / 180.0 * M_PI)
-#define lsRadiansToDegrees(radians) ((radians) * 180.0 / M_PI)
-#define lsNilToNull(x) ((x) ? (x) : [NSNull null])
-#define lsNullToNil(x) ((x) == [NSNull null] ? nil : (x))
-#define lsWeakify(object) __weak __typeof(object) lsWeak_##object = object;
-#define lsStrongify(object) __strong __typeof(object) object = lsWeak_##object;
+@interface UIApplication (LSCategories)
 
-#import "NSArray+LSCategories.h"
-#import "NSData+LSCategories.h"
-#import "NSDate+LSCategories.h"
-#import "NSDictionary+LSCategories.h"
-#import "NSObject+LSCategories.h"
-#import "NSString+LSCategories.h"
-#import "UIApplication+LSCategories.h"
-#import "UIColor+LSCategories.h"
-#import "UIFont+LSCategories.h"
-#import "UIImage+LSCategories.h"
-#import "UILabel+LSCategories.h"
-#import "UINavigationController+LSCategories.h"
-#import "UIView+LSCategories.h"
+/**
+ Returns application version string.
+
+ @return Application version string.
+ */
+- (NSString *)lsVersion;
+
+/**
+ Returns application build number string.
+ 
+ @return Application build number string.
+ */
+- (NSString *)lsBuild;
+
+@end

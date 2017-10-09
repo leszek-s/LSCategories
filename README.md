@@ -177,10 +177,10 @@ Change custom properties of any object over time (for example for animating some
 Use UINavigationController with completion blocks:
 ```objc
 [self.navigationController lsPushViewController:vc animated:YES completionBlock:^{
-	// do something
+    // do something
 }];
 [self.navigationController lsPopViewControllerAnimated:YES completionBlock:^{
-	// do something
+    // do something
 }];
 ```
 

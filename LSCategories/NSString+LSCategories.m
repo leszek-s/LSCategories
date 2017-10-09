@@ -277,6 +277,18 @@
     return filtered;
 }
 
+- (NSNumber *)lsNumberFromHexString
+{
+    NSString *input = [self uppercaseString];
+    input = [input stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    
+    unsigned long long number;
+    NSScanner *scanner = [NSScanner scannerWithString:input];
+    if (![scanner scanHexLongLong:&number])
+        return nil;
+    return @(number);
+}
+
 - (uint32_t)lsCRC32
 {
     return [[self dataUsingEncoding:NSUTF8StringEncoding] lsCRC32];

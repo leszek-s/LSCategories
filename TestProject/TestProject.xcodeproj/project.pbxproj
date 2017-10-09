@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
 		1BFCB05C1E44F3E700357597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05B1E44F3E700357597 /* main.m */; };
 		1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05E1E44F3E700357597 /* AppDelegate.m */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B1113AA1F89FE67007C97BE /* UIApplication+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LSCategories.h"; sourceTree = "<group>"; };
+		1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LSCategories.m"; sourceTree = "<group>"; };
 		1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LSCategories.h"; sourceTree = "<group>"; };
 		1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LSCategories.m"; sourceTree = "<group>"; };
 		1BFCB0571E44F3E700357597 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +136,8 @@
 				1BFCB07C1E44F40200357597 /* NSObject+LSCategories.m */,
 				1BFCB07D1E44F40300357597 /* NSString+LSCategories.h */,
 				1BFCB07E1E44F40300357597 /* NSString+LSCategories.m */,
+				1B1113AA1F89FE67007C97BE /* UIApplication+LSCategories.h */,
+				1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */,
 				1BFCB07F1E44F40300357597 /* UIColor+LSCategories.h */,
 				1BFCB0801E44F40300357597 /* UIColor+LSCategories.m */,
 				1BFCB0811E44F40300357597 /* UIFont+LSCategories.h */,
@@ -230,6 +235,7 @@
 				1BFCB08F1E44F40300357597 /* UIColor+LSCategories.m in Sources */,
 				1BFCB0931E44F40300357597 /* UIView+LSCategories.m in Sources */,
 				1BFCB08A1E44F40300357597 /* NSData+LSCategories.m in Sources */,
+				1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */,
 				1BFCB08B1E44F40300357597 /* NSDate+LSCategories.m in Sources */,
 				1BFCB08E1E44F40300357597 /* NSString+LSCategories.m in Sources */,
 				1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */,
