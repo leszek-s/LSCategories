@@ -105,7 +105,7 @@
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)
  @return Array of NSStrings or nil.
  */
-+ (NSArray *)lsContentOfDirectory:(NSSearchPathDirectory)directory;
++ (NSArray<NSString *> *)lsContentOfDirectory:(NSSearchPathDirectory)directory;
 
 /**
  Deletes LSDATA subdirectory in given directory.

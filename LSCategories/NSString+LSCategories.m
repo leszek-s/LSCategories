@@ -193,7 +193,12 @@
 
 + (NSString *)lsRandomStringWithLength:(NSUInteger)length
 {
-    NSString *alphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV0123456789~`!@#$%^&*()_+=-[]{}:;/.,<>?";
+    NSString *alphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-={}[]<>?";
+    return [self lsRandomStringWithLength:length alphabet:alphabet];
+}
+
++ (NSString *)lsRandomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet
+{
     NSUInteger max = alphabet.length;
     NSMutableString *random = [NSMutableString stringWithCapacity:length];
     for (NSInteger i = 0; i < length; i++)

@@ -53,4 +53,19 @@
  */
 - (NSDictionary *)lsDictionaryWithSwappedKeysAndValues;
 
+/**
+ Returns data.
+
+ @return Data.
+ */
+- (NSData *)lsData;
+
+/**
+ Return dictionary from data.
+
+ @param data Data.
+ @return Dictionary from data.
+ */
++ (NSDictionary *)lsDictionaryFromData:(NSData *)data;
+
 @end

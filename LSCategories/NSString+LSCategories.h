@@ -46,7 +46,7 @@
  @param string Substring to find.
  @return Array with all ranges of given substring or empty array if substring not found.
  */
-- (NSArray *)lsAllRangesOfString:(NSString *)string;
+- (NSArray<NSValue *> *)lsAllRangesOfString:(NSString *)string;
 
 /**
  Returns array with all ranges of substrings between given start string and end string or empty array if not found.
@@ -55,7 +55,7 @@
  @param endString End string.
  @return Array with all ranges of substrings between given start string and end string or empty array if not found.
  */
-- (NSArray *)lsRangesOfAllSubstringsBetweenStartString:(NSString *)startString endString:(NSString *)endString;
+- (NSArray<NSValue *> *)lsRangesOfAllSubstringsBetweenStartString:(NSString *)startString endString:(NSString *)endString;
 
 /**
  Returns attributed string with inline image inserted at the beginning of string.
@@ -120,6 +120,15 @@
  @return Random string with given length.
  */
 + (NSString *)lsRandomStringWithLength:(NSUInteger)length;
+
+/**
+ Returns random string with given length and alphabet.
+
+ @param length Length.
+ @param alphabet Alphabet.
+ @return Random string with given length and alphabet.
+ */
++ (NSString *)lsRandomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet;
 
 /**
  Returns data with string encoded in UTF8 encoding.

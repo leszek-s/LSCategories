@@ -60,4 +60,14 @@
     return [NSDictionary dictionaryWithObjects:keys forKeys:values];
 }
 
+- (NSData *)lsData
+{
+    return [NSKeyedArchiver archivedDataWithRootObject:self];
+}
+
++ (NSDictionary *)lsDictionaryFromData:(NSData *)data
+{
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 @end
