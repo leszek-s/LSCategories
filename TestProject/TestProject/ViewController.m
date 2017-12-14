@@ -152,6 +152,7 @@
     UIImage *resizedWithWidth = [resized lsResizedProportionalImageWithWidth:500];
     UIImage *resizedWithHeight = [resized lsResizedProportionalImageWithHeight:500];
     UIImage *cropped = [gradient lsCroppedImageWithRect:CGRectMake(0, 20, 60, 20)];
+    UIImage *croppedWithInsets = [gradient lsCroppedImageWithInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     NSLog(@"lsImageWithColor: %@", green);
     NSLog(@"lsTriangleImageWithColor: %@", triangle);
     NSLog(@"lsGradientImageWithSize: %@", gradient);
@@ -165,6 +166,7 @@
     NSLog(@"lsResizedProportionalImageWithWidth: %@", resizedWithWidth);
     NSLog(@"lsResizedProportionalImageWithHeight: %@", resizedWithHeight);
     NSLog(@"lsCroppedImageWithRect: %@", cropped);
+    NSLog(@"lsCroppedImageWithInsets: %@", croppedWithInsets);
     NSLog(@"lsPNG: %@", @([resized lsPNG].length));
     NSLog(@"lsJPEGWithCompressionLevel: %@", @([resized lsJPEGWithCompressionLevel:0.8].length));
     NSLog(@"lsJPEGWithDesiredMaxSize: %@", @([resized lsJPEGWithDesiredMaxSize:2000 allowAboveMax:YES].length));

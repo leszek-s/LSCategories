@@ -10,6 +10,7 @@
 		1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */; };
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
+		1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */; };
 		1BFCB05C1E44F3E700357597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05B1E44F3E700357597 /* main.m */; };
 		1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05E1E44F3E700357597 /* AppDelegate.m */; };
 		1BFCB0621E44F3E700357597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0611E44F3E700357597 /* ViewController.m */; };
@@ -36,6 +37,8 @@
 		1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LSCategories.m"; sourceTree = "<group>"; };
 		1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LSCategories.h"; sourceTree = "<group>"; };
 		1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LSCategories.m"; sourceTree = "<group>"; };
+		1BA345891FBAEDC60088B514 /* UIImageView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LSCategories.h"; sourceTree = "<group>"; };
+		1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LSCategories.m"; sourceTree = "<group>"; };
 		1BFCB0571E44F3E700357597 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFCB05B1E44F3E700357597 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BFCB05D1E44F3E700357597 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 				1BFCB0821E44F40300357597 /* UIFont+LSCategories.m */,
 				1BFCB0831E44F40300357597 /* UIImage+LSCategories.h */,
 				1BFCB0841E44F40300357597 /* UIImage+LSCategories.m */,
+				1BA345891FBAEDC60088B514 /* UIImageView+LSCategories.h */,
+				1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */,
 				1BFCB0851E44F40300357597 /* UILabel+LSCategories.h */,
 				1BFCB0861E44F40300357597 /* UILabel+LSCategories.m */,
 				1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */,
@@ -240,6 +245,7 @@
 				1BFCB08F1E44F40300357597 /* UIColor+LSCategories.m in Sources */,
 				1BFCB0931E44F40300357597 /* UIView+LSCategories.m in Sources */,
 				1BFCB08A1E44F40300357597 /* NSData+LSCategories.m in Sources */,
+				1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */,
 				1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */,
 				1BFCB08B1E44F40300357597 /* NSDate+LSCategories.m in Sources */,
 				1BFCB08E1E44F40300357597 /* NSString+LSCategories.m in Sources */,

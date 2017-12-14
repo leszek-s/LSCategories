@@ -129,12 +129,20 @@
 - (UIImage *)lsResizedImageWithSize:(CGSize)size;
 
 /**
- Returns image resized proportionally to fit the maximum given size.
+ Returns image resized proportionally to the maximum size. Width and height of resized image will be smaller or equal to given width and height.
 
  @param size Maximum size.
  @return Resized image.
  */
 - (UIImage *)lsResizedProportionalImageWithMaxSize:(CGSize)size;
+
+/**
+ Returns image resized proportionally to the minimum size. Width and height of resized image will be larger or equal to given width and height.
+ 
+ @param size Maximum size.
+ @return Resized image.
+ */
+- (UIImage *)lsResizedProportionalImageWithMinSize:(CGSize)size;
 
 /**
  Returns image resized proportionally to given height.
@@ -159,6 +167,14 @@
  @return Cropped image.
  */
 - (UIImage *)lsCroppedImageWithRect:(CGRect)rect;
+
+/**
+ Returns cropped image with given edge insets.
+
+ @param insets Edge insets.
+ @return Cropped image.
+ */
+- (UIImage *)lsCroppedImageWithInsets:(UIEdgeInsets)insets;
 
 /**
  Returns PNG data.

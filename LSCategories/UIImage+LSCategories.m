@@ -212,6 +212,14 @@
     return [self lsResizedImageWithSize:CGSizeMake(self.size.width * aspectRatio, self.size.height * aspectRatio)];
 }
 
+- (UIImage *)lsResizedProportionalImageWithMinSize:(CGSize)size
+{
+    CGFloat aspectWidth = size.width / self.size.width;
+    CGFloat aspectHeight = size.height / self.size.height;
+    CGFloat aspectRatio = MAX(aspectWidth, aspectHeight);
+    return [self lsResizedImageWithSize:CGSizeMake(self.size.width * aspectRatio, self.size.height * aspectRatio)];
+}
+
 - (UIImage *)lsResizedProportionalImageWithHeight:(CGFloat)height
 {
     CGFloat width = self.size.width * height / self.size.height;
@@ -231,6 +239,12 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (UIImage *)lsCroppedImageWithInsets:(UIEdgeInsets)insets
+{
+    CGRect rect = CGRectMake(insets.left, insets.top, self.size.width - insets.left - insets.right, self.size.height - insets.top - insets.bottom);
+    return [self lsCroppedImageWithRect:rect];
 }
 
 - (NSData *)lsPNG
