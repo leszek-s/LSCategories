@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0BEC1A20000A7700EFC5FF /* UITextField+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */; };
 		1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */; };
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B0BEC1820000A7700EFC5FF /* UITextField+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LSCategories.h"; sourceTree = "<group>"; };
+		1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LSCategories.m"; sourceTree = "<group>"; };
 		1B1113AA1F89FE67007C97BE /* UIApplication+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LSCategories.h"; sourceTree = "<group>"; };
 		1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LSCategories.m"; sourceTree = "<group>"; };
 		1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LSCategories.h"; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				1BFCB0861E44F40300357597 /* UILabel+LSCategories.m */,
 				1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */,
 				1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */,
+				1B0BEC1820000A7700EFC5FF /* UITextField+LSCategories.h */,
+				1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */,
 				1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */,
 				1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */,
 				1BFCB0871E44F40300357597 /* UIView+LSCategories.h */,
@@ -244,6 +249,7 @@
 				1BFCB0901E44F40300357597 /* UIFont+LSCategories.m in Sources */,
 				1BFCB08F1E44F40300357597 /* UIColor+LSCategories.m in Sources */,
 				1BFCB0931E44F40300357597 /* UIView+LSCategories.m in Sources */,
+				1B0BEC1A20000A7700EFC5FF /* UITextField+LSCategories.m in Sources */,
 				1BFCB08A1E44F40300357597 /* NSData+LSCategories.m in Sources */,
 				1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */,
 				1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */,

@@ -247,6 +247,35 @@
     return [self lsCroppedImageWithRect:rect];
 }
 
+- (UIImage *)lsPaddedImageWithInsets:(UIEdgeInsets)insets
+{
+    return [self lsCroppedImageWithInsets:UIEdgeInsetsMake(-insets.top, -insets.left, -insets.bottom, -insets.right)];
+}
+
+- (UIImage *)lsMaskedImageWithMaskImage:(UIImage *)maskImage
+{
+    CGImageRef maskRef = maskImage.CGImage;
+    CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef), CGImageGetHeight(maskRef), CGImageGetBitsPerComponent(maskRef), CGImageGetBitsPerPixel(maskRef), CGImageGetBytesPerRow(maskRef), CGImageGetDataProvider(maskRef), NULL, false);
+    CGImageRef masked = CGImageCreateWithMask(self.CGImage, mask);
+    UIImage *maskedImage = [UIImage imageWithCGImage:masked];
+    CGImageRelease(mask);
+    CGImageRelease(masked);
+    return maskedImage;
+}
+
+- (UIImage *)lsInvertedImage
+{
+    UIGraphicsBeginImageContext(self.size);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, self.size.width, self.size.height));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (NSData *)lsPNG
 {
     return UIImagePNGRepresentation(self);

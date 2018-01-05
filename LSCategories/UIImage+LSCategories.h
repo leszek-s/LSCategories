@@ -177,6 +177,29 @@
 - (UIImage *)lsCroppedImageWithInsets:(UIEdgeInsets)insets;
 
 /**
+ Returns padded image with given edge insets.
+
+ @param insets Edge insets.
+ @return Padded image.
+ */
+- (UIImage *)lsPaddedImageWithInsets:(UIEdgeInsets)insets;
+
+/**
+ Returns image masked with given mask image.
+
+ @param maskImage Mask image.
+ @return Masked image.
+ */
+- (UIImage *)lsMaskedImageWithMaskImage:(UIImage *)maskImage;
+
+/**
+ Returns image with inverted colors.
+
+ @return Image with inverted colors.
+ */
+- (UIImage *)lsInvertedImage;
+
+/**
  Returns PNG data.
 
  @return PNG data.

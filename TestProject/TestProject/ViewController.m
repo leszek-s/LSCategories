@@ -140,7 +140,7 @@
     NSLog(@"lsAssociatedDictionary: %@", [test lsAssociatedDictionary]);
     
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
-    UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(40, 35)];
+    UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(50, 50)];
     UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(50, 50) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
     UIImage *avatar = [[UIImage lsInitialsAvatarImageWithText:@"John Doe"] lsResizedProportionalImageWithHeight:50];
     UIImage *text = [UIImage lsImageWithText:@"HELLO WORLD!" textColor:[UIColor whiteColor] backgroundColor:[UIColor blueColor] font:[UIFont boldSystemFontOfSize:20] size:CGSizeMake(200, 30)];
@@ -153,6 +153,8 @@
     UIImage *resizedWithHeight = [resized lsResizedProportionalImageWithHeight:500];
     UIImage *cropped = [gradient lsCroppedImageWithRect:CGRectMake(0, 20, 60, 20)];
     UIImage *croppedWithInsets = [gradient lsCroppedImageWithInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    UIImage *circleMask = [[UIImage lsEllipseImageWithColor:[UIColor whiteColor] size:gradient.size] lsInvertedImage];
+    gradient = [gradient lsMaskedImageWithMaskImage:circleMask];
     NSLog(@"lsImageWithColor: %@", green);
     NSLog(@"lsTriangleImageWithColor: %@", triangle);
     NSLog(@"lsGradientImageWithSize: %@", gradient);

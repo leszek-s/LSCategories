@@ -174,6 +174,14 @@ Change custom properties of any object over time (for example for animating some
 [self.label lsAnimateCounterWithStartValue:10 endValue:1000 duration:2 completionBlock:nil];
 ```
 
+Limit UITextField editing with a single line of code:
+```objc
+// limit string length in the field
+[self.textField lsSetMaxLength:4];
+// or limit characters that can be entered in the field with NSCharacterSet
+[self.textField lsSetAllowedCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"abc"]];
+```
+
 Use UINavigationController with completion blocks:
 ```objc
 [self.navigationController lsPushViewController:vc animated:YES completionBlock:^{
