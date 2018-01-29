@@ -60,10 +60,15 @@ static UIView *lsSharedHudView = nil;
 
 - (void)lsShowActivityIndicator
 {
-    [self lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor]];
+    [self lsShowActivityIndicatorWithText:nil];
 }
 
-- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor
+- (void)lsShowActivityIndicatorWithText:(NSString *)text
+{
+    [self lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor] text:text];
+}
+
+- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text
 {
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     [activityIndicator startAnimating];
@@ -72,10 +77,22 @@ static UIView *lsSharedHudView = nil;
     activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     activityIndicator.tag = lsAItag;
     
-    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, activityIndicator.bounds.size.width * 2, activityIndicator.bounds.size.height * 2)];
+    UILabel *label = [UILabel new];
+    CGFloat margin = 16;
+    label.text = text;
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = color;
+    [label sizeToFit];
+    label.center = CGPointMake(activityIndicator.center.x, activityIndicator.center.y + activityIndicator.bounds.size.height / 2 + label.bounds.size.height / 2 + margin);
+    label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    label.tag = lsAItag;
+    
+    CGRect bgRect = CGRectMake(MIN(label.frame.origin.x, activityIndicator.frame.origin.x) - margin, activityIndicator.frame.origin.y - margin, MAX(label.frame.size.width + margin + margin, activityIndicator.frame.size.width + margin + margin), margin + activityIndicator.frame.size.height + (label.text.length > 0 ? margin : 0) + label.frame.size.height + margin);
+    UIView *background = [[UIView alloc] initWithFrame:bgRect];
     background.layer.cornerRadius = 6;
     background.backgroundColor = backgroundColor;
-    background.center = [self convertPoint:self.center fromView:self.superview];
     background.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     background.tag = lsAItag;
     
@@ -86,7 +103,10 @@ static UIView *lsSharedHudView = nil;
     
     [self addSubview:cover];
     [self addSubview:background];
-    [self addSubview:activityIndicator];
+    [background addSubview:activityIndicator];
+    [background addSubview:label];
+    activityIndicator.center = [self convertPoint:activityIndicator.center toView:background];
+    label.center = [self convertPoint:label.center toView:background];
 }
 
 - (void)lsHideActivityIndicator

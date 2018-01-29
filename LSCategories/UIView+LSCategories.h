@@ -38,15 +38,22 @@
 - (void)lsShowActivityIndicator;
 
 /**
+ Shows activity indicator with text in the center of the view.
+
+ @param text Text to show below the activity indicator.
+ */
+- (void)lsShowActivityIndicatorWithText:(NSString *)text;
+
+/**
  Shows activity indicator with custom style in the center of the view.
 
  @param style Activity indicator style.
- @param color Activity indicator color.
+ @param color Activity indicator and text color.
  @param backgroundColor Color of rounded rectangle view behind activity indicator.
  @param coverColor Color of cover view behind activity indicator that will cover the whole view.
+ @param text Text to show below the activity indicator.
  */
-- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor;
-
+- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text;
 /**
  Hides activity indicator showed on the view.
  */

@@ -43,4 +43,12 @@
  */
 - (id)lsRandomObject;
 
+/**
+ Returns array of given size with random objects.
+
+ @param size Number of random elements to pick from the array.
+ @return Array of given size with random objects.
+ */
+- (NSArray *)lsRandomObjectsWithSize:(NSUInteger)size;
+
 @end

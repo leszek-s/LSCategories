@@ -42,4 +42,13 @@
     return self.count == 0 ? nil : self[arc4random_uniform((uint32_t)self.count)];
 }
 
+- (NSArray *)lsRandomObjectsWithSize:(NSUInteger)size
+{
+    if (self.count < size)
+        return nil;
+    
+    NSArray *shuffled = [self lsShuffledArray];
+    return [shuffled subarrayWithRange:NSMakeRange(0, size)];
+}
+
 @end
