@@ -24,6 +24,7 @@
 
 #define lsUItag 0x6c735549
 #define lsAItag 0x6c734149
+#define lsTOtag 0x6c73544f
 
 static NSInteger lsSharedHudCounter = 0;
 static UIView *lsSharedHudView = nil;
@@ -115,6 +116,47 @@ static UIView *lsSharedHudView = nil;
     for (UIView *view in self.subviews)
     {
         if (view.tag == lsAItag)
+            [views addObject:view];
+    }
+    for (UIView *view in views)
+    {
+        [view removeFromSuperview];
+    }
+}
+
+- (void)lsShowToastWithText:(NSString *)text
+{
+    [self lsShowToastWithText:text color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] margin:40 duration:2.5];
+}
+
+- (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration
+{
+    UILabel *label = [UILabel new];
+    label.text = text;
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:15];
+    label.textColor = color;
+    label.backgroundColor = backgroundColor;
+    label.layer.cornerRadius = 6;
+    label.clipsToBounds = YES;
+    [label sizeToFit];
+    label.bounds = CGRectInset(label.bounds, -12, -12);
+    label.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height - label.bounds.size.height / 2 - margin);
+    label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    label.tag = lsTOtag;
+    [self addSubview:label];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [label removeFromSuperview];
+    });
+}
+
+- (void)lsHideToast
+{
+    NSMutableArray *views = [NSMutableArray new];
+    for (UIView *view in self.subviews)
+    {
+        if (view.tag == lsTOtag)
             [views addObject:view];
     }
     for (UIView *view in views)

@@ -160,7 +160,7 @@ Make infinite rotations on your views easily or if you need a loader view just u
 // ...
 [self.view lsHideActivityIndicator];
 // or if you want some customization...
-[self.view lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor redColor] backgroundColor:[UIColor whiteColor] coverColor:[UIColor yellowColor]];
+[self.view lsShowActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor redColor] backgroundColor:[UIColor whiteColor] coverColor:[UIColor yellowColor] text:@"Downloading data"];
 // you can also cover the whole screen instead of a single view with a global activity indicator like this
 [UIView lsShowSharedActivityIndicator];
 // and hide it with

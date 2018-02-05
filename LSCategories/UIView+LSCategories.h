@@ -60,6 +60,29 @@
 - (void)lsHideActivityIndicator;
 
 /**
+ Shows toast with given text on the bottom of the view.
+
+ @param text Text message.
+ */
+- (void)lsShowToastWithText:(NSString *)text;
+
+/**
+ Shows toast with given text, color, background color, margin and duration on the bottom of the view.
+
+ @param text Text message.
+ @param color Text color.
+ @param backgroundColor Background color.
+ @param margin Margin.
+ @param duration Duration.
+ */
+- (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration;
+
+/**
+ Hides toast showed on the view.
+ */
+- (void)lsHideToast;
+
+/**
  Adds border on top, bottom, left or right with given color and width.
 
  @param edge Edge on which border should be added.
