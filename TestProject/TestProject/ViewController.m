@@ -34,6 +34,7 @@
     NSLog(@"number: %@", [@"ffffffff" lsNumberFromHexString]);
     NSLog(@"rot13: %@", [test lsROT13String]);
     NSLog(@"reversed: %@", [test lsReversedString]);
+    NSLog(@"lsIsValidEmail %@ %@", @([test lsIsValidEmail]), @([@"test@test.com" lsIsValidEmail]));
     NSLog(@"lsStringByRemovingNonLetters: %@", [test lsStringByRemovingNonLetters]);
     NSLog(@"lsStringByRemovingNonNumeric: %@", [test lsStringByRemovingNonNumeric]);
     NSLog(@"lsStringByRemovingNonAlphanumeric: %@", [test lsStringByRemovingNonAlphanumeric]);

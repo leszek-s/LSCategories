@@ -294,6 +294,11 @@
     return @(number);
 }
 
+- (BOOL)lsIsValidEmail
+{
+    return [self rangeOfString:@"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$" options:NSRegularExpressionSearch].location != NSNotFound;
+}
+
 - (uint32_t)lsCRC32
 {
     return [[self dataUsingEncoding:NSUTF8StringEncoding] lsCRC32];

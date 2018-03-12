@@ -32,6 +32,14 @@
 + (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache handler:(void (^)(UIImage *image, NSError *error))handler;
 
 /**
+ Returns image with given color (size 1px x 1px).
+ 
+ @param color Color to fill the image.
+ @return Image with given color.
+ */
++ (UIImage *)lsImageWithColor:(UIColor *)color;
+
+/**
  Returns image with given color and size.
 
  @param color Color to fill the image.

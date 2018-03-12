@@ -202,6 +202,13 @@
 - (NSNumber *)lsNumberFromHexString;
 
 /**
+ Returns YES if string is a valid email address.
+ 
+ @return YES if string is a valid email address.
+ */
+- (BOOL)lsIsValidEmail;
+
+/**
  Returns CRC32 checksum from string.
  
  @return CRC32 checksum from string.

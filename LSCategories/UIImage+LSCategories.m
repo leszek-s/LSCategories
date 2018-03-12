@@ -56,6 +56,11 @@
     }
 }
 
++ (UIImage *)lsImageWithColor:(UIColor *)color
+{
+    return [self lsImageWithColor:color size:CGSizeMake(1, 1)];
+}
+
 + (UIImage *)lsImageWithColor:(UIColor *)color size:(CGSize)size
 {
     if (!color || size.height < 1 || size.width < 1)
