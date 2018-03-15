@@ -201,6 +201,23 @@
 - (UIImage *)lsMaskedImageWithMaskImage:(UIImage *)maskImage;
 
 /**
+ Returns image merged with given image placed on top with given position.
+
+ @param image Image to merge.
+ @param position Image position.
+ @return Merged image.
+ */
+- (UIImage *)lsMergedImageWithImage:(UIImage *)image position:(CGPoint)position;
+
+/**
+ Returns rounded image with given corner radius.
+
+ @param cornerRadius Corner radius.
+ @return Rounded image.
+ */
+- (UIImage *)lsRoundedImageWithCornerRadius:(CGFloat)cornerRadius;
+
+/**
  Returns image with inverted colors.
 
  @return Image with inverted colors.

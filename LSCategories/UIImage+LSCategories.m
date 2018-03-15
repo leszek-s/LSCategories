@@ -268,6 +268,26 @@
     return maskedImage;
 }
 
+- (UIImage *)lsMergedImageWithImage:(UIImage *)image position:(CGPoint)position
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    [self drawAtPoint:CGPointMake(0, 0)];
+    [image drawAtPoint:position];
+    UIImage *mergedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return mergedImage;
+}
+
+- (UIImage *)lsRoundedImageWithCornerRadius:(CGFloat)cornerRadius
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.size.width, self.size.height) cornerRadius:cornerRadius] addClip];
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (UIImage *)lsInvertedImage
 {
     UIGraphicsBeginImageContext(self.size);

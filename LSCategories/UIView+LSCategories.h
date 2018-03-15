@@ -28,9 +28,27 @@
 + (void)lsShowSharedActivityIndicator;
 
 /**
+ Shows global activity indicator with custom style in the center of the screen.
+
+ @param style Activity indicator style.
+ @param color Activity indicator and text color.
+ @param backgroundColor Color of rounded rectangle view behind activity indicator.
+ @param coverColor Color of cover view behind activity indicator that will cover the whole screen.
+ @param text Text to show below the activity indicator.
+ */
++ (void)lsShowSharedActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text;
+
+/**
  Hides global activity indicator showed in the center of the screen.
  */
 + (void)lsHideSharedActivityIndicator;
+
+/**
+ Returns shared activity indicator view.
+
+ @return Shared activity indicator view.
+ */
++ (UIView *)lsSharedActivityIndicatorView;
 
 /**
  Shows activity indicator in the center of the view.
@@ -60,6 +78,43 @@
 - (void)lsHideActivityIndicator;
 
 /**
+ Returns activity indicator view.
+
+ @return Activity indicator view.
+ */
+- (UIView *)lsActivityIndicatorView;
+
+/**
+ Shows global toast with given text on the bottom of the view.
+
+ @param text Text message.
+ */
++ (void)lsShowSharedToastWithText:(NSString *)text;
+
+/**
+ Shows shared toast with given text, color, background color, margin and duration on the bottom of the view.
+ 
+ @param text Text message.
+ @param color Text color.
+ @param backgroundColor Background color.
+ @param margin Margin.
+ @param duration Duration.
+ */
++ (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration;
+
+/**
+ Hides shared toast showed on the view.
+ */
++ (void)lsHideSharedToast;
+
+/**
+ Returns shared toast view.
+ 
+ @return Shared toast view.
+ */
++ (UIView *)lsSharedToastView;
+
+/**
  Shows toast with given text on the bottom of the view.
 
  @param text Text message.
@@ -81,6 +136,13 @@
  Hides toast showed on the view.
  */
 - (void)lsHideToast;
+
+/**
+ Returns toast view.
+
+ @return Toast view.
+ */
+- (UIView *)lsToastView;
 
 /**
  Adds border on top, bottom, left or right with given color and width.

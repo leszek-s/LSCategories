@@ -143,7 +143,7 @@
     UIImage *green = [UIImage lsImageWithColor:[UIColor greenColor] size:CGSizeMake(20, 10)];
     UIImage *triangle = [UIImage lsTriangleImageWithColor:[UIColor blueColor] size:CGSizeMake(50, 50)];
     UIImage *gradient = [UIImage lsGradientImageWithSize:CGSizeMake(50, 50) startColor:[UIColor greenColor] endColor:[UIColor blueColor] startPoint:CGPointMake(0, 0) endPoint:CGPointMake(1, 1)];
-    UIImage *avatar = [[UIImage lsInitialsAvatarImageWithText:@"John Doe"] lsResizedProportionalImageWithHeight:50];
+    UIImage *avatar = [[[UIImage lsInitialsAvatarImageWithText:@"John Doe"] lsResizedProportionalImageWithHeight:50] lsRoundedImageWithCornerRadius:25];
     UIImage *text = [UIImage lsImageWithText:@"HELLO WORLD!" textColor:[UIColor whiteColor] backgroundColor:[UIColor blueColor] font:[UIFont boldSystemFontOfSize:20] size:CGSizeMake(200, 30)];
     UIImage *flippedHorizontally = [gradient lsImageFlippedHorizontally];
     UIImage *flippedVertically = [gradient lsImageFlippedVertically];
@@ -212,6 +212,7 @@
 
 - (IBAction)testAction:(id)sender
 {
+    [UIView lsShowSharedToastWithText:@"Toast test!"];
     UIViewController *vc = [UIViewController new];
     vc.view.backgroundColor = [UIColor lsRandomColor];
     [UIView lsShowSharedActivityIndicator];

@@ -28,8 +28,14 @@
 
 static NSInteger lsSharedHudCounter = 0;
 static UIView *lsSharedHudView = nil;
+static UIView *lsSharedToastView = nil;
 
 + (void)lsShowSharedActivityIndicator
+{
+    [self lsShowSharedActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor] text:nil];
+}
+
++ (void)lsShowSharedActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text
 {
     lsSharedHudCounter++;
     if (lsSharedHudView)
@@ -39,7 +45,7 @@ static UIView *lsSharedHudView = nil;
     if (hv)
     {
         lsSharedHudView = hv;
-        [hv lsShowActivityIndicator];
+        [hv lsShowActivityIndicatorWithStyle:style color:color backgroundColor:backgroundColor coverColor:coverColor text:text];
     }
 }
 
@@ -57,6 +63,11 @@ static UIView *lsSharedHudView = nil;
         [lsSharedHudView lsHideActivityIndicator];
         lsSharedHudView = nil;
     }
+}
+
++ (UIView *)lsSharedActivityIndicatorView
+{
+    return [lsSharedHudView lsActivityIndicatorView];
 }
 
 - (void)lsShowActivityIndicator
@@ -103,7 +114,7 @@ static UIView *lsSharedHudView = nil;
     cover.tag = lsAItag;
     
     [self addSubview:cover];
-    [self addSubview:background];
+    [cover addSubview:background];
     [background addSubview:activityIndicator];
     [background addSubview:label];
     activityIndicator.center = [self convertPoint:activityIndicator.center toView:background];
@@ -122,6 +133,45 @@ static UIView *lsSharedHudView = nil;
     {
         [view removeFromSuperview];
     }
+}
+
+- (UIView *)lsActivityIndicatorView
+{
+    for (UIView *view in self.subviews)
+    {
+        if (view.tag == lsAItag)
+            return view;
+    }
+    return nil;
+}
+
++ (void)lsShowSharedToastWithText:(NSString *)text
+{
+    [self lsShowSharedToastWithText:text color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] margin:40 duration:2.5];
+}
+
++ (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration
+{
+    UIView *tv = [[UIApplication sharedApplication] keyWindow];
+    if (tv)
+    {
+        lsSharedToastView = tv;
+        [tv lsShowToastWithText:text color:color backgroundColor:backgroundColor margin:margin duration:duration];
+    }
+}
+
++ (void)lsHideSharedToast
+{
+    if (lsSharedToastView)
+    {
+        [lsSharedToastView lsHideActivityIndicator];
+        lsSharedToastView = nil;
+    }
+}
+
++ (UIView *)lsSharedToastView
+{
+    return [lsSharedToastView lsToastView];
 }
 
 - (void)lsShowToastWithText:(NSString *)text
@@ -163,6 +213,16 @@ static UIView *lsSharedHudView = nil;
     {
         [view removeFromSuperview];
     }
+}
+
+- (UIView *)lsToastView
+{
+    for (UIView *view in self.subviews)
+    {
+        if (view.tag == lsTOtag)
+            return view;
+    }
+    return nil;
 }
 
 - (void)lsAddBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width
@@ -319,3 +379,4 @@ static UIView *lsSharedHudView = nil;
 }
 
 @end
+
