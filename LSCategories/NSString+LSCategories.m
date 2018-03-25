@@ -85,6 +85,11 @@
     return [ranges copy];
 }
 
+- (NSAttributedString *)lsAttributedString
+{
+    return [[NSAttributedString alloc] initWithString:self];
+}
+
 - (NSAttributedString *)lsAttributedStringWithPrefixImage:(UIImage *)image
 {
     return [self lsAttributedStringByReplacingCharactersInRange:NSMakeRange(0, 0) withImage:image];
@@ -97,8 +102,14 @@
 
 - (NSAttributedString *)lsAttributedStringByReplacingCharactersInRange:(NSRange)range withImage:(UIImage *)image
 {
+    return [self lsAttributedStringByReplacingCharactersInRange:range withImage:image verticalOffset:0];
+}
+
+- (NSAttributedString *)lsAttributedStringByReplacingCharactersInRange:(NSRange)range withImage:(UIImage *)image verticalOffset:(CGFloat)verticalOffset
+{
     NSTextAttachment *attachment = [NSTextAttachment new];
     attachment.image = image;
+    attachment.bounds = CGRectMake(0, verticalOffset, image.size.width, image.size.height);
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
     [attributedString replaceCharactersInRange:range withAttributedString:attachmentString];

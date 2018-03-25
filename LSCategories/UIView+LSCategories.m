@@ -164,7 +164,7 @@ static UIView *lsSharedToastView = nil;
 {
     if (lsSharedToastView)
     {
-        [lsSharedToastView lsHideActivityIndicator];
+        [lsSharedToastView lsHideToast];
         lsSharedToastView = nil;
     }
 }

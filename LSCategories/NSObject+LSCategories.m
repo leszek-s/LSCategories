@@ -26,6 +26,16 @@ static char lsEventsDictionaryKey;
 
 @implementation NSObject (LSCategories)
 
++ (NSString *)lsClassName
+{
+    return NSStringFromClass(self);
+}
+
+- (NSString *)lsClassName
+{
+    return NSStringFromClass([self class]);
+}
+
 - (NSMutableDictionary *)lsAssociatedDictionary
 {
     NSMutableDictionary *dict = objc_getAssociatedObject(self, &lsAssociatedDictionaryKey);

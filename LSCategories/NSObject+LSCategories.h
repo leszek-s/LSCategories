@@ -23,6 +23,20 @@
 @interface NSObject (LSCategories)
 
 /**
+ Returns string with class name.
+
+ @return String with class name.
+ */
++ (NSString *)lsClassName;
+
+/**
+ Returns string with class name.
+ 
+ @return String with class name.
+ */
+- (NSString *)lsClassName;
+
+/**
  Returns mutable dictionary associated to the object.
  Dictionary is created and associated to the object on first call to this method.
 

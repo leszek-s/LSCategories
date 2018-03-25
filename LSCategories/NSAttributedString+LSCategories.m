@@ -18,33 +18,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#define lsClamp(x, min, max) (MIN(MAX((x), (min)), (max)))
-#define lsDegreesToRadians(degrees) ((degrees) / 180.0 * M_PI)
-#define lsRadiansToDegrees(radians) ((radians) * 180.0 / M_PI)
-#define lsNilToNull(x) ((x) ? (x) : [NSNull null])
-#define lsNullToNil(x) ((x) == [NSNull null] ? nil : (x))
-#define lsWeakify(object) __weak __typeof(object) lsWeak_##object = object;
-#define lsStrongify(object) __strong __typeof(object) object = lsWeak_##object;
-
-#import "NSArray+LSCategories.h"
 #import "NSAttributedString+LSCategories.h"
-#import "NSData+LSCategories.h"
-#import "NSDate+LSCategories.h"
-#import "NSDictionary+LSCategories.h"
-#import "NSObject+LSCategories.h"
-#import "NSString+LSCategories.h"
-#import "UIApplication+LSCategories.h"
-#import "UIButton+LSCategories.h"
-#import "UIColor+LSCategories.h"
-#import "UIFont+LSCategories.h"
-#import "UIImage+LSCategories.h"
-#import "UIImageView+LSCategories.h"
-#import "UILabel+LSCategories.h"
-#import "UINavigationController+LSCategories.h"
-#import "UITextField+LSCategories.h"
-#import "UITextView+LSCategories.h"
-#import "UIView+LSCategories.h"
-#import "UIWindow+LSCategories.h"
+
+@implementation NSAttributedString (LSCategories)
+
++ (NSAttributedString *)lsAttributedStringWithImage:(UIImage *)image
+{
+    return [self lsAttributedStringWithImage:image bounds:CGRectZero];
+}
+
++ (NSAttributedString *)lsAttributedStringWithImage:(UIImage *)image bounds:(CGRect)bounds
+{
+    NSTextAttachment *attachment = [NSTextAttachment new];
+    attachment.image = image;
+    attachment.bounds = bounds;
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+    return attachmentString;
+}
+
+- (NSAttributedString *)lsAttributedStringByAppendingAttributedString:(NSAttributedString *)attributedString
+{
+    NSMutableAttributedString *result = [self mutableCopy];
+    [result appendAttributedString:attributedString];
+    return [result copy];
+}
+
+@end
