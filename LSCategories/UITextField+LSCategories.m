@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 
 #import "UITextField+LSCategories.h"
+#import "UIImage+LSCategories.h"
 #import <objc/runtime.h>
 
 static char lsAssociatedMaxLengthKey;
@@ -51,6 +52,55 @@ static char lsAssociatedAllowedCharacterSetKey;
     {
         self.text = self.text.length > maxLength.integerValue ? [self.text substringToIndex:maxLength.integerValue] : self.text;
     }
+}
+
+- (void)lsSetLeftPadding:(CGFloat)leftPadding
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, leftPadding, 10)];
+    self.leftView = view;
+    self.leftViewMode = UITextFieldViewModeAlways;
+}
+
+- (void)lsSetRightPadding:(CGFloat)rightPadding
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rightPadding, 10)];
+    self.rightView = view;
+    self.rightViewMode = UITextFieldViewModeAlways;
+}
+
+- (void)lsSetClearButtonWithColor:(UIColor *)color mode:(UITextFieldViewMode)mode
+{
+    UIImage *image = [UIImage lsEllipseImageWithColor:color size:CGSizeMake(80, 80)];
+    UIImage *mask = [[[UIImage lsImageWithColor:UIColor.whiteColor size:CGSizeMake(40, 6)] lsPaddedImageWithInsets:UIEdgeInsetsMake(0, 20, 0, 20)] lsRotatedImageWithDegrees:45];
+    mask = [mask lsMergedImageWithImage:[mask lsImageFlippedHorizontally] position:CGPointZero];
+    image = [[[image lsMaskedImageWithMaskImage:mask] lsPaddedImageWithInsets:UIEdgeInsetsMake(50, 50, 50, 50)] lsResizedProportionalImageWithHeight:80];
+    
+    [self lsSetClearButtonWithImage:image mode:mode];
+}
+
+- (void)lsSetClearButtonWithImage:(UIImage *)image mode:(UITextFieldViewMode)mode
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:image forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 30, 30);
+    button.contentMode = UIViewContentModeScaleAspectFit;
+    button.adjustsImageWhenHighlighted = NO;
+    [button addTarget:self action:@selector(lsClearButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:self action:@selector(lsClearButtonEditingEvent) forControlEvents:UIControlEventAllEditingEvents];
+    self.rightView = button;
+    self.rightViewMode = mode;
+    [self lsClearButtonEditingEvent];
+}
+
+- (void)lsClearButtonAction
+{
+    self.text = @"";
+    [self sendActionsForControlEvents:UIControlEventEditingChanged];
+}
+
+- (void)lsClearButtonEditingEvent
+{
+    self.rightView.hidden = self.text.length == 0;
 }
 
 @end

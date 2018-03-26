@@ -14,6 +14,7 @@
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
 		1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */; };
+		1BB07507206844B600ECB592 /* NSException+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB07506206844B600ECB592 /* NSException+LSCategories.m */; };
 		1BD24287206432BB00147372 /* NSAttributedString+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */; };
 		1BFCB05C1E44F3E700357597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05B1E44F3E700357597 /* main.m */; };
 		1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05E1E44F3E700357597 /* AppDelegate.m */; };
@@ -49,6 +50,8 @@
 		1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LSCategories.m"; sourceTree = "<group>"; };
 		1BA345891FBAEDC60088B514 /* UIImageView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LSCategories.h"; sourceTree = "<group>"; };
 		1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LSCategories.m"; sourceTree = "<group>"; };
+		1BB07505206844B600ECB592 /* NSException+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSException+LSCategories.h"; sourceTree = "<group>"; };
+		1BB07506206844B600ECB592 /* NSException+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSException+LSCategories.m"; sourceTree = "<group>"; };
 		1BD24285206432BB00147372 /* NSAttributedString+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+LSCategories.h"; sourceTree = "<group>"; };
 		1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+LSCategories.m"; sourceTree = "<group>"; };
 		1BFCB0571E44F3E700357597 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +155,8 @@
 				1BFCB0781E44F40200357597 /* NSDate+LSCategories.m */,
 				1BFCB0791E44F40200357597 /* NSDictionary+LSCategories.h */,
 				1BFCB07A1E44F40200357597 /* NSDictionary+LSCategories.m */,
+				1BB07505206844B600ECB592 /* NSException+LSCategories.h */,
+				1BB07506206844B600ECB592 /* NSException+LSCategories.m */,
 				1BFCB07B1E44F40200357597 /* NSObject+LSCategories.h */,
 				1BFCB07C1E44F40200357597 /* NSObject+LSCategories.m */,
 				1BFCB07D1E44F40300357597 /* NSString+LSCategories.h */,
@@ -258,6 +263,7 @@
 			files = (
 				1BFCB08C1E44F40300357597 /* NSDictionary+LSCategories.m in Sources */,
 				1BFCB0621E44F3E700357597 /* ViewController.m in Sources */,
+				1BB07507206844B600ECB592 /* NSException+LSCategories.m in Sources */,
 				1BD24287206432BB00147372 /* NSAttributedString+LSCategories.m in Sources */,
 				1BFCB08D1E44F40300357597 /* NSObject+LSCategories.m in Sources */,
 				1BFCB0921E44F40300357597 /* UILabel+LSCategories.m in Sources */,

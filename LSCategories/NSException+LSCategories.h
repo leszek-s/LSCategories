@@ -18,52 +18,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface UITextField (LSCategories)
-
-/**
- Sets the maximum text length.
- 
- @param maxLength Maximum text length.
- */
-- (void)lsSetMaxLength:(NSInteger)maxLength;
+@interface NSException (LSCategories)
 
 /**
- Sets the allowed characters set.
- 
- @param allowedCharacterSet Allowed characters set.
- */
-- (void)lsSetAllowedCharacterSet:(NSCharacterSet *)allowedCharacterSet;
+ Returns exception catched in given block or nil if there was no exception.
 
-/**
- Sets left padding for text.
- 
- @param leftPadding Left padding for text.
+ @param block Block of code where exceptions should be catched.
+ @return Exception catched in given block or nil if there was no exception.
  */
-- (void)lsSetLeftPadding:(CGFloat)leftPadding;
-
-/**
- Sets right padding for text.
- 
- @param rightPadding Right padding for text.
- */
-- (void)lsSetRightPadding:(CGFloat)rightPadding;
-
-/**
- Sets clear button color and mode.
- 
- @param color Clear button color.
- @param mode Clear button mode.
- */
-- (void)lsSetClearButtonWithColor:(UIColor *)color mode:(UITextFieldViewMode)mode;
-
-/**
- Sets clear button image and mode.
- 
- @param image Clear button image.
- @param mode Clear button mode.
- */
-- (void)lsSetClearButtonWithImage:(UIImage *)image mode:(UITextFieldViewMode)mode;
++ (NSException *)lsTryCatchWithBlock:(void (^)(void))block;
 
 @end

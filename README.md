@@ -110,6 +110,8 @@ UIImage *cropped = [image lsCroppedImageWithRect:CGRectMake(0, 20, 60, 20)];
 UIImage *padded = [image lsPaddedImageWithInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
 UIImage *inverted = [image lsInvertedImage];
 UIImage *masked = [image lsMaskedImageWithMaskImage:mask];
+UIImage *merged = [image lsMergedImageWithImage:rotated position:CGPointZero];
+UIImage *rounded = [image lsRoundedImageWithCornerRadius:10];
 NSData *pngData = [image lsPNG];
 NSData *jpegData = [image lsJPEGWithCompressionLevel:0.8];
 NSData *jpegDataWithSize = [image lsJPEGWithDesiredMaxSize:2000 allowAboveMax:NO];
@@ -151,11 +153,15 @@ Add a border to UIView only on one edge:
 [self.someView lsRemoveBordersOnEdges];
 ```
 
-Make infinite rotations on your views easily or if you need a loader view just use some standard rotating loader to cover a view when you load your data:
+Make infinite rotations on your views easily:
 ```objc
 [self.rotatingView lsStartInfiniteRotationWithDuration:2 clockwise:YES];
 // ...
 [self.rotatingView lsStopInfiniteRotation];
+```
+
+If you need a loader view simply use a standard rotating loader to cover a view when you load your data or show toasts with messages:
+```objc
 [self.view lsShowActivityIndicator];
 // ...
 [self.view lsHideActivityIndicator];
@@ -165,6 +171,10 @@ Make infinite rotations on your views easily or if you need a loader view just u
 [UIView lsShowSharedActivityIndicator];
 // and hide it with
 [UIView lsHideSharedActivityIndicator];
+// show a toast
+[UIView lsShowSharedToastWithText:@"Hello there!"];
+// and hide it
+[UIView lsHideSharedToast];
 ```
 
 Change custom properties of any object over time (for example for animating something which cannot be animated in a standard way):
@@ -177,12 +187,18 @@ Change custom properties of any object over time (for example for animating some
 [self.label lsAnimateCounterWithStartValue:10 endValue:1000 duration:2 completionBlock:nil];
 ```
 
-Limit editing UITextField with a single line of code:
+Limit editing UITextField with a single line of code and easily change text padding and clear button look:
 ```objc
 // limit string length in the field
 [self.textField lsSetMaxLength:4];
 // or limit characters that can be entered in the field with NSCharacterSet
 [self.textField lsSetAllowedCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"abc"]];
+// change the color of the clear button...
+[self.textField lsSetClearButtonWithColor:[UIColor redColor] mode:UITextFieldViewModeAlways];
+// or the image used for clear button
+[self.textField lsSetClearButtonWithImage:image mode:UITextFieldViewModeWhileEditing];
+// adjust text padding without subclassing
+[self.textField lsSetLeftPadding:10];
 ```
 
 Use UINavigationController with completion blocks:
@@ -192,6 +208,15 @@ Use UINavigationController with completion blocks:
 }];
 [self.navigationController lsPopViewControllerAnimated:YES completionBlock:^{
     // do something
+}];
+```
+
+Catch Objective-c exceptions in given block. This is useful if you are programming in Swift language and you need to catch an Objective-C exception from Swift code.
+```objc
+NSException *exception = [NSException lsTryCatchWithBlock:^{
+    // some code that throws Objective-C exception which cannot be catched from pure Swift code
+    // for example something like this below
+    [viewController setValue:@"test" forKey:@"nonExistingKey"];
 }];
 ```
 

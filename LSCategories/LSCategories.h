@@ -34,6 +34,7 @@
 #import "NSData+LSCategories.h"
 #import "NSDate+LSCategories.h"
 #import "NSDictionary+LSCategories.h"
+#import "NSException+LSCategories.h"
 #import "NSObject+LSCategories.h"
 #import "NSString+LSCategories.h"
 #import "UIApplication+LSCategories.h"

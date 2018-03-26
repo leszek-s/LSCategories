@@ -18,52 +18,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "NSException+LSCategories.h"
 
-@interface UITextField (LSCategories)
+@implementation NSException (LSCategories)
 
-/**
- Sets the maximum text length.
- 
- @param maxLength Maximum text length.
- */
-- (void)lsSetMaxLength:(NSInteger)maxLength;
-
-/**
- Sets the allowed characters set.
- 
- @param allowedCharacterSet Allowed characters set.
- */
-- (void)lsSetAllowedCharacterSet:(NSCharacterSet *)allowedCharacterSet;
-
-/**
- Sets left padding for text.
- 
- @param leftPadding Left padding for text.
- */
-- (void)lsSetLeftPadding:(CGFloat)leftPadding;
-
-/**
- Sets right padding for text.
- 
- @param rightPadding Right padding for text.
- */
-- (void)lsSetRightPadding:(CGFloat)rightPadding;
-
-/**
- Sets clear button color and mode.
- 
- @param color Clear button color.
- @param mode Clear button mode.
- */
-- (void)lsSetClearButtonWithColor:(UIColor *)color mode:(UITextFieldViewMode)mode;
-
-/**
- Sets clear button image and mode.
- 
- @param image Clear button image.
- @param mode Clear button mode.
- */
-- (void)lsSetClearButtonWithImage:(UIImage *)image mode:(UITextFieldViewMode)mode;
++ (NSException *)lsTryCatchWithBlock:(void (^)(void))block
+{
+    @try
+    {
+        block();
+    }
+    @catch (NSException *exception)
+    {
+        return exception;
+    }
+    @catch (id exception)
+    {
+        return [NSException exceptionWithName:NSGenericException reason:nil userInfo:nil];
+    }
+    return nil;
+}
 
 @end
