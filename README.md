@@ -1,5 +1,5 @@
 # LSCategories
-**LSCategories** is a collection of useful Foundation and UIKit categories created to simplify some common operations and speed up the development process.
+**LSCategories** is a collection of useful Foundation and UIKit categories created to simplify some common operations and speed up the development process. It is implemented in Objective-C but it also can be easily integrated and used in Swift projects.
 ## Features
 Some things which can be easily done with LSCategories are listed below.
 

@@ -24,6 +24,8 @@
 static char lsAssociatedDictionaryKey;
 static char lsEventsDictionaryKey;
 
+#define lsDefaultDataEvent @"lsDefaultDataEvent"
+
 @implementation NSObject (LSCategories)
 
 + (NSString *)lsClassName
@@ -56,6 +58,21 @@ static char lsEventsDictionaryKey;
         objc_setAssociatedObject(self, &lsEventsDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return dict;
+}
+
+- (NSString *)lsSubscribeForDataWithHandler:(void (^)(id data))handler
+{
+    return [self lsSubscribeForEvent:lsDefaultDataEvent handler:handler];
+}
+
+- (void)lsSendData:(id)data
+{
+    [self lsSendEvent:lsDefaultDataEvent data:data];
+}
+
+- (void)lsRemoveAllSubscriptionsForData
+{
+    [self lsRemoveAllSubscriptionsForEvent:lsDefaultDataEvent];
 }
 
 - (NSString *)lsSubscribeForEvent:(NSString *)event handler:(void (^)(id data))handler

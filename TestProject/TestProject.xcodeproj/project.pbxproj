@@ -10,6 +10,8 @@
 		1B0BEC1A20000A7700EFC5FF /* UITextField+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */; };
 		1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */; };
 		1B1F4C77206051F5005DF1E7 /* UIButton+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F4C75206051F4005DF1E7 /* UIButton+LSCategories.m */; };
+		1B24BCD220879E6C00BDD64D /* UIControl+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */; };
+		1B24BCD520879FDB00BDD64D /* UIDatePicker+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */; };
 		1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33D215204F504200285E6F /* UIWindow+LSCategories.m */; };
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
@@ -42,6 +44,10 @@
 		1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LSCategories.m"; sourceTree = "<group>"; };
 		1B1F4C75206051F4005DF1E7 /* UIButton+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LSCategories.m"; sourceTree = "<group>"; };
 		1B1F4C76206051F5005DF1E7 /* UIButton+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LSCategories.h"; sourceTree = "<group>"; };
+		1B24BCD020879E6C00BDD64D /* UIControl+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+LSCategories.h"; sourceTree = "<group>"; };
+		1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LSCategories.m"; sourceTree = "<group>"; };
+		1B24BCD320879FDB00BDD64D /* UIDatePicker+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDatePicker+LSCategories.h"; sourceTree = "<group>"; };
+		1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDatePicker+LSCategories.m"; sourceTree = "<group>"; };
 		1B33D214204F504200285E6F /* UIWindow+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LSCategories.h"; sourceTree = "<group>"; };
 		1B33D215204F504200285E6F /* UIWindow+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LSCategories.m"; sourceTree = "<group>"; };
 		1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LSCategories.h"; sourceTree = "<group>"; };
@@ -167,6 +173,10 @@
 				1B1F4C75206051F4005DF1E7 /* UIButton+LSCategories.m */,
 				1BFCB07F1E44F40300357597 /* UIColor+LSCategories.h */,
 				1BFCB0801E44F40300357597 /* UIColor+LSCategories.m */,
+				1B24BCD020879E6C00BDD64D /* UIControl+LSCategories.h */,
+				1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */,
+				1B24BCD320879FDB00BDD64D /* UIDatePicker+LSCategories.h */,
+				1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */,
 				1BFCB0811E44F40300357597 /* UIFont+LSCategories.h */,
 				1BFCB0821E44F40300357597 /* UIFont+LSCategories.m */,
 				1BFCB0831E44F40300357597 /* UIImage+LSCategories.h */,
@@ -276,9 +286,11 @@
 				1B0BEC1A20000A7700EFC5FF /* UITextField+LSCategories.m in Sources */,
 				1BFCB08A1E44F40300357597 /* NSData+LSCategories.m in Sources */,
 				1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */,
+				1B24BCD520879FDB00BDD64D /* UIDatePicker+LSCategories.m in Sources */,
 				1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */,
 				1BFCB08B1E44F40300357597 /* NSDate+LSCategories.m in Sources */,
 				1BFCB08E1E44F40300357597 /* NSString+LSCategories.m in Sources */,
+				1B24BCD220879E6C00BDD64D /* UIControl+LSCategories.m in Sources */,
 				1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */,
 				1BFCB0911E44F40300357597 /* UIImage+LSCategories.m in Sources */,
 				1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */,

@@ -45,6 +45,26 @@
 - (NSMutableDictionary *)lsAssociatedDictionary;
 
 /**
+ Adds a subscription with handler for data event.
+
+ @param handler Handler to be executed when data event occurs.
+ @return Subscription ID which can be used for removing added subscription.
+ */
+- (NSString *)lsSubscribeForDataWithHandler:(void (^)(id data))handler;
+
+/**
+ Sends data event with optional data.
+
+ @param data Optional data which should be send to data event handlers.
+ */
+- (void)lsSendData:(id)data;
+
+/**
+ Removes all subscriptions for data event.
+ */
+- (void)lsRemoveAllSubscriptionsForData;
+
+/**
  Adds a subscription with handler for event with given name.
  
  @param event Event name.
