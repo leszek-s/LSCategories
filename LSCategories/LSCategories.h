@@ -47,6 +47,7 @@
 #import "UIImageView+LSCategories.h"
 #import "UILabel+LSCategories.h"
 #import "UINavigationController+LSCategories.h"
+#import "UIPickerView+LSCategories.h"
 #import "UITextField+LSCategories.h"
 #import "UITextView+LSCategories.h"
 #import "UIView+LSCategories.h"

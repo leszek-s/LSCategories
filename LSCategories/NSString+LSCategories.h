@@ -226,6 +226,13 @@
 - (BOOL)lsIsValidEmail;
 
 /**
+ Appends string to file at given path.
+
+ @param path File path.
+ */
+- (void)lsAppendToFileAtPath:(NSString *)path;
+
+/**
  Returns CRC32 checksum from string.
  
  @return CRC32 checksum from string.

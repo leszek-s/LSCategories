@@ -197,6 +197,20 @@
 - (void)lsAddStretchInSuperviewConstraints;
 
 /**
+ Shows the view as popup similar to alert view.
+ 
+ @param title Title on the popup view.
+ @param cancelTitle Cancel button text.
+ @param okTitle OK button text.
+ @param backgroundColor Popup background color.
+ @param titleColor Title color.
+ @param cancelColor Cancel button color.
+ @param okColor OK button color.
+ @param handler Handler to be executed after pressing Cancel or OK button.
+ */
+- (void)lsShowAsAlertPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, UIView *view))handler;
+
+/**
  Repeats executing given block with given duration, delay and frames per second.
  Progress parameter in block will have 0.0 value at start and 1.0 value at the end.
 

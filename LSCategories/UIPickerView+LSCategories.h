@@ -18,17 +18,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "UIDatePicker+LSCategories.h"
-#import "UIView+LSCategories.h"
+#import <UIKit/UIKit.h>
 
-@implementation UIDatePicker (LSCategories)
+@interface UIPickerView (LSCategories)
 
-- (void)lsShowAsPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, NSDate *date))handler;
-{
-    [self lsShowAsAlertPopupWithTitle:title cancelTitle:cancelTitle okTitle:okTitle backgroundColor:backgroundColor titleColor:titleColor cancelColor:cancelColor okColor:okColor handler:^(BOOL accepted, UIView *view) {
-        if (handler)
-            handler(accepted, self.date);
-    }];
-}
+/**
+ Shows picker view as popup similar to alert view.
+ 
+ @param title Title on the popup view.
+ @param cancelTitle Cancel button text.
+ @param okTitle OK button text.
+ @param backgroundColor Popup background color.
+ @param titleColor Title color.
+ @param cancelColor Cancel button color.
+ @param okColor OK button color.
+ @param handler Handler to be executed after pressing Cancel or OK button.
+ */
+- (void)lsShowAsPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, UIPickerView *picker))handler;
 
 @end

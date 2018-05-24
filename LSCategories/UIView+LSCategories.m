@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 
 #import "UIView+LSCategories.h"
+#import "UIControl+LSCategories.h"
 
 @implementation UIView (LSCategories)
 
@@ -321,6 +322,88 @@ static UIView *lsSharedToastView = nil;
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
+}
+
+- (void)lsShowAsAlertPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, UIView *view))handler
+{
+    UIView *view = [[UIApplication sharedApplication] keyWindow];
+    
+    UIView *cover = [[UIView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
+    cover.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    cover.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    UIView *control = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 290)];
+    control.backgroundColor = backgroundColor;
+    control.layer.cornerRadius = 16;
+    control.clipsToBounds = YES;
+    control.center = CGPointMake(view.bounds.size.width / 2, view.bounds.size.height / 2);
+    control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 270, 40)];
+    label.font = [UIFont boldSystemFontOfSize:17];
+    label.textColor = titleColor;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = title;
+    
+    self.frame = CGRectMake(0, 30, 270, 216);
+    
+    UIView *separatorH = [[UIView alloc] initWithFrame:CGRectMake(0, 30 + 216, 270, 0.5)];
+    separatorH.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    UIView *separatorV = [[UIView alloc] initWithFrame:CGRectMake(270 / 2, 30 + 216, 0.5, 44)];
+    separatorV.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    
+    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
+    cancel.frame = CGRectMake(0, 30 + 216, 270 / 2, 44);
+    cancel.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [cancel setTitle:cancelTitle forState:UIControlStateNormal];
+    [cancel setTitleColor:cancelColor forState:UIControlStateNormal];
+    
+    UIButton *ok = [UIButton buttonWithType:UIButtonTypeSystem];
+    ok.frame = CGRectMake(270 / 2, 30 + 216, 270 / 2, 44);
+    ok.titleLabel.font = [UIFont systemFontOfSize:18];
+    [ok setTitle:okTitle forState:UIControlStateNormal];
+    [ok setTitleColor:okColor forState:UIControlStateNormal];
+    
+    [cancel lsAddControlEvent:UIControlEventTouchUpInside handler:^(id sender) {
+        cover.alpha = 1;
+        [UIView animateWithDuration:0.1 animations:^{
+            cover.alpha = 0;
+        } completion:^(BOOL finished) {
+            [cover removeFromSuperview];
+            if (handler)
+                handler(NO, self);
+            [cancel lsRemoveAllControlEventHandlers];
+            [ok lsRemoveAllControlEventHandlers];
+        }];
+    }];
+    [ok lsAddControlEvent:UIControlEventTouchUpInside handler:^(id sender) {
+        cover.alpha = 1;
+        [UIView animateWithDuration:0.1 animations:^{
+            cover.alpha = 0;
+        } completion:^(BOOL finished) {
+            [cover removeFromSuperview];
+            if (handler)
+                handler(YES, self);
+            [cancel lsRemoveAllControlEventHandlers];
+            [ok lsRemoveAllControlEventHandlers];
+        }];
+    }];
+    
+    [cover addSubview:control];
+    [control addSubview:label];
+    [control addSubview:self];
+    [control addSubview:separatorH];
+    [control addSubview:separatorV];
+    [control addSubview:cancel];
+    [control addSubview:ok];
+    [view addSubview:cover];
+    
+    cover.alpha = 0;
+    control.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [UIView animateWithDuration:0.1 animations:^{
+        control.transform = CGAffineTransformMakeScale(1, 1);
+        cover.alpha = 1;
+    }];
 }
 
 + (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock

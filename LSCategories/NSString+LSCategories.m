@@ -310,6 +310,18 @@
     return [self rangeOfString:@"^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$" options:NSRegularExpressionSearch].location != NSNotFound;
 }
 
+- (void)lsAppendToFileAtPath:(NSString *)path
+{
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        [[NSData new] writeToFile:path atomically:YES];
+    }
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[self dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle closeFile];
+}
+
 - (uint32_t)lsCRC32
 {
     return [[self dataUsingEncoding:NSUTF8StringEncoding] lsCRC32];

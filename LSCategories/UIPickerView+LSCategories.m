@@ -18,16 +18,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "UIDatePicker+LSCategories.h"
+#import "UIPickerView+LSCategories.h"
 #import "UIView+LSCategories.h"
 
-@implementation UIDatePicker (LSCategories)
+@implementation UIPickerView (LSCategories)
 
-- (void)lsShowAsPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, NSDate *date))handler;
+- (void)lsShowAsPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, UIPickerView *picker))handler
 {
     [self lsShowAsAlertPopupWithTitle:title cancelTitle:cancelTitle okTitle:okTitle backgroundColor:backgroundColor titleColor:titleColor cancelColor:cancelColor okColor:okColor handler:^(BOOL accepted, UIView *view) {
         if (handler)
-            handler(accepted, self.date);
+            handler(accepted, self);
     }];
 }
 
