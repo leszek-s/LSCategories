@@ -24,6 +24,7 @@
 
 static char lsAssociatedMaxLengthKey;
 static char lsAssociatedAllowedCharacterSetKey;
+static char lsAssociatedAllowedRegexKey;
 
 @implementation UITextField (LSCategories)
 
@@ -39,12 +40,47 @@ static char lsAssociatedAllowedCharacterSetKey;
     [self addTarget:self action:@selector(lsTextFieldEditingChanged) forControlEvents:UIControlEventEditingChanged];
 }
 
+- (void)lsSetAllowedRegex:(NSString *)regex
+{
+    objc_setAssociatedObject(self, &lsAssociatedAllowedRegexKey, regex, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self addTarget:self action:@selector(lsTextFieldEditingChanged) forControlEvents:UIControlEventEditingChanged];
+}
+
+- (void)lsSetAllowedDecimalsWithIntegerPart:(NSInteger)integerPart fractionalPart:(NSInteger)fractionalPart
+{
+    if (integerPart > 0 && fractionalPart > 0)
+    {
+        NSString *regex = [NSString stringWithFormat:@"^(0|([1-9][0-9]{0,%@}))((\\.|,)[0-9]{0,%@})?$", @(integerPart - 1), @(fractionalPart)];
+        [self lsSetAllowedRegex:regex];
+    }
+    else if (integerPart > 0 && fractionalPart <= 0)
+    {
+        NSString *regex = [NSString stringWithFormat:@"^(0|([1-9][0-9]{0,%@}))$", @(integerPart - 1)];
+        [self lsSetAllowedRegex:regex];
+    }
+}
+
 - (void)lsTextFieldEditingChanged
 {
     NSCharacterSet *allowedCharacterSet = objc_getAssociatedObject(self, &lsAssociatedAllowedCharacterSetKey);
     if (allowedCharacterSet)
     {
         self.text = [[self.text componentsSeparatedByCharactersInSet:allowedCharacterSet.invertedSet] componentsJoinedByString:@""];
+    }
+    
+    NSString *allowedRegex = objc_getAssociatedObject(self, &lsAssociatedAllowedRegexKey);
+    if (allowedRegex)
+    {
+        while (self.text.length > 0)
+        {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:allowedRegex options:0 error:nil];
+            NSUInteger numberOfMatches = [regex numberOfMatchesInString:self.text options:0 range:NSMakeRange(0, self.text.length)];
+            if (numberOfMatches != 0)
+            {
+                break;
+            }
+            self.text = [self.text substringToIndex:self.text.length - 1];
+        }
     }
     
     NSNumber *maxLength = objc_getAssociatedObject(self, &lsAssociatedMaxLengthKey);

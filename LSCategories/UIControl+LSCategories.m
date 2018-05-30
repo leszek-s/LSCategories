@@ -25,7 +25,7 @@
 
 @implementation UIControl (LSCategories)
 
-- (void)lsAddControlEvent:(UIControlEvents)controlEvent handler:(void (^)(id sender))handler;
+- (void)lsAddControlEvent:(UIControlEvents)controlEvent handler:(void (^)(id sender))handler
 {
     SEL selector = nil;
     switch (controlEvent)
@@ -72,6 +72,21 @@
         case UIControlEventEditingDidEndOnExit:
             selector = @selector(lsControlEventEditingDidEndOnExitHandler:);
             break;
+        case UIControlEventAllTouchEvents:
+            selector = @selector(lsControlEventAllTouchEventsHandler:);
+            break;
+        case UIControlEventAllEditingEvents:
+            selector = @selector(lsControlEventAllEditingEventsHandler:);
+            break;
+        case UIControlEventApplicationReserved:
+            selector = @selector(lsControlEventApplicationReservedHandler:);
+            break;
+        case UIControlEventSystemReserved:
+            selector = @selector(lsControlEventSystemReservedHandler:);
+            break;
+        case UIControlEventAllEvents:
+            selector = @selector(lsControlEventAllEventsHandler:);
+            break;
         default:
             break;
     }
@@ -98,6 +113,11 @@
     [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventEditingChanged)];
     [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventEditingDidEnd)];
     [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventEditingDidEndOnExit)];
+    [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventAllTouchEvents)];
+    [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventAllEditingEvents)];
+    [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventApplicationReserved)];
+    [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventSystemReserved)];
+    [self lsRemoveAllSubscriptionsForEvent:lsControlEventKey(UIControlEventAllEvents)];
 }
 
 - (void)lsControlEventTouchDownHandler:(id)sender
@@ -168,6 +188,31 @@
 - (void)lsControlEventEditingDidEndOnExitHandler:(id)sender
 {
     [self lsSendEvent:lsControlEventKey(UIControlEventEditingDidEndOnExit) data:sender];
+}
+
+- (void)lsControlEventAllTouchEventsHandler:(id)sender
+{
+    [self lsSendEvent:lsControlEventKey(UIControlEventAllTouchEvents) data:sender];
+}
+
+- (void)lsControlEventAllEditingEventsHandler:(id)sender
+{
+    [self lsSendEvent:lsControlEventKey(UIControlEventAllEditingEvents) data:sender];
+}
+
+- (void)lsControlEventApplicationReservedHandler:(id)sender
+{
+    [self lsSendEvent:lsControlEventKey(UIControlEventApplicationReserved) data:sender];
+}
+
+- (void)lsControlEventSystemReservedHandler:(id)sender
+{
+    [self lsSendEvent:lsControlEventKey(UIControlEventSystemReserved) data:sender];
+}
+
+- (void)lsControlEventAllEventsHandler:(id)sender
+{
+    [self lsSendEvent:lsControlEventKey(UIControlEventAllEvents) data:sender];
 }
 
 @end

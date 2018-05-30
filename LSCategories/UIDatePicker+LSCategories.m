@@ -25,6 +25,8 @@
 
 - (void)lsShowAsPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, NSDate *date))handler;
 {
+    [self lsSetFrameHeight:180];
+    self.transform = CGAffineTransformMakeScale(280.0 / 320.0, 280.0 / 320.0);
     [self lsShowAsAlertPopupWithTitle:title cancelTitle:cancelTitle okTitle:okTitle backgroundColor:backgroundColor titleColor:titleColor cancelColor:cancelColor okColor:okColor handler:^(BOOL accepted, UIView *view) {
         if (handler)
             handler(accepted, self.date);

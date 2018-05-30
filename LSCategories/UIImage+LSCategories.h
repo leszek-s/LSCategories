@@ -225,6 +225,13 @@
 - (UIImage *)lsInvertedImage;
 
 /**
+ Returns image with inverted alpha. Transparent becomes opaque, opaque becomes transparent.
+ 
+ @return Image with inverted alpha.
+ */
+- (UIImage *)lsInvertedAlphaMaskImage;
+
+/**
  Returns PNG data.
 
  @return PNG data.

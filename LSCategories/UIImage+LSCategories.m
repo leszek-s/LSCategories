@@ -301,6 +301,19 @@
     return image;
 }
 
+- (UIImage *)lsInvertedAlphaMaskImage
+{
+    UIGraphicsBeginImageContext(self.size);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeXOR);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, self.size.width, self.size.height));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (NSData *)lsPNG
 {
     return UIImagePNGRepresentation(self);

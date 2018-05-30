@@ -37,6 +37,21 @@
 - (void)lsSetAllowedCharacterSet:(NSCharacterSet *)allowedCharacterSet;
 
 /**
+ Sets regular expression which specifies what can be entered in the field.
+
+ @param regex Regular expression which specifies what can be entered in the field.
+ */
+- (void)lsSetAllowedRegex:(NSString *)regex;
+
+/**
+ Sets the field in decimal mode for entering numbers only.
+
+ @param integerPart Size of the integer part (numbers before decimal point).
+ @param fractionalPart Size of the fractional part (numbers after decimal point).
+ */
+- (void)lsSetAllowedDecimalsWithIntegerPart:(NSInteger)integerPart fractionalPart:(NSInteger)fractionalPart;
+
+/**
  Sets left padding for text.
  
  @param leftPadding Left padding for text.

@@ -191,8 +191,12 @@ Limit editing UITextField with a single line of code and easily change text padd
 ```objc
 // limit string length in the field
 [self.textField lsSetMaxLength:4];
+// or limit edition to entering decimal numbers only with specified number of digits before and after decimal point
+[self.textField lsSetAllowedDecimalsWithIntegerPart:4 fractionalPart:2];
 // or limit characters that can be entered in the field with NSCharacterSet
 [self.textField lsSetAllowedCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"abc"]];
+// or limit text entry with a regular expression
+[self.textField lsSetAllowedRegex:@"^[0-9]{0,4}$"];
 // change the color of the clear button...
 [self.textField lsSetClearButtonWithColor:[UIColor redColor] mode:UITextFieldViewModeAlways];
 // or the image used for clear button

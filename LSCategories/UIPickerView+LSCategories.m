@@ -25,6 +25,7 @@
 
 - (void)lsShowAsPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, UIPickerView *picker))handler
 {
+    [self lsSetFrameHeight:180];
     [self lsShowAsAlertPopupWithTitle:title cancelTitle:cancelTitle okTitle:okTitle backgroundColor:backgroundColor titleColor:titleColor cancelColor:cancelColor okColor:okColor handler:^(BOOL accepted, UIView *view) {
         if (handler)
             handler(accepted, self);

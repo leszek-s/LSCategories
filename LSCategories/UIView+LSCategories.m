@@ -287,6 +287,7 @@ static UIView *lsSharedToastView = nil;
     rotationAnimation.toValue = clockwise ? @(2 * M_PI) : @0;
     rotationAnimation.duration = duration;
     rotationAnimation.repeatCount = INFINITY;
+    rotationAnimation.removedOnCompletion = NO;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     [self.layer addAnimation:rotationAnimation forKey:@"lsRotationAnimation"];
 }
@@ -327,39 +328,43 @@ static UIView *lsSharedToastView = nil;
 - (void)lsShowAsAlertPopupWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle okTitle:(NSString *)okTitle backgroundColor:(UIColor *)backgroundColor titleColor:(UIColor *)titleColor cancelColor:(UIColor *)cancelColor okColor:(UIColor *)okColor handler:(void (^)(BOOL accepted, UIView *view))handler
 {
     UIView *view = [[UIApplication sharedApplication] keyWindow];
+    NSInteger height = self.bounds.size.height;
+    NSInteger width = 270;
+    NSInteger titleHeight = 40;
+    NSInteger buttonsHeight = 44;
     
     UIView *cover = [[UIView alloc] initWithFrame:[[UIApplication sharedApplication] keyWindow].bounds];
     cover.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     cover.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    UIView *control = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 290)];
+    UIView *control = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height + titleHeight + buttonsHeight)];
     control.backgroundColor = backgroundColor;
     control.layer.cornerRadius = 16;
     control.clipsToBounds = YES;
     control.center = CGPointMake(view.bounds.size.width / 2, view.bounds.size.height / 2);
     control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 270, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, titleHeight)];
     label.font = [UIFont boldSystemFontOfSize:17];
     label.textColor = titleColor;
     label.textAlignment = NSTextAlignmentCenter;
     label.text = title;
     
-    self.frame = CGRectMake(0, 30, 270, 216);
+    self.frame = CGRectMake(0, titleHeight, width, height);
     
-    UIView *separatorH = [[UIView alloc] initWithFrame:CGRectMake(0, 30 + 216, 270, 0.5)];
+    UIView *separatorH = [[UIView alloc] initWithFrame:CGRectMake(0, titleHeight + height, width, 0.5)];
     separatorH.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
-    UIView *separatorV = [[UIView alloc] initWithFrame:CGRectMake(270 / 2, 30 + 216, 0.5, 44)];
+    UIView *separatorV = [[UIView alloc] initWithFrame:CGRectMake(width / 2, titleHeight + height, 0.5, buttonsHeight)];
     separatorV.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     
     UIButton *cancel = [UIButton buttonWithType:UIButtonTypeSystem];
-    cancel.frame = CGRectMake(0, 30 + 216, 270 / 2, 44);
+    cancel.frame = CGRectMake(0, titleHeight + height, width / 2, buttonsHeight);
     cancel.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [cancel setTitle:cancelTitle forState:UIControlStateNormal];
     [cancel setTitleColor:cancelColor forState:UIControlStateNormal];
     
     UIButton *ok = [UIButton buttonWithType:UIButtonTypeSystem];
-    ok.frame = CGRectMake(270 / 2, 30 + 216, 270 / 2, 44);
+    ok.frame = CGRectMake(width / 2, titleHeight + height, width / 2, buttonsHeight);
     ok.titleLabel.font = [UIFont systemFontOfSize:18];
     [ok setTitle:okTitle forState:UIControlStateNormal];
     [ok setTitleColor:okColor forState:UIControlStateNormal];
