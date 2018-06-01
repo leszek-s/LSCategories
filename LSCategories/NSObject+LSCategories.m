@@ -23,8 +23,25 @@
 
 static char lsAssociatedDictionaryKey;
 static char lsEventsDictionaryKey;
+static char lsObserversDictionaryKey;
 
 #define lsDefaultDataEvent @"lsDefaultDataEvent"
+
+@interface LSNSObjectObserver : NSObject
+@property (strong, nonatomic) NSString *keyPath;
+@end
+
+@implementation LSNSObjectObserver
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (keyPath == self.keyPath)
+    {
+        [self lsSendEvent:keyPath data:change];
+    }
+}
+
+@end
 
 @implementation NSObject (LSCategories)
 
@@ -56,6 +73,17 @@ static char lsEventsDictionaryKey;
     {
         dict = [NSMutableDictionary new];
         objc_setAssociatedObject(self, &lsEventsDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return dict;
+}
+
+- (NSMutableDictionary *)lsObserversDictionary
+{
+    NSMutableDictionary *dict = objc_getAssociatedObject(self, &lsObserversDictionaryKey);
+    if (!dict)
+    {
+        dict = [NSMutableDictionary new];
+        objc_setAssociatedObject(self, &lsObserversDictionaryKey, dict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return dict;
 }
@@ -136,6 +164,61 @@ static char lsEventsDictionaryKey;
 {
     NSMutableDictionary *eventsDictionary = [self lsEventsDictionary];
     [eventsDictionary removeAllObjects];
+}
+
+- (NSString *)lsObserveValueForKeyPath:(NSString *)keyPath handler:(void (^)(NSDictionary *change))handler
+{
+    if (keyPath.length <= 0 || !handler)
+        return nil;
+    
+    LSNSObjectObserver *observer = [LSNSObjectObserver new];
+    observer.keyPath = keyPath;
+    NSString *observationId = [observer lsSubscribeForEvent:keyPath handler:handler];
+    
+    NSMutableDictionary *observersDictionary = [self lsObserversDictionary];
+    observersDictionary[observationId] = observer;
+    
+    [self addObserver:observer forKeyPath:keyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    return observationId;
+}
+
+- (void)lsRemoveObservationWithId:(NSString *)observationId
+{
+    if (!observationId)
+        return;
+    
+    NSMutableDictionary *observersDictionary = [self lsObserversDictionary];
+    LSNSObjectObserver *observer = observersDictionary[observationId];
+    [observer lsRemoveAllSubscriptions];
+    @try {
+        [self removeObserver:observer forKeyPath:observer.keyPath];
+    } @catch (id exception) { }
+    observersDictionary[observationId] = nil;
+}
+
+- (void)lsRemoveAllObservationsForKeyPath:(NSString *)keyPath
+{
+    if (!keyPath)
+        return;
+    
+    NSMutableDictionary *observersDictionary = [self lsObserversDictionary];
+    for (NSString *observationId in observersDictionary.allKeys)
+    {
+        LSNSObjectObserver *observer = observersDictionary[observationId];
+        if ([observer.keyPath isEqual:keyPath])
+        {
+            [self lsRemoveObservationWithId:observationId];
+        }
+    }
+}
+
+- (void)lsRemoveAllObservations
+{
+    NSMutableDictionary *observersDictionary = [self lsObserversDictionary];
+    for (NSString *observationId in observersDictionary.allKeys)
+    {
+        [self lsRemoveObservationWithId:observationId];
+    }
 }
 
 @end

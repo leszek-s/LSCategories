@@ -23,6 +23,14 @@
 @interface UITextField (LSCategories)
 
 /**
+ Sets a placeholder text with given color.
+
+ @param placeholder Placeholder text.
+ @param color Placeholder color.
+ */
+- (void)lsSetPlaceholder:(NSString *)placeholder color:(UIColor *)color;
+
+/**
  Sets the maximum text length.
  
  @param maxLength Maximum text length.

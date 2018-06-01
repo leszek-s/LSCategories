@@ -100,4 +100,32 @@
  */
 - (void)lsRemoveAllSubscriptions;
 
+/**
+ Adds an observation with handler for given key path.
+
+ @param keyPath Key path that should be observed.
+ @param handler Handler to be executed on changes. Dictionary will contain new and old values under NSKeyValueChangeNewKey and NSKeyValueChangeOldKey keys.
+ @return Observation ID which can be used for removing added observation.
+ */
+- (NSString *)lsObserveValueForKeyPath:(NSString *)keyPath handler:(void (^)(NSDictionary *change))handler;
+
+/**
+ Removes observation with given ID.
+ 
+ @param observationId Observation ID.
+ */
+- (void)lsRemoveObservationWithId:(NSString *)observationId;
+
+/**
+ Removes all observations for given key path.
+ 
+ @param keyPath Key path.
+ */
+- (void)lsRemoveAllObservationsForKeyPath:(NSString *)keyPath;
+
+/**
+ Removes all observations.
+ */
+- (void)lsRemoveAllObservations;
+
 @end

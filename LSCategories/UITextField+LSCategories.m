@@ -28,6 +28,11 @@ static char lsAssociatedAllowedRegexKey;
 
 @implementation UITextField (LSCategories)
 
+- (void)lsSetPlaceholder:(NSString *)placeholder color:(UIColor *)color
+{
+    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{ NSForegroundColorAttributeName : color}];
+}
+
 - (void)lsSetMaxLength:(NSInteger)maxLength
 {
     objc_setAssociatedObject(self, &lsAssociatedMaxLengthKey, @(maxLength), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
