@@ -100,39 +100,43 @@
 - (NSString *)lsStringUTF8;
 
 /**
- Returns content of LSDATA subdirectory in given directory.
+ Returns content of given subdirectory in given directory.
 
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)
+ @param subDirectory Subdirectory name.
  @return Array of NSStrings or nil.
  */
-+ (NSArray<NSString *> *)lsContentOfDirectory:(NSSearchPathDirectory)directory;
++ (NSArray<NSString *> *)lsContentOfDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory;
 
 /**
- Deletes LSDATA subdirectory in given directory.
+ Deletes given subdirectory in given directory.
 
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)
+ @param subDirectory Subdirectory name.
  @return YES if deleted, NO otherwise.
  */
-+ (BOOL)lsCleanDirectory:(NSSearchPathDirectory)directory;
++ (BOOL)lsCleanDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory;
 
 /**
- Reads file with given name from LSDATA subdirectory in given directory.
+ Reads file with given name from given subdirectory in given directory.
 
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)
+ @param subDirectory Subdirectory name.
  @param fileName File name.
  @return File data or nil.
  */
-+ (NSData *)lsReadDataFromDirectory:(NSSearchPathDirectory)directory fileName:(NSString *)fileName;
++ (NSData *)lsReadDataFromDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory fileName:(NSString *)fileName;
 
 /**
- Saves file with given name to LSDATA subdirectory in given directory.
+ Saves file with given name to given subdirectory in given directory.
 
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)
+ @param subDirectory Subdirectory name.
  @param fileName File name.
  @param useExcludeFromBackup YES additionally sets NSURLIsExcludedFromBackupKey after saving.
  @return YES if saved, NO otherwise.
  */
-- (BOOL)lsSaveToDirectory:(NSSearchPathDirectory)directory fileName:(NSString *)fileName useExcludeFromBackup:(BOOL)useExcludeFromBackup;
+- (BOOL)lsSaveToDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory fileName:(NSString *)fileName useExcludeFromBackup:(BOOL)useExcludeFromBackup;
 
 /**
  Creates and returns data from given url asynchronously.

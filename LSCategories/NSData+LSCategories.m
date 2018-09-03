@@ -132,40 +132,52 @@
     return [output copy];
 }
 
-+ (NSArray *)lsContentOfDirectory:(NSSearchPathDirectory)directory
++ (NSArray *)lsContentOfDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory
 {
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *finalDirectory = [NSString stringWithFormat:@"%@/LSDATA", systemDirectory];
+    NSString *finalDirectory = systemDirectory;
+    if (subDirectory.length > 0) {
+        finalDirectory = [NSString stringWithFormat:@"%@/%@", systemDirectory, subDirectory];
+    }
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:finalDirectory error:NULL];
     return directoryContent;
 }
 
-+ (BOOL)lsCleanDirectory:(NSSearchPathDirectory)directory
++ (BOOL)lsCleanDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory
 {
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *finalDirectory = [NSString stringWithFormat:@"%@/LSDATA", systemDirectory];
+    NSString *finalDirectory = systemDirectory;
+    if (subDirectory.length > 0) {
+        finalDirectory = [NSString stringWithFormat:@"%@/%@", systemDirectory, subDirectory];
+    }
     return [[NSFileManager defaultManager] removeItemAtPath:finalDirectory error:NULL];
 }
 
-+ (NSData *)lsReadDataFromDirectory:(NSSearchPathDirectory)directory fileName:(NSString *)fileName
++ (NSData *)lsReadDataFromDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory fileName:(NSString *)fileName
 {
     if (fileName.length == 0)
         return nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *finalDirectory = [NSString stringWithFormat:@"%@/LSDATA", systemDirectory];
+    NSString *finalDirectory = systemDirectory;
+    if (subDirectory.length > 0) {
+        finalDirectory = [NSString stringWithFormat:@"%@/%@", systemDirectory, subDirectory];
+    }
     [fileManager createDirectoryAtPath:finalDirectory withIntermediateDirectories:YES attributes:nil error:NULL];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", finalDirectory, fileName];
     return [NSData dataWithContentsOfFile:filePath];
 }
 
-- (BOOL)lsSaveToDirectory:(NSSearchPathDirectory)directory fileName:(NSString *)fileName useExcludeFromBackup:(BOOL)useExcludeFromBackup
+- (BOOL)lsSaveToDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory fileName:(NSString *)fileName useExcludeFromBackup:(BOOL)useExcludeFromBackup
 {
     if (fileName.length == 0)
         return NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *finalDirectory = [NSString stringWithFormat:@"%@/LSDATA", systemDirectory];
+    NSString *finalDirectory = systemDirectory;
+    if (subDirectory.length > 0) {
+        finalDirectory = [NSString stringWithFormat:@"%@/%@", systemDirectory, subDirectory];
+    }
     [fileManager createDirectoryAtPath:finalDirectory withIntermediateDirectories:YES attributes:nil error:NULL];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", finalDirectory, fileName];
     BOOL result = [self writeToFile:filePath atomically:YES];

@@ -25,6 +25,46 @@
 
 @implementation NSString (LSCategories)
 
+- (NSArray<NSString *> *)lsMatchesWithRegex:(NSString *)regex
+{
+    if (self.length == 0 || regex.length == 0)
+        return nil;
+    
+    NSError *error;
+    NSRegularExpression *regexpression = [NSRegularExpression regularExpressionWithPattern:regex options:0 error:&error];
+    NSArray *matches = [regexpression matchesInString:self options:0 range:NSMakeRange(0, self.length)];
+    NSMutableArray *data = [NSMutableArray new];
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSString *groupString = [self substringWithRange:[match range]];
+        [data addObject:groupString ? groupString : @""];
+    }
+    return [data copy];
+}
+
+- (NSArray<NSArray<NSString *> *> *)lsMatchesAndGroupsWithRegex:(NSString *)regex
+{
+    if (self.length == 0 || regex.length == 0)
+        return nil;
+    
+    NSError *error;
+    NSRegularExpression *regexpression = [NSRegularExpression regularExpressionWithPattern:regex options:0 error:&error];
+    NSArray *matches = [regexpression matchesInString:self options:0 range:NSMakeRange(0, self.length)];
+    NSMutableArray *data = [NSMutableArray new];
+    for (NSTextCheckingResult *match in matches)
+    {
+        NSMutableArray *matchData = [NSMutableArray new];
+        for (NSInteger i = 0; i < match.numberOfRanges; i++)
+        {
+            NSRange groupRange = [match rangeAtIndex:i];
+            NSString *groupString = [self substringWithRange:groupRange];
+            [matchData addObject:groupString ? groupString : @""];
+        }
+        [data addObject:[matchData copy]];
+    }
+    return [data copy];
+}
+
 - (NSRange)lsRangeOfSubstringBetweenStartString:(NSString *)startString endString:(NSString *)endString
 {
     NSArray *ranges = [self lsRangesOfAllSubstringsBetweenStartString:startString endString:endString];

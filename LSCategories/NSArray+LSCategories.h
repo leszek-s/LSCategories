@@ -51,4 +51,12 @@
  */
 - (NSArray *)lsRandomObjectsWithSize:(NSUInteger)size;
 
+/**
+ Returns object at given index of nil if index is out of valid range.
+
+ @param index Index of object.
+ @return Object at given index of nil if index is out of valid range.
+ */
+- (id)lsSafeObjectAtIndex:(NSUInteger)index;
+
 @end

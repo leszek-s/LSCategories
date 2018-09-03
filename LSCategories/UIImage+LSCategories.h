@@ -27,9 +27,17 @@
  
  @param url The URL from which to read image.
  @param useCache If YES then image will be cached in memory and on next read from same url returned from cache.
+ @param useDiskCache If YES then image will be cached on disk and on next read from same url returned from disk cache if not available in memory cache.
  @param handler Handler to execute after reading.
  */
-+ (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache handler:(void (^)(UIImage *image, NSError *error))handler;
++ (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache handler:(void (^)(UIImage *image, NSError *error))handler;
+
+/**
+ Deletes images cached on disk.
+
+ @return YES if deleted, NO otherwise.
+ */
++ (BOOL)lsCleanDiskCache;
 
 /**
  Returns image with given color (size 1px x 1px).

@@ -23,6 +23,22 @@
 @interface NSString (LSCategories)
 
 /**
+ Returns matches found with given regular expression.
+
+ @param regex Regular expression.
+ @return Array with matches.
+ */
+- (NSArray<NSString *> *)lsMatchesWithRegex:(NSString *)regex;
+
+/**
+ Returns matches together with matched regex capture groups found with given regular expression.
+
+ @param regex Regular expression.
+ @return Array with array of matches and matched regex capture groups.
+ */
+- (NSArray<NSArray<NSString *> *> *)lsMatchesAndGroupsWithRegex:(NSString *)regex;
+
+/**
  Returns range of substring between given start string and end string or {NSNotFound, 0} if not found.
 
  @param startString Start string.

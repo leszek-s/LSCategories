@@ -25,7 +25,7 @@
 
 @implementation UIImage (LSCategories)
 
-+ (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache handler:(void (^)(UIImage *image, NSError *error))handler
++ (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache handler:(void (^)(UIImage *image, NSError *error))handler
 {
     if (!handler || !url)
     {
@@ -44,16 +44,41 @@
     if (useCache && cached)
     {
         handler(cached, nil);
+        return;
     }
-    else
+    if (useDiskCache)
     {
-        [NSData lsDataFromUrl:url handler:^(NSData *data, NSError *error) {
-            UIImage *image = data ? [UIImage imageWithData:data] : nil;
-            if (image && useCache)
-                [cache setObject:image forKey:url cost:data.length];
-            handler(image, error);
-        }];
+        NSString *cacheFileName = [NSString stringWithFormat:@"img-%@", url.absoluteString.lsMD5];
+        NSData *data = [NSData lsReadDataFromDirectory:NSCachesDirectory subDirectory:@"LSIMGCACHE" fileName:cacheFileName];
+        if (data != nil)
+        {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image)
+            {
+                if (useCache)
+                    [cache setObject:image forKey:url cost:data.length];
+                handler(image, nil);
+                return;
+            }
+        }
     }
+    
+    [NSData lsDataFromUrl:url handler:^(NSData *data, NSError *error) {
+        UIImage *image = data ? [UIImage imageWithData:data] : nil;
+        if (image && useCache)
+            [cache setObject:image forKey:url cost:data.length];
+        if (image && useDiskCache)
+        {
+            NSString *cacheFileName = [NSString stringWithFormat:@"img-%@", url.absoluteString.lsMD5];
+            [data lsSaveToDirectory:NSCachesDirectory subDirectory:@"LSIMGCACHE" fileName:cacheFileName useExcludeFromBackup:YES];
+        }
+        handler(image, error);
+    }];
+}
+
++ (BOOL)lsCleanDiskCache
+{
+    return [NSData lsCleanDirectory:NSCachesDirectory subDirectory:@"LSIMGCACHE"];
 }
 
 + (UIImage *)lsImageWithColor:(UIColor *)color

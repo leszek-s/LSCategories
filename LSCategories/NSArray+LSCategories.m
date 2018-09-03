@@ -51,4 +51,9 @@
     return [shuffled subarrayWithRange:NSMakeRange(0, size)];
 }
 
+- (id)lsSafeObjectAtIndex:(NSUInteger)index
+{
+    return index >= self.count ? nil : self[index];
+}
+
 @end

@@ -98,13 +98,13 @@
     NSLog(@"lsRandomObject: %@", [array lsRandomObject]);
     
     NSData *data = [test lsDataUTF8];
-    [data lsSaveToDirectory:NSDocumentDirectory fileName:[test lsMD5] useExcludeFromBackup:NO];
-    NSData *data2 = [NSData lsReadDataFromDirectory:NSDocumentDirectory fileName:[test lsMD5]];
+    [data lsSaveToDirectory:NSDocumentDirectory subDirectory:@"LSDATA" fileName:[test lsMD5] useExcludeFromBackup:NO];
+    NSData *data2 = [NSData lsReadDataFromDirectory:NSDocumentDirectory subDirectory:@"LSDATA" fileName:[test lsMD5]];
     NSLog(@"data2: %@", data2);
     NSLog(@"lsStringUTF8 %@", [data2 lsStringUTF8]);
-    NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory]);
-    [NSData lsCleanDirectory:NSDocumentDirectory];
-    NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory]);
+    NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
+    [NSData lsCleanDirectory:NSDocumentDirectory subDirectory:@"LSDATA"];
+    NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
     NSData *xorKey = [@"tEsT" lsDataUTF8];
     NSData *xored = [data lsDataXORedWithKey:xorKey];
     NSLog(@"lsDataXORedWithKey %@", xored);
