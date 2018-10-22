@@ -15,6 +15,7 @@
 		1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33D215204F504200285E6F /* UIWindow+LSCategories.m */; };
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
+		1BA0FBA8217E6762002F52CB /* UIViewController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA0FBA7217E6761002F52CB /* UIViewController+LSCategories.m */; };
 		1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */; };
 		1BA4268E20B743580006E155 /* UIPickerView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4268C20B743570006E155 /* UIPickerView+LSCategories.m */; };
 		1BB07507206844B600ECB592 /* NSException+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB07506206844B600ECB592 /* NSException+LSCategories.m */; };
@@ -55,6 +56,8 @@
 		1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LSCategories.m"; sourceTree = "<group>"; };
 		1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LSCategories.h"; sourceTree = "<group>"; };
 		1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LSCategories.m"; sourceTree = "<group>"; };
+		1BA0FBA6217E6761002F52CB /* UIViewController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LSCategories.h"; sourceTree = "<group>"; };
+		1BA0FBA7217E6761002F52CB /* UIViewController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LSCategories.m"; sourceTree = "<group>"; };
 		1BA345891FBAEDC60088B514 /* UIImageView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LSCategories.h"; sourceTree = "<group>"; };
 		1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LSCategories.m"; sourceTree = "<group>"; };
 		1BA4268C20B743570006E155 /* UIPickerView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPickerView+LSCategories.m"; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */,
 				1BFCB0871E44F40300357597 /* UIView+LSCategories.h */,
 				1BFCB0881E44F40300357597 /* UIView+LSCategories.m */,
+				1BA0FBA6217E6761002F52CB /* UIViewController+LSCategories.h */,
+				1BA0FBA7217E6761002F52CB /* UIViewController+LSCategories.m */,
 				1B33D214204F504200285E6F /* UIWindow+LSCategories.h */,
 				1B33D215204F504200285E6F /* UIWindow+LSCategories.m */,
 			);
@@ -296,6 +301,7 @@
 				1BFCB08B1E44F40300357597 /* NSDate+LSCategories.m in Sources */,
 				1BFCB08E1E44F40300357597 /* NSString+LSCategories.m in Sources */,
 				1B24BCD220879E6C00BDD64D /* UIControl+LSCategories.m in Sources */,
+				1BA0FBA8217E6762002F52CB /* UIViewController+LSCategories.m in Sources */,
 				1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */,
 				1BA4268E20B743580006E155 /* UIPickerView+LSCategories.m in Sources */,
 				1BFCB0911E44F40300357597 /* UIImage+LSCategories.m in Sources */,

@@ -97,10 +97,11 @@
  @param text Text message.
  @param color Text color.
  @param backgroundColor Background color.
+ @param font Font.
  @param margin Margin.
  @param duration Duration.
  */
-+ (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration;
++ (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font margin:(NSInteger)margin duration:(NSTimeInterval)duration;
 
 /**
  Hides shared toast showed on the view.
@@ -127,10 +128,11 @@
  @param text Text message.
  @param color Text color.
  @param backgroundColor Background color.
+ @param font Font.
  @param margin Margin.
  @param duration Duration.
  */
-- (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration;
+- (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font margin:(NSInteger)margin duration:(NSTimeInterval)duration;
 
 /**
  Hides toast showed on the view.

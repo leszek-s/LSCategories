@@ -148,16 +148,16 @@ static UIView *lsSharedToastView = nil;
 
 + (void)lsShowSharedToastWithText:(NSString *)text
 {
-    [self lsShowSharedToastWithText:text color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] margin:40 duration:2.5];
+    [self lsShowSharedToastWithText:text color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] font:[UIFont systemFontOfSize:15] margin:40 duration:2.5];
 }
 
-+ (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration
++ (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font margin:(NSInteger)margin duration:(NSTimeInterval)duration
 {
     UIView *tv = [[UIApplication sharedApplication] keyWindow];
     if (tv)
     {
         lsSharedToastView = tv;
-        [tv lsShowToastWithText:text color:color backgroundColor:backgroundColor margin:margin duration:duration];
+        [tv lsShowToastWithText:text color:color backgroundColor:backgroundColor font:font margin:margin duration:duration];
     }
 }
 
@@ -177,16 +177,16 @@ static UIView *lsSharedToastView = nil;
 
 - (void)lsShowToastWithText:(NSString *)text
 {
-    [self lsShowToastWithText:text color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] margin:40 duration:2.5];
+    [self lsShowToastWithText:text color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] font:[UIFont systemFontOfSize:15] margin:40 duration:2.5];
 }
 
-- (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor margin:(NSInteger)margin duration:(NSTimeInterval)duration
+- (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font margin:(NSInteger)margin duration:(NSTimeInterval)duration
 {
     UILabel *label = [UILabel new];
     label.text = text;
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:15];
+    label.font = font;
     label.textColor = color;
     label.backgroundColor = backgroundColor;
     label.layer.cornerRadius = 6;

@@ -51,4 +51,5 @@
 #import "UITextField+LSCategories.h"
 #import "UITextView+LSCategories.h"
 #import "UIView+LSCategories.h"
+#import "UIViewController+LSCategories.h"
 #import "UIWindow+LSCategories.h"
