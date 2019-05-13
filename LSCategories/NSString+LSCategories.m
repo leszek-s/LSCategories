@@ -65,6 +65,15 @@
     return [data copy];
 }
 
+- (NSString *)lsStringByReplacingRegexPattern:(NSString *)regexPattern templateString:(NSString *)templateString
+{
+    if (regexPattern.length == 0 || templateString.length == 0)
+        return nil;
+    
+    NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:regexPattern options:0 error:nil];
+    return [regularExpression stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, self.length) withTemplate:templateString];
+}
+
 - (NSRange)lsRangeOfSubstringBetweenStartString:(NSString *)startString endString:(NSString *)endString
 {
     NSArray *ranges = [self lsRangesOfAllSubstringsBetweenStartString:startString endString:endString];

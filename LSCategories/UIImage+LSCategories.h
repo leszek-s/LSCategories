@@ -107,6 +107,24 @@
 + (UIImage *)lsImageWithText:(NSString *)text textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font size:(CGSize)size;
 
 /**
+ Returns animated image from given animated gif data and frames per second.
+
+ @param animatedGifData Animated gif data.
+ @param framesPerSecond Frames per second.
+ @return Animated image from given animated gif data and frames per second.
+ */
++ (UIImage *)lsAnimatedImageWithAnimatedGifData:(NSData *)animatedGifData framesPerSecond:(CGFloat)framesPerSecond;
+
+/**
+ Returns animated image from given animated gif file and frames per second.
+
+ @param animatedGifName Animated gif file name.
+ @param framesPerSecond Frames per second.
+ @return Animated image from given animated gif file and frames per second.
+ */
++ (UIImage *)lsAnimatedImageWithAnimatedGifName:(NSString *)animatedGifName framesPerSecond:(CGFloat)framesPerSecond;
+
+/**
  Returns image rotated with degrees.
  
  @param degrees Degrees.
@@ -238,6 +256,14 @@
  @return Image with inverted alpha.
  */
 - (UIImage *)lsInvertedAlphaMaskImage;
+
+/**
+ Returns image tinted with given color.
+
+ @param color Tint color.
+ @return Image tinted with given color.
+ */
+- (UIImage *)lsTintedImageWithColor:(UIColor *)color;
 
 /**
  Returns PNG data.

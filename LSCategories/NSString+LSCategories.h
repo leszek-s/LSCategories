@@ -39,6 +39,15 @@
 - (NSArray<NSArray<NSString *> *> *)lsMatchesAndGroupsWithRegex:(NSString *)regex;
 
 /**
+ Returns a string with regex pattern replaced by given template.
+
+ @param regexPattern Regular expression.
+ @param templateString Template for replacing.
+ @return String with regex pattern replaced by given template.
+ */
+- (NSString *)lsStringByReplacingRegexPattern:(NSString *)regexPattern templateString:(NSString *)templateString;
+
+/**
  Returns range of substring between given start string and end string or {NSNotFound, 0} if not found.
 
  @param startString Start string.

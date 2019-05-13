@@ -179,6 +179,43 @@
     return image;
 }
 
++ (UIImage *)lsAnimatedImageWithAnimatedGifData:(NSData *)animatedGifData framesPerSecond:(CGFloat)framesPerSecond
+{
+    if (!animatedGifData)
+        return nil;
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)animatedGifData, nil);
+    if (!imageSource)
+        return nil;
+    size_t count = CGImageSourceGetCount(imageSource);
+    NSMutableArray *images = [NSMutableArray new];
+    
+    for (size_t i = 0; i < count; i++)
+    {
+        CGImageRef cgImage = CGImageSourceCreateImageAtIndex(imageSource, i, nil);
+        if (!cgImage)
+            continue;
+        UIImage *image = [UIImage imageWithCGImage:cgImage];
+        [images addObject:image];
+        CGImageRelease(cgImage);
+    }
+    
+    CFRelease(imageSource);
+    return [UIImage animatedImageWithImages:images duration:images.count / framesPerSecond];
+}
+
++ (UIImage *)lsAnimatedImageWithAnimatedGifName:(NSString *)animatedGifName framesPerSecond:(CGFloat)framesPerSecond
+{
+    NSDataAsset *asset = [[NSDataAsset alloc] initWithName:animatedGifName];
+    NSData *data = asset.data;
+    
+    if (!data)
+    {
+        data = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:animatedGifName withExtension:@"gif"]];
+    }
+    
+    return [self lsAnimatedImageWithAnimatedGifData:data framesPerSecond:framesPerSecond];
+}
+
 - (UIImage *)lsRotatedImageWithDegrees:(CGFloat)degrees
 {
     return [self lsRotatedImageWithRadians:degrees / 180.0 * M_PI];
@@ -334,6 +371,24 @@
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeXOR);
     CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
     CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, self.size.width, self.size.height));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (UIImage *)lsTintedImageWithColor:(UIColor *)color
+{
+    if (!self.CGImage)
+        return nil;
+    UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0, self.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextClipToMask(context, rect, self.CGImage);
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

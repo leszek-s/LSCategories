@@ -43,6 +43,9 @@
     NSLog(@"lsAllRangesOfString: %@", [test lsAllRangesOfString:@"es"]);
     NSLog(@"lsRangesOfAllSubstringsBetweenStartString: %@", [test lsRangesOfAllSubstringsBetweenStartString:@"test" endString:@"!"]);
     NSLog(@"lsRandomStringWithLength: %@", [NSString lsRandomStringWithLength:10]);
+    NSLog(@"lsMatchesWithRegex: %@", [test lsMatchesWithRegex:@"[0-9]+"]);
+    NSLog(@"lsMatchesAndGroupsWithRegex: %@", [test lsMatchesAndGroupsWithRegex:@"test([0-9]+)!"]);
+    NSLog(@"lsStringByReplacingRegex: %@", [test lsStringByReplacingRegexPattern:@"test([0-9]+)(.)test([0-9]+)(.)" templateString:@"first number: $1 first suffix: $2 second number: $3 second suffix: $4"]);
     NSLog(@"lsUUID: %@", [NSString lsUUID]);
     [NSString lsStringFromUrl:[NSURL URLWithString:@"https://github.com"] handler:^(NSString *string, NSError *error) {
         NSLog(@"lsStringFromUrl: %@...", [string substringToIndex:MIN(string.length, 400)]);
