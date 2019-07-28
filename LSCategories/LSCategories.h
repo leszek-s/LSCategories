@@ -37,6 +37,7 @@
 #import "NSException+LSCategories.h"
 #import "NSObject+LSCategories.h"
 #import "NSString+LSCategories.h"
+#import "NSTimer+LSCategories.h"
 #import "UIApplication+LSCategories.h"
 #import "UIButton+LSCategories.h"
 #import "UIColor+LSCategories.h"

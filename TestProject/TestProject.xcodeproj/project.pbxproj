@@ -20,6 +20,7 @@
 		1BA4268E20B743580006E155 /* UIPickerView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4268C20B743570006E155 /* UIPickerView+LSCategories.m */; };
 		1BB07507206844B600ECB592 /* NSException+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB07506206844B600ECB592 /* NSException+LSCategories.m */; };
 		1BD24287206432BB00147372 /* NSAttributedString+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */; };
+		1BF6507422ED7228008640D5 /* NSTimer+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */; };
 		1BFCB05C1E44F3E700357597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05B1E44F3E700357597 /* main.m */; };
 		1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05E1E44F3E700357597 /* AppDelegate.m */; };
 		1BFCB0621E44F3E700357597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0611E44F3E700357597 /* ViewController.m */; };
@@ -66,6 +67,8 @@
 		1BB07506206844B600ECB592 /* NSException+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSException+LSCategories.m"; sourceTree = "<group>"; };
 		1BD24285206432BB00147372 /* NSAttributedString+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+LSCategories.h"; sourceTree = "<group>"; };
 		1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+LSCategories.m"; sourceTree = "<group>"; };
+		1BF6507222ED7227008640D5 /* NSTimer+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+LSCategories.h"; sourceTree = "<group>"; };
+		1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+LSCategories.m"; sourceTree = "<group>"; };
 		1BFCB0571E44F3E700357597 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFCB05B1E44F3E700357597 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BFCB05D1E44F3E700357597 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				1BFCB07C1E44F40200357597 /* NSObject+LSCategories.m */,
 				1BFCB07D1E44F40300357597 /* NSString+LSCategories.h */,
 				1BFCB07E1E44F40300357597 /* NSString+LSCategories.m */,
+				1BF6507222ED7227008640D5 /* NSTimer+LSCategories.h */,
+				1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */,
 				1B1113AA1F89FE67007C97BE /* UIApplication+LSCategories.h */,
 				1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */,
 				1B1F4C76206051F5005DF1E7 /* UIButton+LSCategories.h */,
@@ -250,6 +255,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -288,6 +294,7 @@
 				1BFCB08D1E44F40300357597 /* NSObject+LSCategories.m in Sources */,
 				1BFCB0921E44F40300357597 /* UILabel+LSCategories.m in Sources */,
 				1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */,
+				1BF6507422ED7228008640D5 /* NSTimer+LSCategories.m in Sources */,
 				1BFCB0891E44F40300357597 /* NSArray+LSCategories.m in Sources */,
 				1BFCB0901E44F40300357597 /* UIFont+LSCategories.m in Sources */,
 				1BFCB08F1E44F40300357597 /* UIColor+LSCategories.m in Sources */,

@@ -379,8 +379,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         formatter = [NSDateFormatter new];
-        formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
         formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+        formatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     });
     return [formatter stringFromDate:self];
 }
@@ -412,8 +413,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         formatter = [NSDateFormatter new];
-        formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
         formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+        formatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     });
     return [formatter dateFromString:stringWithISO8601];
 }
