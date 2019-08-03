@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDate (LSCategories)
 
 /**
@@ -27,7 +29,7 @@
 
  @return Date components object.
  */
-- (NSDateComponents *)lsDateComponents;
+- (nullable NSDateComponents *)lsDateComponents;
 
 /**
  Returns year.
@@ -76,84 +78,84 @@
 
  @return Beginning of day.
  */
-- (NSDate *)lsBeginningOfDay;
+- (nullable NSDate *)lsBeginningOfDay;
 
 /**
  Returns end of day (last second of day).
  
  @return End of day (last second of day).
  */
-- (NSDate *)lsEndOfDay;
+- (nullable NSDate *)lsEndOfDay;
 
 /**
  Returns beginning of next day.
  
  @return Beginning of next day.
  */
-- (NSDate *)lsBeginningOfNextDay;
+- (nullable NSDate *)lsBeginningOfNextDay;
 
 /**
  Returns end of previous day (last second of previous day).
  
  @return End of previous day (last second of previous day).
  */
-- (NSDate *)lsEndOfPreviousDay;
+- (nullable NSDate *)lsEndOfPreviousDay;
 
 /**
  Returns beginning of month.
  
  @return Beginning of month.
  */
-- (NSDate *)lsBeginningOfMonth;
+- (nullable NSDate *)lsBeginningOfMonth;
 
 /**
  Returns end of month (last second of month).
  
  @return End of month (last second of month).
  */
-- (NSDate *)lsEndOfMonth;
+- (nullable NSDate *)lsEndOfMonth;
 
 /**
  Returns beginning of next month.
  
  @return Beginning of next month.
  */
-- (NSDate *)lsBeginningOfNextMonth;
+- (nullable NSDate *)lsBeginningOfNextMonth;
 
 /**
  Returns end of previous month (last second of previous month).
  
  @return End of previous month (last second of previous month).
  */
-- (NSDate *)lsEndOfPreviousMonth;
+- (nullable NSDate *)lsEndOfPreviousMonth;
 
 /**
  Returns beginning of year.
  
  @return Beginning of year.
  */
-- (NSDate *)lsBeginningOfYear;
+- (nullable NSDate *)lsBeginningOfYear;
 
 /**
  Returns end of year (last second of year).
  
  @return End of year (last second of year).
  */
-- (NSDate *)lsEndOfYear;
+- (nullable NSDate *)lsEndOfYear;
 
 /**
  Returns beginning of next year.
  
  @return Beginning of next year.
  */
-- (NSDate *)lsBeginningOfNextYear;
+- (nullable NSDate *)lsBeginningOfNextYear;
 
 /**
  Returns end of previous year (last second of previous year).
  
  @return End of previous year (last second of previous year).
  */
-- (NSDate *)lsEndOfPreviousYear;
+- (nullable NSDate *)lsEndOfPreviousYear;
 
 /**
  Returns YES if date is today.
@@ -240,7 +242,7 @@
  @param calendarUnit Calendar unit.
  @return Distance from given date in given calendar unit.
  */
-- (NSDateComponents *)lsDifferenceFromDate:(NSDate *)date calendarUnit:(NSCalendarUnit)calendarUnit;
+- (nullable NSDateComponents *)lsDifferenceFromDate:(NSDate *)date calendarUnit:(NSCalendarUnit)calendarUnit;
 
 /**
  Returns difference from given date in years unit. Returns positive values if given date parameter is earlier, negative otherwise.
@@ -311,7 +313,7 @@
  @param years Years to add.
  @return Date with added years.
  */
-- (NSDate *)lsDateByAddingYears:(NSInteger)years;
+- (nullable NSDate *)lsDateByAddingYears:(NSInteger)years;
 
 /**
  Returns date with added months.
@@ -319,7 +321,7 @@
  @param months Months to add.
  @return Date with added months.
  */
-- (NSDate *)lsDateByAddingMonths:(NSInteger)months;
+- (nullable NSDate *)lsDateByAddingMonths:(NSInteger)months;
 
 /**
  Returns date with added weeks.
@@ -327,7 +329,7 @@
  @param weeks Weeks to add.
  @return Date with added weeks.
  */
-- (NSDate *)lsDateByAddingWeeks:(NSInteger)weeks;
+- (nullable NSDate *)lsDateByAddingWeeks:(NSInteger)weeks;
 
 /**
  Returns date with added days.
@@ -335,7 +337,7 @@
  @param days Days to add.
  @return Date with added days.
  */
-- (NSDate *)lsDateByAddingDays:(NSInteger)days;
+- (nullable NSDate *)lsDateByAddingDays:(NSInteger)days;
 
 /**
  Returns date with added hours.
@@ -343,7 +345,7 @@
  @param hours Hours to add.
  @return Date with added hours.
  */
-- (NSDate *)lsDateByAddingHours:(NSInteger)hours;
+- (nullable NSDate *)lsDateByAddingHours:(NSInteger)hours;
 
 /**
  Returns date with added minutes.
@@ -351,7 +353,7 @@
  @param minutes Minutes to add.
  @return Date with added minutes.
  */
-- (NSDate *)lsDateByAddingMinutes:(NSInteger)minutes;
+- (nullable NSDate *)lsDateByAddingMinutes:(NSInteger)minutes;
 
 /**
  Returns date with added seconds.
@@ -359,7 +361,7 @@
  @param seconds Seconds to add.
  @return Date with added seconds.
  */
-- (NSDate *)lsDateByAddingSeconds:(NSInteger)seconds;
+- (nullable NSDate *)lsDateByAddingSeconds:(NSInteger)seconds;
 
 /**
  Returns string with date and/or time with given style.
@@ -474,7 +476,7 @@
  @param time Time.
  @return Date combined from date and time.
  */
-+ (NSDate *)lsDateCombinedWithDate:(NSDate *)date time:(NSDate *)time;
++ (nullable NSDate *)lsDateCombinedWithDate:(NSDate *)date time:(NSDate *)time;
 
 /**
  Returns date from string in given format.
@@ -483,7 +485,7 @@
  @param format Format string.
  @return Date from string in given format.
  */
-+ (NSDate *)lsDateWithString:(NSString *)string format:(NSString *)format;
++ (nullable NSDate *)lsDateWithString:(NSString *)string format:(NSString *)format;
 
 /**
  Returns date from string in ISO8601 format.
@@ -491,6 +493,8 @@
  @param stringWithISO8601 String with date in ISO8601 format.
  @return Date from string in ISO8601 format.
  */
-+ (NSDate *)lsDateWithStringWithISO8601:(NSString *)stringWithISO8601;
++ (nullable NSDate *)lsDateWithStringWithISO8601:(NSString *)stringWithISO8601;
 
 @end
+
+NS_ASSUME_NONNULL_END

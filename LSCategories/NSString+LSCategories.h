@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (LSCategories)
 
 /**
@@ -28,7 +30,7 @@
  @param regex Regular expression.
  @return Array with matches.
  */
-- (NSArray<NSString *> *)lsMatchesWithRegex:(NSString *)regex;
+- (nullable NSArray<NSString *> *)lsMatchesWithRegex:(NSString *)regex;
 
 /**
  Returns matches together with matched regex capture groups found with given regular expression.
@@ -36,7 +38,7 @@
  @param regex Regular expression.
  @return Array with array of matches and matched regex capture groups.
  */
-- (NSArray<NSArray<NSString *> *> *)lsMatchesAndGroupsWithRegex:(NSString *)regex;
+- (nullable NSArray<NSArray<NSString *> *> *)lsMatchesAndGroupsWithRegex:(NSString *)regex;
 
 /**
  Returns a string with regex pattern replaced by given template.
@@ -45,7 +47,7 @@
  @param templateString Template for replacing.
  @return String with regex pattern replaced by given template.
  */
-- (NSString *)lsStringByReplacingRegexPattern:(NSString *)regexPattern templateString:(NSString *)templateString;
+- (nullable NSString *)lsStringByReplacingRegexPattern:(NSString *)regexPattern templateString:(NSString *)templateString;
 
 /**
  Returns range of substring between given start string and end string or {NSNotFound, 0} if not found.
@@ -63,7 +65,7 @@
  @param endString End string.
  @return Substring or nil if not found.
  */
-- (NSString *)lsSubstringBetweenStartString:(NSString *)startString endString:(NSString *)endString;
+- (nullable NSString *)lsSubstringBetweenStartString:(NSString *)startString endString:(NSString *)endString;
 
 /**
  Returns array with all ranges of given substring or empty array if substring not found.
@@ -153,7 +155,7 @@
  @param url The URL from which to read string.
  @param handler Handler to execute after reading.
  */
-+ (void)lsStringFromUrl:(NSURL *)url handler:(void (^)(NSString *string, NSError *error))handler;
++ (void)lsStringFromUrl:(NSURL *)url handler:(void (^)(NSString * _Nullable string, NSError * _Nullableerror))handler;
 
 /**
  Returns random string with given length.
@@ -177,7 +179,7 @@
  
  @return Data with string encoded in UTF8 encoding.
  */
-- (NSData *)lsDataUTF8;
+- (nullable NSData *)lsDataUTF8;
 
 /**
  Returns reversed string.
@@ -191,7 +193,7 @@
 
  @return String encrypted with ROT13 substitution cipher.
  */
-- (NSString *)lsROT13String;
+- (nullable NSString *)lsROT13String;
 
 /**
  Returns UUID string.
@@ -241,7 +243,7 @@
  
  @return Number from a string with a hexadecimal integer.
  */
-- (NSNumber *)lsNumberFromHexString;
+- (nullable NSNumber *)lsNumberFromHexString;
 
 /**
  Returns YES if string is a valid email address.
@@ -276,55 +278,57 @@
  
  @return MD2 hash from string.
  */
-- (NSString *)lsMD2;
+- (nullable NSString *)lsMD2;
 
 /**
  Returns MD4 hash from string.
  
  @return MD4 hash from string.
  */
-- (NSString *)lsMD4;
+- (nullable NSString *)lsMD4;
 
 /**
  Returns MD5 hash from string.
  
  @return MD5 hash from string.
  */
-- (NSString *)lsMD5;
+- (nullable NSString *)lsMD5;
 
 /**
  Returns SHA1 hash from string.
  
  @return SHA1 hash from string.
  */
-- (NSString *)lsSHA1;
+- (nullable NSString *)lsSHA1;
 
 /**
  Returns SHA224 hash from string.
  
  @return SHA224 hash from string.
  */
-- (NSString *)lsSHA224;
+- (nullable NSString *)lsSHA224;
 
 /**
  Returns SHA256 hash from string.
  
  @return SHA256 hash from string.
  */
-- (NSString *)lsSHA256;
+- (nullable NSString *)lsSHA256;
 
 /**
  Returns SHA384 hash from string.
  
  @return SHA384 hash from string.
  */
-- (NSString *)lsSHA384;
+- (nullable NSString *)lsSHA384;
 
 /**
  Returns SHA512 hash from string.
  
  @return SHA512 hash from string.
  */
-- (NSString *)lsSHA512;
+- (nullable NSString *)lsSHA512;
 
 @end
+
+NS_ASSUME_NONNULL_END

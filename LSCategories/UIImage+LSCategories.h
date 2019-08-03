@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImage (LSCategories)
 
 /**
@@ -30,7 +32,7 @@
  @param useDiskCache If YES then image will be cached on disk and on next read from same url returned from disk cache if not available in memory cache.
  @param handler Handler to execute after reading.
  */
-+ (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache handler:(void (^)(UIImage *image, NSError *error))handler;
++ (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache handler:(void (^)(UIImage * _Nullable image, NSError * _Nullable error))handler;
 
 /**
  Deletes images cached on disk.
@@ -45,7 +47,7 @@
  @param color Color to fill the image.
  @return Image with given color.
  */
-+ (UIImage *)lsImageWithColor:(UIColor *)color;
++ (nullable UIImage *)lsImageWithColor:(UIColor *)color;
 
 /**
  Returns image with given color and size.
@@ -54,7 +56,7 @@
  @param size Size of the image.
  @return Image with given color and size.
  */
-+ (UIImage *)lsImageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)lsImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
  Returns image with triangle with given color and size.
@@ -63,7 +65,7 @@
  @param size Size of the triangle.
  @return Image with triangle with given color and size.
  */
-+ (UIImage *)lsTriangleImageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)lsTriangleImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
  Returns image with ellipse with given color and size.
@@ -72,7 +74,7 @@
  @param size Size of the ellipse.
  @return Image with ellipse with given color and size.
  */
-+ (UIImage *)lsEllipseImageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)lsEllipseImageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
  Returns image with gradient with two given colors and directions specified by points.
@@ -84,7 +86,7 @@
  @param endPoint End point (from [0,0] to [1,1])
  @return Image with gradient.
  */
-+ (UIImage *)lsGradientImageWithSize:(CGSize)size startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
++ (nullable UIImage *)lsGradientImageWithSize:(CGSize)size startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 /**
  Returns image with avatar placeholder with initials from given name and background color generated from this name.
@@ -92,7 +94,7 @@
  @param text Name for generating avatar placeholder.
  @return Image with avatar placeholder.
  */
-+ (UIImage *)lsInitialsAvatarImageWithText:(NSString *)text;
++ (nullable UIImage *)lsInitialsAvatarImageWithText:(NSString *)text;
 
 /**
  Returns image with given text drawed in the center.
@@ -104,7 +106,7 @@
  @param size Size of the image.
  @return Image with given text drawed in the center.
  */
-+ (UIImage *)lsImageWithText:(NSString *)text textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font size:(CGSize)size;
++ (nullable UIImage *)lsImageWithText:(NSString *)text textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font size:(CGSize)size;
 
 /**
  Returns animated image from given animated gif data and frames per second.
@@ -113,7 +115,7 @@
  @param framesPerSecond Frames per second.
  @return Animated image from given animated gif data and frames per second.
  */
-+ (UIImage *)lsAnimatedImageWithAnimatedGifData:(NSData *)animatedGifData framesPerSecond:(CGFloat)framesPerSecond;
++ (nullable UIImage *)lsAnimatedImageWithAnimatedGifData:(NSData *)animatedGifData framesPerSecond:(CGFloat)framesPerSecond;
 
 /**
  Returns animated image from given animated gif file and frames per second.
@@ -122,7 +124,7 @@
  @param framesPerSecond Frames per second.
  @return Animated image from given animated gif file and frames per second.
  */
-+ (UIImage *)lsAnimatedImageWithAnimatedGifName:(NSString *)animatedGifName framesPerSecond:(CGFloat)framesPerSecond;
++ (nullable UIImage *)lsAnimatedImageWithAnimatedGifName:(NSString *)animatedGifName framesPerSecond:(CGFloat)framesPerSecond;
 
 /**
  Returns image rotated with degrees.
@@ -130,7 +132,7 @@
  @param degrees Degrees.
  @return Image rotated with degrees.
  */
-- (UIImage *)lsRotatedImageWithDegrees:(CGFloat)degrees;
+- (nullable UIImage *)lsRotatedImageWithDegrees:(CGFloat)degrees;
 
 /**
  Returns image rotated with radians.
@@ -138,21 +140,21 @@
  @param radians Radians.
  @return Image rotated with radians.
  */
-- (UIImage *)lsRotatedImageWithRadians:(CGFloat)radians;
+- (nullable UIImage *)lsRotatedImageWithRadians:(CGFloat)radians;
 
 /**
  Returns image flipped horizontally.
 
  @return Image flipped horizontally.
  */
-- (UIImage *)lsImageFlippedHorizontally;
+- (nullable UIImage *)lsImageFlippedHorizontally;
 
 /**
  Returns image flipped vertically.
 
  @return Image flipped vertically.
  */
-- (UIImage *)lsImageFlippedVertically;
+- (nullable UIImage *)lsImageFlippedVertically;
 
 /**
  Returns image resized to given size.
@@ -160,7 +162,7 @@
  @param size Size.
  @return Image resized to given size.
  */
-- (UIImage *)lsResizedImageWithSize:(CGSize)size;
+- (nullable UIImage *)lsResizedImageWithSize:(CGSize)size;
 
 /**
  Returns image resized proportionally to the maximum size. Width and height of resized image will be smaller or equal to given width and height.
@@ -168,7 +170,7 @@
  @param size Maximum size.
  @return Resized image.
  */
-- (UIImage *)lsResizedProportionalImageWithMaxSize:(CGSize)size;
+- (nullable UIImage *)lsResizedProportionalImageWithMaxSize:(CGSize)size;
 
 /**
  Returns image resized proportionally to the minimum size. Width and height of resized image will be larger or equal to given width and height.
@@ -176,7 +178,7 @@
  @param size Maximum size.
  @return Resized image.
  */
-- (UIImage *)lsResizedProportionalImageWithMinSize:(CGSize)size;
+- (nullable UIImage *)lsResizedProportionalImageWithMinSize:(CGSize)size;
 
 /**
  Returns image resized proportionally to given height.
@@ -184,7 +186,7 @@
  @param height Height.
  @return Resized image.
  */
-- (UIImage *)lsResizedProportionalImageWithHeight:(CGFloat)height;
+- (nullable UIImage *)lsResizedProportionalImageWithHeight:(CGFloat)height;
 
 /**
  Returns image resized proportionally to given width.
@@ -192,7 +194,7 @@
  @param width Width.
  @return Resized image.
  */
-- (UIImage *)lsResizedProportionalImageWithWidth:(CGFloat)width;
+- (nullable UIImage *)lsResizedProportionalImageWithWidth:(CGFloat)width;
 
 /**
  Returns cropped image with given rectangle.
@@ -200,7 +202,7 @@
  @param rect Rectangle to use for cropping.
  @return Cropped image.
  */
-- (UIImage *)lsCroppedImageWithRect:(CGRect)rect;
+- (nullable UIImage *)lsCroppedImageWithRect:(CGRect)rect;
 
 /**
  Returns cropped image with given edge insets.
@@ -208,7 +210,7 @@
  @param insets Edge insets.
  @return Cropped image.
  */
-- (UIImage *)lsCroppedImageWithInsets:(UIEdgeInsets)insets;
+- (nullable UIImage *)lsCroppedImageWithInsets:(UIEdgeInsets)insets;
 
 /**
  Returns padded image with given edge insets.
@@ -216,7 +218,7 @@
  @param insets Edge insets.
  @return Padded image.
  */
-- (UIImage *)lsPaddedImageWithInsets:(UIEdgeInsets)insets;
+- (nullable UIImage *)lsPaddedImageWithInsets:(UIEdgeInsets)insets;
 
 /**
  Returns image masked with given mask image.
@@ -224,7 +226,7 @@
  @param maskImage Mask image.
  @return Masked image.
  */
-- (UIImage *)lsMaskedImageWithMaskImage:(UIImage *)maskImage;
+- (nullable UIImage *)lsMaskedImageWithMaskImage:(UIImage *)maskImage;
 
 /**
  Returns image merged with given image placed on top with given position.
@@ -233,7 +235,7 @@
  @param position Image position.
  @return Merged image.
  */
-- (UIImage *)lsMergedImageWithImage:(UIImage *)image position:(CGPoint)position;
+- (nullable UIImage *)lsMergedImageWithImage:(UIImage *)image position:(CGPoint)position;
 
 /**
  Returns rounded image with given corner radius.
@@ -241,21 +243,21 @@
  @param cornerRadius Corner radius.
  @return Rounded image.
  */
-- (UIImage *)lsRoundedImageWithCornerRadius:(CGFloat)cornerRadius;
+- (nullable UIImage *)lsRoundedImageWithCornerRadius:(CGFloat)cornerRadius;
 
 /**
  Returns image with inverted colors.
 
  @return Image with inverted colors.
  */
-- (UIImage *)lsInvertedImage;
+- (nullable UIImage *)lsInvertedImage;
 
 /**
  Returns image with inverted alpha. Transparent becomes opaque, opaque becomes transparent.
  
  @return Image with inverted alpha.
  */
-- (UIImage *)lsInvertedAlphaMaskImage;
+- (nullable UIImage *)lsInvertedAlphaMaskImage;
 
 /**
  Returns image tinted with given color.
@@ -263,14 +265,14 @@
  @param color Tint color.
  @return Image tinted with given color.
  */
-- (UIImage *)lsTintedImageWithColor:(UIColor *)color;
+- (nullable UIImage *)lsTintedImageWithColor:(UIColor *)color;
 
 /**
  Returns PNG data.
 
  @return PNG data.
  */
-- (NSData *)lsPNG;
+- (nullable NSData *)lsPNG;
 
 /**
  Returns JPEG data with given compression quality from 0.0 (maximum compression and lowest quality) to 1.0 (least compression and best quality).
@@ -278,7 +280,7 @@
  @param compressionQuality Compression quality.
  @return JPEG data.
  */
-- (NSData *)lsJPEGWithCompressionLevel:(CGFloat)compressionQuality;
+- (nullable NSData *)lsJPEGWithCompressionLevel:(CGFloat)compressionQuality;
 
 /**
  Returns JPEG data with best possible quality and size below given maximum size. If it is not possible to compress image to get size below maximum size even when using lowest quality then returned value depends on allowAboveMax parameter. When allowAboveMax is set to YES then it will return image with lowest quality which can still be above maxSize. When allowAboveMax is set to NO it will return nil in this case.
@@ -287,7 +289,7 @@
  @param allowAboveMax If YES then returned image can be above maxSize, if NO then nil can be returned.
  @return JPEG data.
  */
-- (NSData *)lsJPEGWithDesiredMaxSize:(NSUInteger)maxSize allowAboveMax:(BOOL)allowAboveMax;
+- (nullable NSData *)lsJPEGWithDesiredMaxSize:(NSUInteger)maxSize allowAboveMax:(BOOL)allowAboveMax;
 
 /**
  Returns image created from raw pixel data in RGBA format.
@@ -296,14 +298,14 @@
  @param size Size of the image.
  @return Image created from raw pixel data or nil if given data does not match given size.
  */
-+ (UIImage *)lsImageWithRGBARawData:(NSData *)rgbaRawData size:(CGSize)size;
++ (nullable UIImage *)lsImageWithRGBARawData:(NSData *)rgbaRawData size:(CGSize)size;
 
 /**
  Returns raw pixel data in RGBA format.
 
  @return Raw pixel data in RGBA format.
  */
-- (NSData *)lsRGBARawData;
+- (nullable NSData *)lsRGBARawData;
 
 /**
  Returns color of pixel at given position.
@@ -311,13 +313,15 @@
  @param pixel Pixel position.
  @return Color of pixel at given position.
  */
-- (UIColor *)lsColorAtPixel:(CGPoint)pixel;
+- (nullable UIColor *)lsColorAtPixel:(CGPoint)pixel;
 
 /**
  Returns average color from image.
 
  @return Average color from image.
  */
-- (UIColor *)lsAverageColor;
+- (nullable UIColor *)lsAverageColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

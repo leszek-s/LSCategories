@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIApplication (LSCategories)
 
 /**
@@ -27,13 +29,15 @@
 
  @return Application version string.
  */
-- (NSString *)lsVersion;
+- (nullable NSString *)lsVersion;
 
 /**
  Returns application build number string.
  
  @return Application build number string.
  */
-- (NSString *)lsBuild;
+- (nullable NSString *)lsBuild;
 
 @end
+
+NS_ASSUME_NONNULL_END

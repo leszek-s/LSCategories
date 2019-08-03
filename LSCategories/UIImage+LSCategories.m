@@ -438,6 +438,8 @@
 
 - (NSData *)lsRGBARawData
 {
+    if (!self.CGImage)
+        return nil;
     CGImageRef imageRef = self.CGImage;
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);

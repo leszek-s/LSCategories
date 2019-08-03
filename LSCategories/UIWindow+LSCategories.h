@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIWindow (LSCategories)
 
 /**
@@ -44,6 +46,8 @@
  @param animationSubtype Animation subtype (possible values: kCATransitionFromRight, kCATransitionFromLeft, kCATransitionFromTop, kCATransitionFromBottom)
  @param backgroundColor Optional background color used in transition.
  */
-- (void)lsSetRootViewController:(UIViewController *)viewController animationType:(NSString *)animationType animationSubtype:(NSString *)animationSubtype backgroundColor:(UIColor *)backgroundColor;
+- (void)lsSetRootViewController:(UIViewController *)viewController animationType:(NSString *)animationType animationSubtype:(NSString *)animationSubtype backgroundColor:(nullable UIColor *)backgroundColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

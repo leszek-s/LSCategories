@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (LSCategories)
 
 /**
@@ -50,14 +52,14 @@
  @param handler Handler to be executed when data event occurs.
  @return Subscription ID which can be used for removing added subscription.
  */
-- (NSString *)lsSubscribeForDataWithHandler:(void (^)(id data))handler;
+- (nullable NSString *)lsSubscribeForDataWithHandler:(void (^)(id _Nullable data))handler;
 
 /**
  Sends data event with optional data.
 
  @param data Optional data which should be send to data event handlers.
  */
-- (void)lsSendData:(id)data;
+- (void)lsSendData:(nullable id)data;
 
 /**
  Removes all subscriptions for data event.
@@ -71,7 +73,7 @@
  @param handler Handler to be executed when event with given name occurs.
  @return Subscription ID which can be used for removing added subscription.
  */
-- (NSString *)lsSubscribeForEvent:(NSString *)event handler:(void (^)(id data))handler;
+- (nullable NSString *)lsSubscribeForEvent:(NSString *)event handler:(void (^)(id _Nullable data))handler;
 
 /**
  Sends event using given name and optional data.
@@ -79,7 +81,7 @@
  @param event Event name.
  @param data Optional data which should be send to handlers.
  */
-- (void)lsSendEvent:(NSString *)event data:(id)data;
+- (void)lsSendEvent:(NSString *)event data:(nullable id)data;
 
 /**
  Removes subscription with given ID.
@@ -107,7 +109,7 @@
  @param handler Handler to be executed on changes. Dictionary will contain new and old values under NSKeyValueChangeNewKey and NSKeyValueChangeOldKey keys.
  @return Observation ID which can be used for removing added observation.
  */
-- (NSString *)lsObserveValueForKeyPath:(NSString *)keyPath handler:(void (^)(NSDictionary *change))handler;
+- (nullable NSString *)lsObserveValueForKeyPath:(NSString *)keyPath handler:(void (^)(NSDictionary * _Nullable change))handler;
 
 /**
  Removes observation with given ID.
@@ -129,3 +131,5 @@
 - (void)lsRemoveAllObservations;
 
 @end
+
+NS_ASSUME_NONNULL_END

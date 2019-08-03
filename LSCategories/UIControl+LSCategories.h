@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIControl (LSCategories)
 
 /**
@@ -28,7 +30,7 @@
  @param controlEvent Control event.
  @param handler Handler.
  */
-- (void)lsAddControlEvent:(UIControlEvents)controlEvent handler:(void (^)(id sender))handler;
+- (void)lsAddControlEvent:(UIControlEvents)controlEvent handler:(void (^)(id _Nullable sender))handler;
 
 /**
  Removes all previously added handlers.
@@ -36,3 +38,5 @@
 - (void)lsRemoveAllControlEventHandlers;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (LSCategories)
 
 /**
@@ -36,7 +38,7 @@
  @param coverColor Color of cover view behind activity indicator that will cover the whole screen.
  @param text Text to show below the activity indicator.
  */
-+ (void)lsShowSharedActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text;
++ (void)lsShowSharedActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(nullable NSString *)text;
 
 /**
  Hides global activity indicator showed in the center of the screen.
@@ -48,7 +50,7 @@
 
  @return Shared activity indicator view.
  */
-+ (UIView *)lsSharedActivityIndicatorView;
++ (nullable UIView *)lsSharedActivityIndicatorView;
 
 /**
  Shows activity indicator in the center of the view.
@@ -60,7 +62,7 @@
 
  @param text Text to show below the activity indicator.
  */
-- (void)lsShowActivityIndicatorWithText:(NSString *)text;
+- (void)lsShowActivityIndicatorWithText:(nullable NSString *)text;
 
 /**
  Shows activity indicator with custom style in the center of the view.
@@ -71,7 +73,7 @@
  @param coverColor Color of cover view behind activity indicator that will cover the whole view.
  @param text Text to show below the activity indicator.
  */
-- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text;
+- (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(nullable NSString *)text;
 /**
  Hides activity indicator showed on the view.
  */
@@ -82,7 +84,7 @@
 
  @return Activity indicator view.
  */
-- (UIView *)lsActivityIndicatorView;
+- (nullable UIView *)lsActivityIndicatorView;
 
 /**
  Shows global toast with given text on the bottom of the view.
@@ -92,7 +94,7 @@
 + (void)lsShowSharedToastWithText:(NSString *)text;
 
 /**
- Shows shared toast with given text, color, background color, margin and duration on the bottom of the view.
+ Shows shared toast with given text, color, background color, bottom margin and duration.
  
  @param text Text message.
  @param color Text color.
@@ -113,7 +115,7 @@
  
  @return Shared toast view.
  */
-+ (UIView *)lsSharedToastView;
++ (nullable UIView *)lsSharedToastView;
 
 /**
  Shows toast with given text on the bottom of the view.
@@ -123,7 +125,7 @@
 - (void)lsShowToastWithText:(NSString *)text;
 
 /**
- Shows toast with given text, color, background color, margin and duration on the bottom of the view.
+ Shows toast with given text, color, background color, bottom margin and duration.
 
  @param text Text message.
  @param color Text color.
@@ -144,7 +146,7 @@
 
  @return Toast view.
  */
-- (UIView *)lsToastView;
+- (nullable UIView *)lsToastView;
 
 /**
  Adds border on top, bottom, left or right with given color and width.
@@ -186,7 +188,7 @@
 
  @return Snapshot image from view.
  */
-- (UIImage *)lsSnapshotImage;
+- (nullable UIImage *)lsSnapshotImage;
 
 /**
  Removes all subviews.
@@ -222,7 +224,7 @@
  @param block Block which should be executed with progress parameter from 0.0 to 1.0.
  @param completionBlock Block which should be executed when finished.
  */
-+ (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock;
++ (void)lsRepeatWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Repeats executing given block with given duration and frames per second.
@@ -233,7 +235,7 @@
  @param block Block which should be executed with progress parameter from 0.0 to 1.0.
  @param completionBlock Block which should be executed when finished.
  */
-+ (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^)(void))completionBlock;
++ (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Sets x value of frame property.
@@ -264,3 +266,5 @@
 - (void)lsSetFrameHeight:(CGFloat)height;
 
 @end
+
+NS_ASSUME_NONNULL_END

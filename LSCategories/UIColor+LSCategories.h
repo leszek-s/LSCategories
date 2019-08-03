@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIColor (LSCategories)
 
 /**
@@ -121,7 +123,7 @@
  @param string String with hex color.
  @return UIColor from hex string.
  */
-+ (UIColor *)lsColorWithHexString:(NSString *)string;
++ (nullable UIColor *)lsColorWithHexString:(NSString *)string;
 
 /**
  Returns inverted color.
@@ -138,3 +140,5 @@
 + (UIColor *)lsRandomColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

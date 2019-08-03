@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSTimer (LSCategories)
 
 /**
@@ -43,3 +45,5 @@
 + (NSTimer *)lsScheduledCountingTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer, NSDate *createdDate, NSInteger counter))block;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImageView (LSCategories)
 
 /**
@@ -29,6 +31,8 @@
  @param duration Animation duration.
  @param completionBlock Completion block.
  */
-- (void)lsFadeToImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completionBlock;
+- (void)lsFadeToImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ _Nullable)(BOOL finished))completionBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

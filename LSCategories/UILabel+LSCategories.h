@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UILabel (LSCategories)
 
 /**
@@ -30,7 +32,7 @@
  @param duration Animation duration.
  @param completionBlock Completion block to execute after counting is finished.
  */
-- (void)lsAnimateCounterWithStartValue:(NSInteger)startValue endValue:(NSInteger)endValue duration:(NSTimeInterval)duration completionBlock:(void (^)(void))completionBlock;
+- (void)lsAnimateCounterWithStartValue:(NSInteger)startValue endValue:(NSInteger)endValue duration:(NSTimeInterval)duration completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Parses string with basic html tags such as strong, em, b, i etc. and updates the label with styled attributed string. 
@@ -38,3 +40,5 @@
 - (void)lsParseBasicHTMLTags;
 
 @end
+
+NS_ASSUME_NONNULL_END

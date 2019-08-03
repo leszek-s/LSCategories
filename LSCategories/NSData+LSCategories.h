@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSData (LSCategories)
 
 /**
@@ -97,7 +99,7 @@
  
  @return String with UTF8 encoding from data.
  */
-- (NSString *)lsStringUTF8;
+- (nullable NSString *)lsStringUTF8;
 
 /**
  Returns content of given subdirectory in given directory.
@@ -106,7 +108,7 @@
  @param subDirectory Subdirectory name.
  @return Array of NSStrings or nil.
  */
-+ (NSArray<NSString *> *)lsContentOfDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory;
++ (nullable NSArray<NSString *> *)lsContentOfDirectory:(NSSearchPathDirectory)directory subDirectory:(nullable NSString *)subDirectory;
 
 /**
  Deletes given subdirectory in given directory.
@@ -115,7 +117,7 @@
  @param subDirectory Subdirectory name.
  @return YES if deleted, NO otherwise.
  */
-+ (BOOL)lsCleanDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory;
++ (BOOL)lsCleanDirectory:(NSSearchPathDirectory)directory subDirectory:(nullable NSString *)subDirectory;
 
 /**
  Reads file with given name from given subdirectory in given directory.
@@ -125,7 +127,7 @@
  @param fileName File name.
  @return File data or nil.
  */
-+ (NSData *)lsReadDataFromDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory fileName:(NSString *)fileName;
++ (nullable NSData *)lsReadDataFromDirectory:(NSSearchPathDirectory)directory subDirectory:(nullable NSString *)subDirectory fileName:(NSString *)fileName;
 
 /**
  Saves file with given name to given subdirectory in given directory.
@@ -136,7 +138,7 @@
  @param useExcludeFromBackup YES additionally sets NSURLIsExcludedFromBackupKey after saving.
  @return YES if saved, NO otherwise.
  */
-- (BOOL)lsSaveToDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory fileName:(NSString *)fileName useExcludeFromBackup:(BOOL)useExcludeFromBackup;
+- (BOOL)lsSaveToDirectory:(NSSearchPathDirectory)directory subDirectory:(nullable NSString *)subDirectory fileName:(NSString *)fileName useExcludeFromBackup:(BOOL)useExcludeFromBackup;
 
 /**
  Creates and returns data from given url asynchronously.
@@ -144,7 +146,7 @@
  @param url The URL from which to read data.
  @param handler Handler to execute after reading.
  */
-+ (void)lsDataFromUrl:(NSURL *)url handler:(void (^)(NSData *data, NSError *error))handler;
++ (void)lsDataFromUrl:(NSURL *)url handler:(void (^)(NSData * _Nullable data, NSError * _Nullable error))handler;
 
 /**
  Returns data XORed with given key.
@@ -155,3 +157,5 @@
 - (NSData *)lsDataXORedWithKey:(NSData *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

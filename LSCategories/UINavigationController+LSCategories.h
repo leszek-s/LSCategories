@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UINavigationController (LSCategories)
 
 /**
@@ -29,7 +31,7 @@
  @param animated YES to use animation, NO otherwise.
  @param completionBlock Block which should be executed after push.
  */
-- (void)lsPushViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^)(void))completionBlock;
+- (void)lsPushViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Pops a view controller with a completion block.
@@ -38,7 +40,7 @@
  @param completionBlock Block which should be executed after pop.
  @return The view controller that was popped.
  */
-- (UIViewController *)lsPopViewControllerAnimated:(BOOL)animated completionBlock:(void (^)(void))completionBlock;
+- (nullable UIViewController *)lsPopViewControllerAnimated:(BOOL)animated completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Pops to given view controller with a completion block.
@@ -48,7 +50,7 @@
  @param completionBlock Block which should be executed after pop.
  @return An array of view controllers that were popped.
  */
-- (NSArray<UIViewController *> *)lsPopToViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^)(void))completionBlock;
+- (nullable NSArray<UIViewController *> *)lsPopToViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Pops to root view controller with a completion block.
@@ -57,7 +59,7 @@
  @param completionBlock Block which should be executed after pop.
  @return An array of view controllers that were popped.
  */
-- (NSArray<UIViewController *> *)lsPopToRootViewControllerAnimated:(BOOL)animated completionBlock:(void (^)(void))completionBlock;
+- (nullable NSArray<UIViewController *> *)lsPopToRootViewControllerAnimated:(BOOL)animated completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Pops to last view controller of given class with a completion block.
@@ -67,7 +69,7 @@
  @param completionBlock Block which should be executed after pop.
  @return An array of view controllers that were popped.
  */
-- (NSArray<UIViewController *> *)lsPopToLastViewControllerWithClass:(Class)class animated:(BOOL)animated completionBlock:(void (^)(void))completionBlock;
+- (nullable NSArray<UIViewController *> *)lsPopToLastViewControllerWithClass:(Class)class animated:(BOOL)animated completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
  Sets view controllers with a completion block.
@@ -76,6 +78,8 @@
  @param animated YES to use animation, NO otherwise.
  @param completionBlock Block which should be executed after set.
  */
-- (void)lsSetViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated completionBlock:(void (^)(void))completionBlock;
+- (void)lsSetViewControllers:(NSArray<UIViewController *> *)viewControllers animated:(BOOL)animated completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

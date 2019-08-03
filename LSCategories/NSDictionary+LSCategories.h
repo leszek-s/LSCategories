@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDictionary (LSCategories)
 
 /**
@@ -29,7 +31,7 @@
  @param url The URL from which to read json.
  @param handler Handler to execute after reading.
  */
-+ (void)lsDictionaryFromJsonUrl:(NSURL *)url handler:(void (^)(NSDictionary *jsonDictionary, NSError *error))handler;
++ (void)lsDictionaryFromJsonUrl:(NSURL *)url handler:(void (^)(NSDictionary * _Nullable jsonDictionary, NSError * _Nullable error))handler;
 
 /**
  Returns json dictionary from json string;
@@ -37,14 +39,14 @@
  @param jsonString Json string.
  @return Json dictionary.
  */
-+ (NSDictionary *)lsDictionaryFromJsonString:(NSString *)jsonString;
++ (nullable NSDictionary *)lsDictionaryFromJsonString:(NSString *)jsonString;
 
 /**
  Returns json string.
 
  @return Json string.
  */
-- (NSString *)lsJsonString;
+- (nullable NSString *)lsJsonString;
 
 /**
  Returns dictionary with keys and values swapped.
@@ -66,6 +68,8 @@
  @param data Data.
  @return Dictionary from data.
  */
-+ (NSDictionary *)lsDictionaryFromData:(NSData *)data;
++ (nullable NSDictionary *)lsDictionaryFromData:(NSData *)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

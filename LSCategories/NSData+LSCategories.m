@@ -157,13 +157,11 @@
 {
     if (fileName.length == 0)
         return nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *finalDirectory = systemDirectory;
     if (subDirectory.length > 0) {
         finalDirectory = [NSString stringWithFormat:@"%@/%@", systemDirectory, subDirectory];
     }
-    [fileManager createDirectoryAtPath:finalDirectory withIntermediateDirectories:YES attributes:nil error:NULL];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", finalDirectory, fileName];
     return [NSData dataWithContentsOfFile:filePath];
 }
@@ -213,6 +211,9 @@
 
 - (NSData *)lsDataXORedWithKey:(NSData *)key
 {
+    if (key.length == 0)
+        return self;
+    
     NSMutableData *result = [self mutableCopy];
     
     unsigned char *bytes = (unsigned char *)result.mutableBytes;

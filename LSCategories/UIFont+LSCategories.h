@@ -20,6 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIFont (LSCategories)
 
 /**
@@ -83,3 +85,5 @@
 - (UIFont *)lsBoldItalicFontWithSize:(CGFloat)size;
 
 @end
+
+NS_ASSUME_NONNULL_END

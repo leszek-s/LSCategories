@@ -24,7 +24,7 @@
 
 - (void)lsAddChildViewController:(UIViewController *)viewController toView:(UIView *)view
 {
-    if (!viewController || !view || ![view isDescendantOfView:viewController.view])
+    if (!viewController || !view || [view isDescendantOfView:viewController.view])
         return;
     
     [self addChildViewController:viewController];

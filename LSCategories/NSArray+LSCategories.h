@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSArray (LSCategories)
 
 /**
@@ -41,7 +43,7 @@
 
  @return Random object from array.
  */
-- (id)lsRandomObject;
+- (nullable id)lsRandomObject;
 
 /**
  Returns array of given size with random objects.
@@ -49,7 +51,7 @@
  @param size Number of random elements to pick from the array.
  @return Array of given size with random objects.
  */
-- (NSArray *)lsRandomObjectsWithSize:(NSUInteger)size;
+- (nullable NSArray *)lsRandomObjectsWithSize:(NSUInteger)size;
 
 /**
  Returns object at given index of nil if index is out of valid range.
@@ -57,6 +59,8 @@
  @param index Index of object.
  @return Object at given index of nil if index is out of valid range.
  */
-- (id)lsSafeObjectAtIndex:(NSUInteger)index;
+- (nullable id)lsSafeObjectAtIndex:(NSUInteger)index;
 
 @end
+
+NS_ASSUME_NONNULL_END

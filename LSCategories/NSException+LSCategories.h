@@ -20,6 +20,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSException (LSCategories)
 
 /**
@@ -28,6 +30,8 @@
  @param block Block of code where exceptions should be catched.
  @return Exception catched in given block or nil if there was no exception.
  */
-+ (NSException *)lsTryCatchWithBlock:(void (^)(void))block;
++ (nullable NSException *)lsTryCatchWithBlock:(void (^)(void))block;
 
 @end
+
+NS_ASSUME_NONNULL_END
