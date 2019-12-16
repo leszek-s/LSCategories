@@ -228,6 +228,16 @@ static UIView *lsSharedToastView = nil;
 
 - (void)lsAddBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width
 {
+    [self lsAddBorderOnEdge:edge color:color width:width external:NO];
+}
+
+- (void)lsAddExternalBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width
+{
+    [self lsAddBorderOnEdge:edge color:color width:width external:YES];
+}
+
+- (void)lsAddBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width external:(BOOL)external
+{
     UIView *border = [UIView new];
     border.tag = lsUItag;
     border.backgroundColor = color;
@@ -235,19 +245,19 @@ static UIView *lsSharedToastView = nil;
     {
         case UIRectEdgeTop:
             border.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-            border.frame = CGRectMake(0, 0, self.frame.size.width, width);
+            border.frame = CGRectMake(0, 0 + (external ? -width : 0), self.frame.size.width, width);
             break;
         case UIRectEdgeBottom:
             border.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-            border.frame = CGRectMake(0, self.frame.size.height - width, self.frame.size.width, width);
+            border.frame = CGRectMake(0, self.frame.size.height - width + (external ? width : 0), self.frame.size.width, width);
             break;
         case UIRectEdgeLeft:
             border.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
-            border.frame = CGRectMake(0, 0, width, self.frame.size.height);
+            border.frame = CGRectMake(0 + (external ? -width : 0), 0, width, self.frame.size.height);
             break;
         case UIRectEdgeRight:
             border.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-            border.frame = CGRectMake(self.frame.size.width - width, 0, width, self.frame.size.height);
+            border.frame = CGRectMake(self.frame.size.width - width + (external ? width : 0), 0, width, self.frame.size.height);
             break;
         default:
             break;

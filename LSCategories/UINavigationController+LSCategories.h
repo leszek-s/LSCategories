@@ -25,6 +25,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UINavigationController (LSCategories)
 
 /**
+ Sets opaque navigation bar with given colors.
+
+ @param barColor Bar color.
+ @param titleColor Title color.
+ @param buttonsColor Bar buttons color.
+ @param borderColor Bottom border color or nil if should leave default shadow.
+*/
+- (void)lsSetNavigationBarColor:(UIColor *)barColor titleColor:(UIColor *)titleColor buttonsColor:(UIColor *)buttonsColor borderColor:(nullable UIColor *)borderColor;
+
+/**
  Pushes a view controller with a completion block.
 
  @param viewController View controller to push.

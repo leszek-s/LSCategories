@@ -109,22 +109,23 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIImage *)lsImageWithText:(NSString *)text textColor:(UIColor *)textColor backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font size:(CGSize)size;
 
 /**
- Returns animated image from given animated gif data and frames per second.
+ Returns animated image from given animated gif or animated png data and frames per second.
 
- @param animatedGifData Animated gif data.
+ @param animatedImageData Animated gif or png data.
  @param framesPerSecond Frames per second.
- @return Animated image from given animated gif data and frames per second.
+ @return Animated image from given animated gif or animated png data and frames per second.
  */
-+ (nullable UIImage *)lsAnimatedImageWithAnimatedGifData:(NSData *)animatedGifData framesPerSecond:(CGFloat)framesPerSecond;
++ (nullable UIImage *)lsAnimatedImageWithAnimatedImageData:(NSData *)animatedImageData framesPerSecond:(CGFloat)framesPerSecond;
 
 /**
- Returns animated image from given animated gif file and frames per second.
+ Returns animated image from given animated gif or animated png file and frames per second.
 
- @param animatedGifName Animated gif file name.
+ @param animatedImageName Animated gif or png file name.
  @param framesPerSecond Frames per second.
- @return Animated image from given animated gif file and frames per second.
+ @param bundle Bundle or nil for main bundle.
+ @return Animated image from given animated gif or animated png file and frames per second.
  */
-+ (nullable UIImage *)lsAnimatedImageWithAnimatedGifName:(NSString *)animatedGifName framesPerSecond:(CGFloat)framesPerSecond;
++ (nullable UIImage *)lsAnimatedImageWithAnimatedImageName:(NSString *)animatedImageName framesPerSecond:(CGFloat)framesPerSecond bundle:(nullable NSBundle *)bundle;
 
 /**
  Returns image rotated with degrees.

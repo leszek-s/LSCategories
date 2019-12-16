@@ -158,6 +158,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lsAddBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width;
 
 /**
+ Adds external border outside of view bounds on top, bottom, left or right with given color and width.
+
+ @param edge Edge on which border should be added.
+ @param color Border color.
+ @param width Border width.
+ */
+- (void)lsAddExternalBorderOnEdge:(UIRectEdge)edge color:(UIColor *)color width:(CGFloat)width;
+
+/**
  Removes all borders added on edges.
  */
 - (void)lsRemoveBordersOnEdges;

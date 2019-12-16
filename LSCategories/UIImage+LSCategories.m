@@ -91,7 +91,7 @@
     if (!color || size.height < 1 || size.width < 1)
         return nil;
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
     CGContextFillRect(context, rect);
@@ -104,7 +104,7 @@
 {
     if (!color || size.height < 1 || size.width < 1)
         return nil;
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, 0, size.height);
@@ -122,7 +122,7 @@
 {
     if (!color || size.height < 1 || size.width < 1)
         return nil;
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     CGContextSetFillColorWithColor(context, [color CGColor]);
@@ -142,7 +142,7 @@
     layer.endPoint = endPoint;
     layer.frame = CGRectMake(0, 0, size.width, size.height);
     layer.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     [layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -166,7 +166,7 @@
     if (!text || !textColor || !backgroundColor || !font || size.height < 1 || size.width < 1)
         return nil;
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [backgroundColor CGColor]);
     CGContextFillRect(context, rect);
@@ -179,11 +179,11 @@
     return image;
 }
 
-+ (UIImage *)lsAnimatedImageWithAnimatedGifData:(NSData *)animatedGifData framesPerSecond:(CGFloat)framesPerSecond
++ (UIImage *)lsAnimatedImageWithAnimatedImageData:(NSData *)animatedImageData framesPerSecond:(CGFloat)framesPerSecond
 {
-    if (!animatedGifData)
+    if (!animatedImageData)
         return nil;
-    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)animatedGifData, nil);
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)animatedImageData, nil);
     if (!imageSource)
         return nil;
     size_t count = CGImageSourceGetCount(imageSource);
@@ -203,17 +203,26 @@
     return [UIImage animatedImageWithImages:images duration:images.count / framesPerSecond];
 }
 
-+ (UIImage *)lsAnimatedImageWithAnimatedGifName:(NSString *)animatedGifName framesPerSecond:(CGFloat)framesPerSecond
++ (UIImage *)lsAnimatedImageWithAnimatedImageName:(NSString *)animatedImageName framesPerSecond:(CGFloat)framesPerSecond bundle:(NSBundle *)bundle
 {
-    NSDataAsset *asset = [[NSDataAsset alloc] initWithName:animatedGifName];
+    NSDataAsset *asset = [[NSDataAsset alloc] initWithName:animatedImageName];
     NSData *data = asset.data;
+    NSBundle *imageBundle = bundle ? bundle : [NSBundle mainBundle];
     
     if (!data)
     {
-        data = [NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:animatedGifName withExtension:@"gif"]];
+        data = [NSData dataWithContentsOfURL:[imageBundle URLForResource:animatedImageName withExtension:@"gif"]];
+    }
+    if (!data)
+    {
+        data = [NSData dataWithContentsOfURL:[imageBundle URLForResource:animatedImageName withExtension:@"png"]];
+    }
+    if (!data)
+    {
+        data = [NSData dataWithContentsOfURL:[imageBundle URLForResource:animatedImageName withExtension:@""]];
     }
     
-    return [self lsAnimatedImageWithAnimatedGifData:data framesPerSecond:framesPerSecond];
+    return [self lsAnimatedImageWithAnimatedImageData:data framesPerSecond:framesPerSecond];
 }
 
 - (UIImage *)lsRotatedImageWithDegrees:(CGFloat)degrees
@@ -226,7 +235,7 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(radians);
     CGRect rect = CGRectApplyAffineTransform(CGRectMake(0, 0, self.size.width, self.size.height), transform);
     CGSize size = CGSizeMake(round(rect.size.width), round(rect.size.height));
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, size.width / 2.0, size.height / 2.0);
     CGContextRotateCTM(context, radians);
@@ -238,7 +247,7 @@
 
 - (UIImage *)lsImageFlippedHorizontally
 {
-    UIGraphicsBeginImageContext(self.size);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, self.size.width, 0.0);
     CGContextScaleCTM(context, -1.0, 1.0);
@@ -250,7 +259,7 @@
 
 - (UIImage *)lsImageFlippedVertically
 {
-    UIGraphicsBeginImageContext(self.size);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, 0.0, self.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
@@ -352,7 +361,7 @@
 
 - (UIImage *)lsInvertedImage
 {
-    UIGraphicsBeginImageContext(self.size);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
     [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeDifference);
@@ -365,7 +374,7 @@
 
 - (UIImage *)lsInvertedAlphaMaskImage
 {
-    UIGraphicsBeginImageContext(self.size);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeCopy);
     [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeXOR);

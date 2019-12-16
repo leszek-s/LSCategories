@@ -12,7 +12,9 @@
 		1B1F4C77206051F5005DF1E7 /* UIButton+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F4C75206051F4005DF1E7 /* UIButton+LSCategories.m */; };
 		1B24BCD220879E6C00BDD64D /* UIControl+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */; };
 		1B24BCD520879FDB00BDD64D /* UIDatePicker+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */; };
+		1B26178123A299BC008F182C /* UIBezierPath+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26177F23A299BC008F182C /* UIBezierPath+LSCategories.m */; };
 		1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33D215204F504200285E6F /* UIWindow+LSCategories.m */; };
+		1B56502523A502DF00898008 /* UITabBarController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */; };
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
 		1BA0FBA8217E6762002F52CB /* UIViewController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA0FBA7217E6761002F52CB /* UIViewController+LSCategories.m */; };
@@ -51,8 +53,12 @@
 		1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LSCategories.m"; sourceTree = "<group>"; };
 		1B24BCD320879FDB00BDD64D /* UIDatePicker+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDatePicker+LSCategories.h"; sourceTree = "<group>"; };
 		1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDatePicker+LSCategories.m"; sourceTree = "<group>"; };
+		1B26177F23A299BC008F182C /* UIBezierPath+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+LSCategories.m"; sourceTree = "<group>"; };
+		1B26178023A299BC008F182C /* UIBezierPath+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+LSCategories.h"; sourceTree = "<group>"; };
 		1B33D214204F504200285E6F /* UIWindow+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LSCategories.h"; sourceTree = "<group>"; };
 		1B33D215204F504200285E6F /* UIWindow+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LSCategories.m"; sourceTree = "<group>"; };
+		1B56502323A502DE00898008 /* UITabBarController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+LSCategories.h"; sourceTree = "<group>"; };
+		1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+LSCategories.m"; sourceTree = "<group>"; };
 		1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LSCategories.h"; sourceTree = "<group>"; };
 		1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LSCategories.m"; sourceTree = "<group>"; };
 		1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LSCategories.h"; sourceTree = "<group>"; };
@@ -180,6 +186,8 @@
 				1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */,
 				1B1113AA1F89FE67007C97BE /* UIApplication+LSCategories.h */,
 				1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */,
+				1B26178023A299BC008F182C /* UIBezierPath+LSCategories.h */,
+				1B26177F23A299BC008F182C /* UIBezierPath+LSCategories.m */,
 				1B1F4C76206051F5005DF1E7 /* UIButton+LSCategories.h */,
 				1B1F4C75206051F4005DF1E7 /* UIButton+LSCategories.m */,
 				1BFCB07F1E44F40300357597 /* UIColor+LSCategories.h */,
@@ -200,6 +208,8 @@
 				1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */,
 				1BA4268D20B743570006E155 /* UIPickerView+LSCategories.h */,
 				1BA4268C20B743570006E155 /* UIPickerView+LSCategories.m */,
+				1B56502323A502DE00898008 /* UITabBarController+LSCategories.h */,
+				1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */,
 				1B0BEC1820000A7700EFC5FF /* UITextField+LSCategories.h */,
 				1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */,
 				1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */,
@@ -293,11 +303,13 @@
 				1BD24287206432BB00147372 /* NSAttributedString+LSCategories.m in Sources */,
 				1BFCB08D1E44F40300357597 /* NSObject+LSCategories.m in Sources */,
 				1BFCB0921E44F40300357597 /* UILabel+LSCategories.m in Sources */,
+				1B26178123A299BC008F182C /* UIBezierPath+LSCategories.m in Sources */,
 				1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */,
 				1BF6507422ED7228008640D5 /* NSTimer+LSCategories.m in Sources */,
 				1BFCB0891E44F40300357597 /* NSArray+LSCategories.m in Sources */,
 				1BFCB0901E44F40300357597 /* UIFont+LSCategories.m in Sources */,
 				1BFCB08F1E44F40300357597 /* UIColor+LSCategories.m in Sources */,
+				1B56502523A502DF00898008 /* UITabBarController+LSCategories.m in Sources */,
 				1BFCB0931E44F40300357597 /* UIView+LSCategories.m in Sources */,
 				1B1F4C77206051F5005DF1E7 /* UIButton+LSCategories.m in Sources */,
 				1B0BEC1A20000A7700EFC5FF /* UITextField+LSCategories.m in Sources */,
@@ -435,9 +447,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ls.TestProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Debug;
 		};
@@ -446,9 +460,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ls.TestProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wpartial-availability";
 			};
 			name = Release;
 		};

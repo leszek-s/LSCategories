@@ -19,8 +19,23 @@
 // THE SOFTWARE.
 
 #import "UINavigationController+LSCategories.h"
+#import "UIImage+LSCategories.h"
 
 @implementation UINavigationController (LSCategories)
+
+- (void)lsSetNavigationBarColor:(UIColor *)barColor titleColor:(UIColor *)titleColor buttonsColor:(UIColor *)buttonsColor borderColor:(UIColor *)borderColor
+{
+    self.navigationBar.translucent = NO;
+    self.navigationBar.barTintColor = barColor;
+    self.navigationBar.tintColor = buttonsColor;
+    self.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : titleColor };
+    
+    if (borderColor)
+    {
+        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self.navigationBar.shadowImage = [UIImage lsImageWithColor:borderColor];
+    }
+}
 
 - (void)lsPushViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^)(void))completionBlock
 {
