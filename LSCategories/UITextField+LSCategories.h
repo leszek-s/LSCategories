@@ -91,6 +91,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)lsSetClearButtonWithImage:(UIImage *)image mode:(UITextFieldViewMode)mode;
 
+/**
+ Enables automatic action for return button on keyboard to close the keyboard.
+ */
+- (void)lsEnableAutomaticReturnButtonOnKeyboard;
+
+/**
+ Enables automatic action for primary keyboard button which will depend on the position of the text field on current window.
+ If there is another text field below the current one then this automatic action will move the focus to the next field.
+ If there is no other text field below the current one then this automatic action will close the keyboard.
+ */
+- (void)lsEnableAutomaticNextAndDoneButtonsOnKeyboard;
+
 @end
 
 NS_ASSUME_NONNULL_END

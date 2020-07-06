@@ -233,7 +233,7 @@ Send events from any object (not only UIControls) and subscribe to events sent b
 }];
 ```
 
-These are only few things you can do with LSCategories. See [DOCUMENTATION](http://cocoadocs.org/docsets/LSCategories/) for more. You can also check TestProject for few other examples.
+These are only few things you can do with LSCategories. You can check TestProject for few other examples.
 
 ## License
 LSCategories is available under the MIT license. See [LICENSE](https://github.com/fins/LSCategories/blob/master/LICENSE).

@@ -50,6 +50,7 @@
 #import "UILabel+LSCategories.h"
 #import "UINavigationController+LSCategories.h"
 #import "UIPickerView+LSCategories.h"
+#import "UIScrollView+LSCategories.h"
 #import "UITabBarController+LSCategories.h"
 #import "UITextField+LSCategories.h"
 #import "UITextView+LSCategories.h"

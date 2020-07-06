@@ -456,6 +456,45 @@ static UIView *lsSharedToastView = nil;
     dispatch_resume(timer);
 }
 
+- (void)lsEnableHideKeyboardOnTap
+{
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(lsDetectedHideKeyboardOnTap)];
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    [self addGestureRecognizer:tapGestureRecognizer];
+}
+
+- (void)lsDetectedHideKeyboardOnTap
+{
+    [self endEditing:YES];
+}
+
+- (UIView *)lsRootSuperview
+{
+    UIView *view = self;
+    while (view.superview != nil)
+    {
+        view = view.superview;
+    }
+    return view;
+}
+
+- (NSArray *)lsSubviewsWithClass:(Class)class recursive:(BOOL)recursive
+{
+    NSMutableArray *subviews = [NSMutableArray new];
+    for (UIView *subview in self.subviews)
+    {
+        if ([subview isKindOfClass:class])
+        {
+            [subviews addObject:subview];
+        }
+        if (recursive)
+        {
+            [subviews addObjectsFromArray:[subview lsSubviewsWithClass:class recursive:recursive]];
+        }
+    }
+    return [subviews copy];
+}
+
 - (void)lsSetFrameX:(CGFloat)x
 {
     self.frame = CGRectMake(x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);

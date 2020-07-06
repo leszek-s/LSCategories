@@ -247,6 +247,27 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lsRepeatWithDuration:(NSTimeInterval)duration framesPerSecond:(CGFloat)framesPerSecond block:(void (^)(CGFloat progress))block completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
+ Enables hidding keyboard when view is tapped.
+ */
+- (void)lsEnableHideKeyboardOnTap;
+
+/**
+ Returns root superview that is most top parent which does not have any other superview in current view hierarchy.
+
+ @return Root superview.
+ */
+- (nullable UIView *)lsRootSuperview;
+
+/**
+ Returns array of subviews of given class.
+
+ @param class Subview class.
+ @param recursive If set to YES then it will return subviews from whole view hierarchy, if set to NO it will return only direct first level subviews.
+ @return Array of subviews of given class.
+ */
+- (NSArray *)lsSubviewsWithClass:(Class)class recursive:(BOOL)recursive;
+
+/**
  Sets x value of frame property.
 
  @param x Value to set.

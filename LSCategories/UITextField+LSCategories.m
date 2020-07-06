@@ -20,6 +20,7 @@
 
 #import "UITextField+LSCategories.h"
 #import "UIImage+LSCategories.h"
+#import "UIView+LSCategories.h"
 #import <objc/runtime.h>
 
 static char lsAssociatedMaxLengthKey;
@@ -142,6 +143,59 @@ static char lsAssociatedAllowedRegexKey;
 - (void)lsClearButtonEditingEvent
 {
     self.rightView.hidden = self.text.length == 0;
+}
+
+- (void)lsEnableAutomaticReturnButtonOnKeyboard
+{
+    [self addTarget:self action:@selector(lsTextFieldEditingDidEndOnExitAutomaticReturn) forControlEvents:UIControlEventEditingDidEndOnExit];
+}
+
+- (void)lsTextFieldEditingDidEndOnExitAutomaticReturn
+{
+    [self resignFirstResponder];
+}
+
+- (void)lsEnableAutomaticNextAndDoneButtonsOnKeyboard
+{
+    if ([self lsAutomaticNextFieldInCurrentViewHierarchy])
+    {
+        self.returnKeyType = UIReturnKeyNext;
+    }
+    else
+    {
+        self.returnKeyType = UIReturnKeyDone;
+    }
+    [self addTarget:self action:@selector(lsTextFieldEditingDidEndOnExitAutomaticNextAndDone) forControlEvents:UIControlEventEditingDidEndOnExit];
+}
+
+- (UITextField *)lsAutomaticNextFieldInCurrentViewHierarchy
+{
+    UIView *rootView = [self lsRootSuperview];
+    NSArray *textFields = [rootView lsSubviewsWithClass:[UITextField class] recursive:YES];
+    textFields = [textFields sortedArrayUsingComparator:^NSComparisonResult(UITextField *textField1, UITextField *textField2) {
+        CGPoint point1 = [rootView convertPoint:CGPointZero fromView:textField1];
+        CGPoint point2 = [rootView convertPoint:CGPointZero fromView:textField2];
+        return point1.y > point2.y;
+    }];
+    NSUInteger index = [textFields indexOfObject:self];
+    if (index == NSNotFound || index + 1 >= textFields.count)
+    {
+        return nil;
+    }
+    return [textFields objectAtIndex:index + 1];
+}
+
+- (void)lsTextFieldEditingDidEndOnExitAutomaticNextAndDone
+{
+    UITextField *nextField = [self lsAutomaticNextFieldInCurrentViewHierarchy];
+    if (nextField)
+    {
+        [nextField becomeFirstResponder];
+    }
+    else
+    {
+        [self resignFirstResponder];
+    }
 }
 
 @end

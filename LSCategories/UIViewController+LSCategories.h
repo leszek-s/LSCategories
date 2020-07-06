@@ -37,6 +37,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)lsRemoveFromParentViewController;
 
+/**
+ Enables automatic keyboard handling with automatic scroll of scrollviews with text fields, automatic next and done keyboard actions,
+ automatic keyboard hidding when tapped outside of a text field.
+ */
+- (void)lsEnableAutomaticKeyboardHandling;
+
+/**
+ Enables automatic keyboard handling with automatic scroll of scrollviews with text fields, automatic primary actions on keyboard,
+ automatic keyboard hidding when tapped outside of a text field.
+ 
+ @param automaticNextAndDone If set to YES primary button on keyboard will be changed to next or done and handle switching to next text field or closing the keyboard when there is no other field, if set to NO primary button will always handle hidding the keyboard.
+ @param hideOnTapOutside If set to YES then tapping outside of the text field will hide the keyboard.
+ */
+- (void)lsEnableAutomaticKeyboardHandlingWithAutomaticNextAndDone:(BOOL)automaticNextAndDone hideOnTapOutside:(BOOL)hideOnTapOutside;
+
 @end
 
 NS_ASSUME_NONNULL_END

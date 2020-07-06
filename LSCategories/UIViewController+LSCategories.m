@@ -19,6 +19,9 @@
 // THE SOFTWARE.
 
 #import "UIViewController+LSCategories.h"
+#import "UIView+LSCategories.h"
+#import "UITextField+LSCategories.h"
+#import "UIScrollView+LSCategories.h"
 
 @implementation UIViewController (LSCategories)
 
@@ -42,6 +45,40 @@
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
+}
+
+- (void)lsEnableAutomaticKeyboardHandling
+{
+    [self lsEnableAutomaticKeyboardHandlingWithAutomaticNextAndDone:YES hideOnTapOutside:YES];
+}
+
+- (void)lsEnableAutomaticKeyboardHandlingWithAutomaticNextAndDone:(BOOL)automaticNextAndDone hideOnTapOutside:(BOOL)hideOnTapOutside
+{
+    if (hideOnTapOutside)
+    {
+        [self.view lsEnableHideKeyboardOnTap];
+    }
+    NSArray *textFields = [self.view lsSubviewsWithClass:[UITextField class] recursive:YES];
+    for (UITextField *textField in textFields)
+    {
+        if (automaticNextAndDone)
+        {
+            [textField lsEnableAutomaticNextAndDoneButtonsOnKeyboard];
+        }
+        else
+        {
+            [textField lsEnableAutomaticReturnButtonOnKeyboard];
+        }
+    }
+    NSArray *scrollViews = [self.view lsSubviewsWithClass:[UIScrollView class] recursive:YES];
+    for (UIScrollView *scrollView in scrollViews)
+    {
+        BOOL isTopScrollView = [scrollView lsSubviewsWithClass:[UIScrollView class] recursive:YES].count == 0;
+        if (isTopScrollView)
+        {
+            [scrollView lsEnableAutomaticScrollAdjustmentsWhenKeyboardAppear];
+        }
+    }
 }
 
 @end
