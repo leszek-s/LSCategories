@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
     
-    NSString *test = @"test123!test456!";
+    NSString *test = @"test123!test456!abcdefghijklmnopqrstuvwxyz!";
     NSLog(@"crc32: %08X", [test lsCRC32]);
     NSLog(@"adler32: %08X", [test lsAdler32]);
     NSLog(@"md2: %@", [test lsMD2]);
@@ -32,7 +32,9 @@
     NSLog(@"sha384: %@", [test lsSHA384]);
     NSLog(@"sha512: %@", [test lsSHA512]);
     NSLog(@"number: %@", [@"ffffffff" lsNumberFromHexString]);
+    NSLog(@"rot5: %@", [test lsROT5String]);
     NSLog(@"rot13: %@", [test lsROT13String]);
+    NSLog(@"rot18: %@", [test lsROT18String]);
     NSLog(@"reversed: %@", [test lsReversedString]);
     NSLog(@"lsIsValidEmail %@ %@", @([test lsIsValidEmail]), @([@"test@test.com" lsIsValidEmail]));
     NSLog(@"lsStringByRemovingNonLetters: %@", [test lsStringByRemovingNonLetters]);
@@ -104,14 +106,17 @@
     [data lsSaveToDirectory:NSDocumentDirectory subDirectory:@"LSDATA" fileName:[test lsMD5] useExcludeFromBackup:NO];
     NSData *data2 = [NSData lsReadDataFromDirectory:NSDocumentDirectory subDirectory:@"LSDATA" fileName:[test lsMD5]];
     NSLog(@"data2: %@", data2);
-    NSLog(@"lsStringUTF8 %@", [data2 lsStringUTF8]);
-    NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
+    NSLog(@"lsStringUTF8: %@", [data2 lsStringUTF8]);
+    NSString *hexString = [[data2 lsHexString] lowercaseString];
+    NSLog(@"lsHexString: %@", hexString);
+    NSLog(@"lsDataWithHexString: %@", [NSData lsDataWithHexString:hexString]);
+    NSLog(@"lsContentOfDirectory: %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
     [NSData lsCleanDirectory:NSDocumentDirectory subDirectory:@"LSDATA"];
-    NSLog(@"lsContentOfCacheDirectory %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
+    NSLog(@"lsContentOfDirectory: %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
     NSData *xorKey = [@"tEsT" lsDataUTF8];
     NSData *xored = [data lsDataXORedWithKey:xorKey];
-    NSLog(@"lsDataXORedWithKey %@", xored);
-    NSLog(@"lsDataXORedWithKey %@", [xored lsDataXORedWithKey:xorKey]);
+    NSLog(@"lsDataXORedWithKey: %@", xored);
+    NSLog(@"lsDataXORedWithKey: %@", [xored lsDataXORedWithKey:xorKey]);
     
     [NSDictionary lsDictionaryFromJsonUrl:[NSURL URLWithString:@"https://jsonplaceholder.typicode.com/posts/1/comments"] handler:^(NSDictionary *jsonDictionary, NSError *error) {
         NSLog(@"lsDictionaryFromJsonUrl: %@", jsonDictionary);
@@ -232,6 +237,8 @@
     [self.tabBarController lsSetTabBarColor:[UIColor redColor] itemColor:[[UIColor whiteColor] colorWithAlphaComponent:0.7] selectedItemColor:[UIColor whiteColor] borderColor:[UIColor blackColor]];
     [self.tabBarController lsSetTabBarButtonWithIndex:0 title:@"Hello" image:[item1 lsResizedProportionalImageWithHeight:22] selectedImage:[item1 lsResizedProportionalImageWithHeight:28]];
     [self.tabBarController lsSetTabBarButtonWithIndex:1 title:@"World" image:[item2 lsResizedProportionalImageWithHeight:22] selectedImage:[item2 lsResizedProportionalImageWithHeight:28]];
+    
+    [[UIApplication sharedApplication] lsAskForAppRatingIfReachedMinimumDaysOfUse:0 minimumSignificantEvents:0];
 }
 
 - (IBAction)testAction:(id)sender

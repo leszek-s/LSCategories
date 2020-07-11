@@ -19,6 +19,13 @@
 // THE SOFTWARE.
 
 #import "UIApplication+LSCategories.h"
+#import "NSDate+LSCategories.h"
+#import "NSData+LSCategories.h"
+#import <StoreKit/StoreKit.h>
+
+static NSString * const lsAppRatingKeyFirstLaunchDate = @"lsAppRatingKeyFirstLaunchDate";
+static NSString * const lsAppRatingKeySignificantEvents = @"lsAppRatingKeySignificantEvents";
+static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
 
 @implementation UIApplication (LSCategories)
 
@@ -30,6 +37,58 @@
 - (NSString *)lsBuild
 {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
+- (void)lsLogLaunchForAppRating
+{
+    NSDate *date = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeyFirstLaunchDate];
+    if (!date)
+    {
+        [NSUserDefaults.standardUserDefaults setObject:[NSDate new] forKey:lsAppRatingKeyFirstLaunchDate];
+    }
+    [NSUserDefaults.standardUserDefaults synchronize];
+}
+
+- (void)lsLogSignificantEventForAppRating
+{
+    NSNumber *value = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeySignificantEvents];
+    value = @(value.integerValue + 1);
+    [NSUserDefaults.standardUserDefaults setObject:value forKey:lsAppRatingKeySignificantEvents];
+    [NSUserDefaults.standardUserDefaults synchronize];
+}
+
+- (void)lsAskForAppRatingIfReachedMinimumDaysOfUse:(NSInteger)minimumDaysOfUse minimumSignificantEvents:(NSInteger)minimumSignificantEvents
+{
+    #if !TARGET_OS_TV
+    NSNumber *disabled = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeyIsDisabled];
+    BOOL isDisabled = [disabled boolValue];
+    
+    if (isDisabled)
+        return;
+    
+    NSDate *firstLaunchDate = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeyFirstLaunchDate];
+    NSInteger daysOfUse = ABS([firstLaunchDate lsDaysDifferenceFromDate:[NSDate new]]);
+    
+    NSInteger significantEvents = [[NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeySignificantEvents] integerValue];
+    
+    if (daysOfUse < minimumDaysOfUse || significantEvents < minimumSignificantEvents)
+        return;
+    
+    if (@available(iOS 10.3, *))
+    {
+        NSDate *testStart = [NSDate new];
+        [NSData lsDataFromUrl:[NSURL URLWithString:@"http://www.apple.com/"] handler:^(NSData * _Nullable data, NSError * _Nullable error) {
+            BOOL isNetworkAvailable = data.length > 0;
+            BOOL isNetworkSlow = ABS([[NSDate new] timeIntervalSinceDate:testStart]) > 5;
+            if (isNetworkAvailable && !isNetworkSlow)
+            {
+                [SKStoreReviewController requestReview];
+                [NSUserDefaults.standardUserDefaults setObject:@YES forKey:lsAppRatingKeyIsDisabled];
+                [NSUserDefaults.standardUserDefaults synchronize];
+            }
+        }];
+    }
+    #endif
 }
 
 @end

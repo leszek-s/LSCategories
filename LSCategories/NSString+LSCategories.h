@@ -189,11 +189,25 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)lsReversedString;
 
 /**
+ Returns string encrypted with ROT5 substitution cipher.
+
+ @return String encrypted with ROT5 substitution cipher.
+ */
+- (NSString *)lsROT5String;
+
+/**
  Returns string encrypted with ROT13 substitution cipher.
 
  @return String encrypted with ROT13 substitution cipher.
  */
 - (nullable NSString *)lsROT13String;
+
+/**
+ Returns string encrypted with ROT18 substitution cipher.
+
+ @return String encrypted with ROT18 substitution cipher.
+ */
+- (nullable NSString *)lsROT18String;
 
 /**
  Returns UUID string.

@@ -132,6 +132,71 @@
     return [output copy];
 }
 
+- (NSString *)lsHexString
+{
+    if (self.length == 0)
+        return nil;
+    
+    NSMutableData *hexData = [[NSMutableData alloc] initWithLength:self.length * 2];
+    
+    char *table = "0123456789ABCDEF";
+    unsigned char *hexBytes = (unsigned char *)hexData.mutableBytes;
+    unsigned char *bytes = (unsigned char *)self.bytes;
+    unsigned char byte = 0;
+    
+    NSUInteger length = self.length;
+    
+    for (int i = 0; i < length; i++)
+    {
+        byte = *bytes;
+        *hexBytes = table[(byte & 0xF0) >> 4];
+        hexBytes++;
+        *hexBytes = table[(byte & 0x0F)];
+        hexBytes++;
+        bytes++;
+    }
+    return [[NSString alloc] initWithData:hexData encoding:NSUTF8StringEncoding];
+}
+
++ (NSData *)lsDataWithHexString:(NSString *)hexString
+{
+    NSData *hexData = [hexString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    if (hexData.length == 0 || hexData.length % 2 == 1)
+        return nil;
+    
+    NSMutableData *data = [[NSMutableData alloc] initWithLength:hexData.length / 2];
+    unsigned char *hexBytes = (unsigned char *)hexData.bytes;
+    unsigned char *bytes = (unsigned char *)data.mutableBytes;
+    unsigned char byte1 = 0;
+    unsigned char byte2 = 0;
+    
+    NSUInteger length = data.length;
+    
+    for (int i = 0; i < length; i++)
+    {
+        byte1 = *hexBytes;
+        hexBytes++;
+        byte2 = *hexBytes;
+        hexBytes++;
+        
+        if (byte1 >= '0' && byte1 <= '9') byte1 = byte1 - '0';
+        else if (byte1 >= 'A' && byte1 <= 'F') byte1 = byte1 - 'A' + 10;
+        else if (byte1 >= 'a' && byte1 <= 'f') byte1 = byte1 - 'a' + 10;
+        else return nil;
+        
+        if (byte2 >= '0' && byte2 <= '9') byte2 = byte2 - '0';
+        else if (byte2 >= 'A' && byte2 <= 'F') byte2 = byte2 - 'A' + 10;
+        else if (byte2 >= 'a' && byte2 <= 'f') byte2 = byte2 - 'a' + 10;
+        else return nil;
+        
+        *bytes = (byte1 << 4) + byte2;
+        bytes++;
+    }
+    
+    return [data copy];
+}
+
 + (NSArray *)lsContentOfDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory
 {
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];

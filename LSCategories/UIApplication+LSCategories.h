@@ -38,6 +38,24 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSString *)lsBuild;
 
+/**
+ Logs the information about launching the application. This information is used when asking for app rating with minimumUsageDays greater than 0.
+ */
+- (void)lsLogLaunchForAppRating;
+
+/**
+ Logs the information about significant event. This information is used when asking for app rating with minimumSignificantEvents greater than 0.
+ */
+- (void)lsLogSignificantEventForAppRating;
+
+/**
+ Shows a dialog for rating the application in the app store if given minimum usage days condition and minimum significant events condition are met.
+
+ @param minimumDaysOfUse Required minimum number of days from the first logged launch event.
+ @param minimumSignificantEvents Required minimum number of logged significant events.
+ */
+- (void)lsAskForAppRatingIfReachedMinimumDaysOfUse:(NSInteger)minimumDaysOfUse minimumSignificantEvents:(NSInteger)minimumSignificantEvents;
+
 @end
 
 NS_ASSUME_NONNULL_END

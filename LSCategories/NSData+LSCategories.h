@@ -102,6 +102,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)lsStringUTF8;
 
 /**
+ Returns hex string from data.
+
+ @return Hex string from data.
+ */
+- (nullable NSString *)lsHexString;
+
+/**
+ Returns data from given hex string.
+
+ @param hexString Hex string.
+ @return Data from given hex string.
+*/
++ (nullable NSData *)lsDataWithHexString:(NSString *)hexString;
+
+/**
  Returns content of given subdirectory in given directory.
 
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)

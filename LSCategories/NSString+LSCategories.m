@@ -280,6 +280,23 @@
     return [reversed copy];
 }
 
+- (NSString *)lsROT5String
+{
+    const char *input = [self cStringUsingEncoding:NSASCIIStringEncoding];
+    NSUInteger length = self.length;
+    char string[length + 1];
+    
+    for (int i = 0; i <= length; i++)
+    {
+        char x = input[i];
+        if (x >= '0' && x <= '9')
+            string[i] = x + 5 > '9' ? x - 5 : x + 5;
+        else
+            string[i] = x;
+    }
+    return [NSString stringWithCString:string encoding:NSASCIIStringEncoding];
+}
+
 - (NSString *)lsROT13String
 {
     const char *input = [self cStringUsingEncoding:NSASCIIStringEncoding];
@@ -289,18 +306,33 @@
     for (int i = 0; i <= length; i++)
     {
         char x = input[i];
-        if (x > 0x40 && x < 0x5B)
-        {
-            string[i] = x + 0x0D >= 0x5B ? x + 0x0D - 0x1A : x + 0x0D;
-        }
-        else if (x > 0x60 && x < 0x7B)
-        {
-            string[i] = x + 0x0D >= 0x7B ? x + 0x0D - 0x1A : x + 0x0D;
-        }
+        if (x >= 'A' && x <= 'Z')
+            string[i] = x + 13 > 'Z' ? x - 13 : x + 13;
+        else if (x >= 'a' && x <= 'z')
+            string[i] = x + 13 > 'z' ? x - 13 : x + 13;
         else
-        {
             string[i] = x;
-        }
+    }
+    return [NSString stringWithCString:string encoding:NSASCIIStringEncoding];
+}
+
+- (NSString *)lsROT18String
+{
+    const char *input = [self cStringUsingEncoding:NSASCIIStringEncoding];
+    NSUInteger length = self.length;
+    char string[length + 1];
+    
+    for (int i = 0; i <= length; i++)
+    {
+        char x = input[i];
+        if (x >= 'A' && x <= 'Z')
+            string[i] = x + 13 > 'Z' ? x - 13 : x + 13;
+        else if (x >= 'a' && x <= 'z')
+            string[i] = x + 13 > 'z' ? x - 13 : x + 13;
+        else if (x >= '0' && x <= '9')
+            string[i] = x + 5 > '9' ? x - 5 : x + 5;
+        else
+            string[i] = x;
     }
     return [NSString stringWithCString:string encoding:NSASCIIStringEncoding];
 }
