@@ -96,6 +96,9 @@
     NSLog(@"lsStringWithFormat: %@", [date lsStringWithFormat:@"yyyy     HH"]);
     NSLog(@"lsDateWithString: %@", [NSDate lsDateWithString:@"2017" format:@"yyyy"]);
     NSLog(@"lsDateWithStringWithISO8601: %@", [NSDate lsDateWithStringWithISO8601:@"2017-02-03T00:00:00+01:00"]);
+    [NSDate lsDateFromOnlineServerWithHandler:^(NSDate * _Nullable date) {
+        NSLog(@"lsDateFromOnlineServerWithHandler: %@", date);
+    }];
     
     NSArray *array = @[ @0, @1, @2, @3, @4, @5, @6, @7, @8, @9 ];
     NSLog(@"lsReveresedArray: %@", [array lsReveresedArray]);

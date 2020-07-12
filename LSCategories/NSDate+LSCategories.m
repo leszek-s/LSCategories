@@ -19,6 +19,9 @@
 // THE SOFTWARE.
 
 #import "NSDate+LSCategories.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
 
 @implementation NSDate (LSCategories)
 
@@ -418,6 +421,70 @@
         formatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     });
     return [formatter dateFromString:stringWithISO8601];
+}
+
++ (void)lsDateFromOnlineServerWithHandler:(void (^)(NSDate *date))handler
+{
+    if (!handler)
+        return;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        NSDate *date = [self lsDateFromOnlineServer];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            handler(date);
+        });
+    });
+}
+
++ (NSDate *)lsDateFromOnlineServer
+{
+    struct hostent *server = gethostbyname("time.apple.com");
+    if (!server)
+        return nil;
+    
+    int udpSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (udpSocket < 0)
+        return nil;
+    
+    struct timeval timeout;
+    timeout.tv_sec = 30;
+    timeout.tv_usec = 0;
+    setsockopt(udpSocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+    
+    struct sockaddr_in socketAddress = {0};
+    socketAddress.sin_family = AF_INET;
+    socketAddress.sin_port = htons(123);
+    memcpy(&socketAddress.sin_addr, server->h_addr_list[0], server->h_length);
+    
+    if (connect(udpSocket, (struct sockaddr *)&socketAddress, sizeof(socketAddress)) < 0) {
+        close(udpSocket);
+        return nil;
+    }
+    
+    unsigned char ntpPacket[48] = {0};
+    ntpPacket[0] = 0x1B;
+    
+    if (write(udpSocket, &ntpPacket, sizeof(ntpPacket)) < 0) {
+        close(udpSocket);
+        return nil;
+    }
+    
+    if (read(udpSocket, &ntpPacket, sizeof(ntpPacket)) < 0) {
+        close(udpSocket);
+        return nil;
+    }
+    
+    close(udpSocket);
+    
+    NSTimeInterval ntpTimestampDelta = 2208988800u;
+    NSTimeInterval ntpTimestamp = ntohl(*((uint32_t *)(ntpPacket + 40)));
+    NSTimeInterval ntpOverflowDelta = ntpTimestamp < ntpTimestampDelta ? 0xFFFFFFFF : 0;
+    
+    if (ntpTimestamp == 0)
+        return nil;
+    
+    NSTimeInterval timestamp = ntpTimestamp - ntpTimestampDelta + ntpOverflowDelta;
+    return [NSDate dateWithTimeIntervalSince1970:timestamp];
 }
 
 @end

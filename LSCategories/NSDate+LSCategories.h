@@ -495,6 +495,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSDate *)lsDateWithStringWithISO8601:(NSString *)stringWithISO8601;
 
+/**
+ Returns current date and time from online time server asynchronously.
+
+ @param handler Handler to execute after receiving date and time from the server.
+ */
++ (void)lsDateFromOnlineServerWithHandler:(void (^)(NSDate * _Nullable date))handler;
+
+/**
+ Returns current date and time from online time server synchronously. Calling this method on a main thread is not recommended.
+
+ @return Returns current date and time from online time server synchronously.
+ */
++ (NSDate *)lsDateFromOnlineServer;
+
 @end
 
 NS_ASSUME_NONNULL_END

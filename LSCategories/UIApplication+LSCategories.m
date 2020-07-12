@@ -20,7 +20,6 @@
 
 #import "UIApplication+LSCategories.h"
 #import "NSDate+LSCategories.h"
-#import "NSData+LSCategories.h"
 #import <StoreKit/StoreKit.h>
 
 static NSString * const lsAppRatingKeyFirstLaunchDate = @"lsAppRatingKeyFirstLaunchDate";
@@ -77,8 +76,8 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
     if (@available(iOS 10.3, *))
     {
         NSDate *testStart = [NSDate new];
-        [NSData lsDataFromUrl:[NSURL URLWithString:@"http://www.apple.com/"] handler:^(NSData * _Nullable data, NSError * _Nullable error) {
-            BOOL isNetworkAvailable = data.length > 0;
+        [NSDate lsDateFromOnlineServerWithHandler:^(NSDate * _Nullable date) {
+            BOOL isNetworkAvailable = date != nil;
             BOOL isNetworkSlow = ABS([[NSDate new] timeIntervalSinceDate:testStart]) > 5;
             if (isNetworkAvailable && !isNetworkSlow)
             {
