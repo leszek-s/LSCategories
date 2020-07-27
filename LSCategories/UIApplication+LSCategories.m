@@ -28,6 +28,11 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
 
 @implementation UIApplication (LSCategories)
 
+- (NSString *)lsName
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+}
+
 - (NSString *)lsVersion
 {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];

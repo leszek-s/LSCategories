@@ -149,6 +149,16 @@
     return [self lsAttributedStringByReplacingCharactersInRange:NSMakeRange(self.length, 0) withImage:image];
 }
 
+- (NSAttributedString *)lsAttributedStringByReplacingOccurrenceOfString:(NSString *)string withImage:(UIImage *)image verticalOffset:(CGFloat)verticalOffset
+{
+    NSRange range = [self rangeOfString:string options:0 range:NSMakeRange(0, self.length)];
+    if (range.location != NSNotFound)
+    {
+        return [self lsAttributedStringByReplacingCharactersInRange:range withImage:image verticalOffset:verticalOffset];
+    }
+    return [[NSMutableAttributedString alloc] initWithString:self];
+}
+
 - (NSAttributedString *)lsAttributedStringByReplacingCharactersInRange:(NSRange)range withImage:(UIImage *)image
 {
     return [self lsAttributedStringByReplacingCharactersInRange:range withImage:image verticalOffset:0];
@@ -173,6 +183,7 @@
 - (NSAttributedString *)lsAttributedStringWithDefaultTagStylesheetAndBaseFont:(UIFont *)baseFont
 {
     NSDictionary *stylesheet = @{ @"default" : @{ NSFontAttributeName : [baseFont lsNormalFont] },
+                                  @"textAttachment" : @{ NSAttachmentAttributeName : [NSTextAttachment new] },
                                   @"strong" : @{ NSFontAttributeName : [baseFont lsBoldFont] },
                                   @"em" : @{ NSFontAttributeName : [baseFont lsItalicFont ] },
                                   @"b" : @{ NSFontAttributeName : [baseFont lsBoldFont ] },
@@ -192,6 +203,7 @@
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
     NSMutableArray *tagsRanges = [NSMutableArray new];
+    NSMutableArray *textAttachmentRanges = [NSMutableArray new];
     
     if (stylesheet[@"default"])
     {
@@ -211,6 +223,11 @@
         NSArray *rangesBetweenTag = [self lsRangesOfAllSubstringsBetweenStartString:startTag endString:endTag];
         for (NSValue *range in rangesBetweenTag)
         {
+            if ([tag isEqualToString:@"textAttachment"])
+            {
+                [tagsRanges addObject:range];
+                [textAttachmentRanges addObject:range];
+            }
             [attributedString addAttributes:style range:range.rangeValue];
             NSRange startTagRange = NSMakeRange(range.rangeValue.location - startTag.length, startTag.length);
             NSRange endTagRange = NSMakeRange(range.rangeValue.location + range.rangeValue.length, endTag.length);
@@ -225,7 +242,28 @@
     
     for (NSValue *range in tagsRanges)
     {
-        [attributedString deleteCharactersInRange:range.rangeValue];
+        if ([textAttachmentRanges containsObject:range])
+        {
+            NSString *content = [self substringWithRange:range.rangeValue];
+            NSData *data = [[NSData alloc] initWithBase64EncodedString:content options:0];
+            UIImage *image = [UIImage imageWithData:data ? data : [NSData new]];
+            if (image)
+            {
+                NSTextAttachment *attachment = [NSTextAttachment new];
+                attachment.image = image;
+                attachment.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
+                NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+                [attributedString replaceCharactersInRange:range.rangeValue withAttributedString:attachmentString];
+            }
+            else
+            {
+                [attributedString deleteCharactersInRange:range.rangeValue];
+            }
+        }
+        else
+        {
+            [attributedString deleteCharactersInRange:range.rangeValue];
+        }
     }
     
     return [attributedString copy];

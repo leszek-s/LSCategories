@@ -108,6 +108,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSAttributedString *)lsAttributedStringWithSuffixImage:(UIImage *)image;
 
 /**
+ Returns attributed string in which given substring is replaced with an image.
+ 
+ @param string Substring that should be replaced with an image.
+ @param image Image which should be used for replacing.
+ @param verticalOffset Vertical offset for the image.
+ @return Attributed string in which given substring is replaced with an image.
+ */
+- (NSAttributedString *)lsAttributedStringByReplacingOccurrenceOfString:(NSString *)string withImage:(UIImage *)image verticalOffset:(CGFloat)verticalOffset;
+
+/**
  Returns attributed string with inline image inserted in specified range.
  
  @param range Range which should be replaced.

@@ -25,6 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIApplication (LSCategories)
 
 /**
+ Returns application name string.
+ 
+ @return Application name string.
+ */
+- (nullable NSString *)lsName;
+
+/**
  Returns application version string.
 
  @return Application version string.

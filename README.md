@@ -1,5 +1,14 @@
 # LSCategories
 **LSCategories** is a collection of useful Foundation and UIKit categories created to simplify some common operations and speed up the development process. It is implemented in Objective-C but it also can be easily integrated and used in Swift projects.
+
+## Installation
+
+To integrate LSCategories into your Xcode project you can use [CocoaPods](https://cocoapods.org/) dependency manager. In your `Podfile` add the following line:
+
+```
+pod 'LSCategories'
+```
+
 ## Features
 Some things which can be easily done with LSCategories are listed below.
 
@@ -21,7 +30,7 @@ Put an image inside a string easily:
 ```objc
 NSAttributedString *withPrefix = [@"text" lsAttributedStringWithPrefixImage:[UIImage imageNamed:@"image.png"]];
 NSAttributedString *withSuffix = [@"text" lsAttributedStringWithSuffixImage:[UIImage imageNamed:@"image.png"]];
-NSAttributedString *withImageInside = [@"text with image" lsAttributedStringByReplacingCharactersInRange:NSMakeRange(10, 0) withImage:[UIImage imageNamed:@"image.png"]];
+NSAttributedString *withImageInside = [@"text with <image> inline image" lsAttributedStringByReplacingOccurrenceOfString:@"<image>" withImage:[UIImage imageNamed:@"image.png"] verticalOffset:0];
 ```
 
 Obfuscate NSData or NSString with XOR or ROT13 and filter strings from unwanted characters:
@@ -96,6 +105,18 @@ UIImage *imageWithText = [UIImage lsImageWithText:@"HELLO WORLD!" textColor:[UIC
 UIImage *avatar = [UIImage lsInitialsAvatarImageWithText:@"John Doe"];
 ```
 
+Generate UIImages with any shape from UIBezierPaths:
+```objc
+UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 200, 100) cornerRadius:20];
+UIImage *image = [path lsImageWithStrokeColor:[UIColor blueColor] fillColor:[UIColor greenColor] backgroundColor:[UIColor redColor]];
+```
+
+Load animated GIF or animated PNG files:
+```objc
+UIImage *animatedGif = [UIImage lsAnimatedImageWithAnimatedImageName:@"animated.gif" framesPerSecond:25 bundle:nil];
+UIImage *animatedPng = [UIImage lsAnimatedImageWithAnimatedImageName:@"animated.png" framesPerSecond:25 bundle:nil];
+```
+
 Perform common operations on existing UIImages:
 ```objc
 UIImage *image = [UIImage imageNamed:@"image.png"];
@@ -131,7 +152,7 @@ Get NSData, NSString with HTML, NSDictionary from JSON or UIImage from given URL
 [NSDictionary lsDictionaryFromJsonUrl:[NSURL URLWithString:@"https://dummyurl.com/json"] handler:^(NSDictionary *jsonDictionary, NSError *error) {
     // do something
 }];
-[UIImage lsImageFromUrl:[NSURL URLWithString:@"https://dummyurl.com/image.jpg"] useCache:YES handler:^(UIImage *image, NSError *error) {
+[UIImage lsImageFromUrl:[NSURL URLWithString:@"https://dummyurl.com/image.jpg"] useCache:YES useDiskCache:YES handler:^(UIImage *image, NSError *error) {
     // do something
 }];
 ```
@@ -187,7 +208,7 @@ Change custom properties of any object over time (for example for animating some
 [self.label lsAnimateCounterWithStartValue:10 endValue:1000 duration:2 completionBlock:nil];
 ```
 
-Limit editing UITextField with a single line of code and easily change text padding and clear button look:
+Limit editing UITextField with a single line of code and easily change text padding, placeholder color, and clear button look:
 ```objc
 // limit string length in the field
 [self.textField lsSetMaxLength:4];
@@ -203,6 +224,8 @@ Limit editing UITextField with a single line of code and easily change text padd
 [self.textField lsSetClearButtonWithImage:image mode:UITextFieldViewModeWhileEditing];
 // adjust text padding without subclassing
 [self.textField lsSetLeftPadding:10];
+// set a placeholder text with given color
+[self.textField lsSetPlaceholder:@"Placeholder" color:[UIColor redColor]];
 ```
 
 Use UINavigationController with completion blocks:
@@ -215,6 +238,12 @@ Use UINavigationController with completion blocks:
 }];
 ```
 
+Customize colors on navigation bar or tab bar easily:
+```objc
+[self.navigationController lsSetNavigationBarColor:[UIColor redColor] titleColor:[UIColor whiteColor] buttonsColor:[UIColor yellowColor] borderColor:[UIColor blackColor]];
+[self.tabBarController lsSetTabBarColor:[UIColor redColor] itemColor:[[UIColor whiteColor] colorWithAlphaComponent:0.7] selectedItemColor:[UIColor whiteColor] borderColor:[UIColor blackColor]];
+```
+
 Catch Objective-c exceptions in given block. This is useful if you are programming in Swift language and you need to catch an Objective-C exception from Swift code.
 ```objc
 NSException *exception = [NSException lsTryCatchWithBlock:^{
@@ -224,13 +253,44 @@ NSException *exception = [NSException lsTryCatchWithBlock:^{
 }];
 ```
 
-Send events from any object (not only UIControls) and subscribe to events sent by given object with a handler:
+Send events from any object and subscribe to them with a handler, or use key value observing in a simple way with handlers:
 ```objc
 [self lsSendEvent:@"DataRefreshedEvent" data:nil];
 // ...
 [someObject lsSubscribeForEvent:@"DataRefreshedEvent" handler:^(id data) {
     // do something
 }];
+// ...
+[someObject lsObserveValueForKeyPath:@"test" handler:^(NSDictionary * _Nullable change) {
+    // do something when test property changed
+}];
+```
+
+Get current date and time from a public online time server if you need to be sure that you are working on a valid current date:
+```objc
+[NSDate lsDateFromOnlineServerWithHandler:^(NSDate * _Nullable date) {
+    // do something with NSDate returned by a time server
+}];
+```
+
+Enable automatic keyboard handling which includes automatic scroll of scrollviews with text fields, automatic next and done keyboard actions (for switching to next text field or closing the keyboard), and automatic keyboard hidding when tapped outside of a text field with a single line of code called in your view controller:
+```objc
+[self lsEnableAutomaticKeyboardHandling];
+// or enable only some of these features for specific views depending on your needs
+[self.view lsEnableHideKeyboardOnTap];
+[self.textField lsEnableAutomaticNextAndDoneButtonsOnKeyboard];
+[self.otherTextField lsEnableAutomaticReturnButtonOnKeyboard];
+[self.scrollView lsEnableAutomaticScrollAdjustmentsWhenKeyboardAppear];
+```
+
+Easily add asking for rating in the app store to your application when specific conditions are met to get the best ratings from your app users in the app store:
+```objc
+// in app delegate log app launch...
+[[UIApplication sharedApplication] lsLogLaunchForAppRating];
+// log some important events in your app...
+[[UIApplication sharedApplication] lsLogSignificantEventForAppRating];
+// and then ask for rating when user performed desired number of important events and uses the app for specific amount of time
+[[UIApplication sharedApplication] lsAskForAppRatingIfReachedMinimumDaysOfUse:5 minimumSignificantEvents:7];
 ```
 
 These are only few things you can do with LSCategories. You can check TestProject for few other examples.

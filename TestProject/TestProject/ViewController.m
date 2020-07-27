@@ -11,7 +11,7 @@
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIStackView *stackView;
-
+@property (strong, nonatomic) NSString *testString;
 @end
 
 @implementation ViewController
@@ -19,6 +19,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"Name: %@", [[UIApplication sharedApplication] lsName]);
+    NSLog(@"Version: %@", [[UIApplication sharedApplication] lsVersion]);
+    NSLog(@"Build: %@", [[UIApplication sharedApplication] lsBuild]);
     
     NSString *test = @"test123!test456!abcdefghijklmnopqrstuvwxyz!";
     NSLog(@"crc32: %08X", [test lsCRC32]);
@@ -189,6 +193,12 @@
     NSLog(@"lsColorAtPixel: %@", [green lsColorAtPixel:CGPointMake(5, 5)]);
     NSLog(@"lsAverageColor: %@", [green lsAverageColor]);
     
+    [self lsObserveValueForKeyPath:@"testString" handler:^(NSDictionary * _Nullable change) {
+        NSLog(@"Observed changed on testString: %@", change);
+    }];
+    self.testString = @"test1";
+    self.testString = @"test2";
+    
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:green]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:avatar]];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:text]];
@@ -199,12 +209,12 @@
     
     UILabel *label1 = [UILabel new];
     [self.stackView addArrangedSubview:label1];
-    label1.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>html</em> <u>tags</u>";
+    label1.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>tags</em> <u>and</u> <textAttachment>iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAS1BMVEX///8AVo3w9fjF2eU0eaQtc6G80+GgwNVGha3y9/rs8vfq8fbo8PXA1eOvytuQtc15psNkmbpakrVTjbJCgqs6fKcfa5sUY5YKXZEIH/n7AAAAe0lEQVQY033OVw4DIQxFUT/AML23/a80MgomEya5P6Ajy0D/6/sH3LbSLGALrIDqYVBGi8GPUWPDtPKF2MXrFKyhlvEVt0SNu5tr4gJ3M/Neu2fbxWL1keyoSTsTntk6aJ2iz+gVR3nVe/nFqDiDBzkHxqy4hHQLC/3qBVhXAytZYZD/AAAAAElFTkSuQmCC</textAttachment> <h6>attachment</h6>";
     [label1 lsParseBasicHTMLTags];
     
     UILabel *label2 = [UILabel new];
     [self.stackView addArrangedSubview:label2];
-    label2.attributedText = [@"text with  inline image" lsAttributedStringByReplacingCharactersInRange:NSMakeRange(10, 0) withImage:[rotated lsResizedProportionalImageWithHeight:label2.font.pointSize]];
+    label2.attributedText = [@"text with <image> inline image" lsAttributedStringByReplacingOccurrenceOfString:@"<image>" withImage:[rotated lsResizedProportionalImageWithHeight:label2.font.pointSize] verticalOffset:0];
     
     UILabel *label3 = [UILabel new];
     [self.stackView addArrangedSubview:label3];
