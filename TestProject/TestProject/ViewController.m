@@ -25,6 +25,8 @@
     NSLog(@"Build: %@", [[UIApplication sharedApplication] lsBuild]);
     
     NSString *test = @"test123!test456!abcdefghijklmnopqrstuvwxyz!";
+    NSLog(@"encoded base32: %@", [[test lsDataUTF8] lsBase32String]);
+    NSLog(@"decoded base32: %@", [[NSData lsDataWithBase32String:@"ORSXG5BRGIZSC5DFON2DINJWEFQWEY3EMVTGO2DJNJVWY3LON5YHC4TTOR2XM53YPF5CC==="] lsStringUTF8]);
     NSLog(@"crc32: %08X", [test lsCRC32]);
     NSLog(@"adler32: %08X", [test lsAdler32]);
     NSLog(@"md2: %@", [test lsMD2]);
@@ -194,7 +196,7 @@
     NSLog(@"lsAverageColor: %@", [green lsAverageColor]);
     
     [self lsObserveValueForKeyPath:@"testString" handler:^(NSDictionary * _Nullable change) {
-        NSLog(@"Observed changed on testString: %@", change);
+        NSLog(@"Observed changed on testString, new value: %@, old value: %@", change[NSKeyValueChangeNewKey], change[NSKeyValueChangeOldKey]);
     }];
     self.testString = @"test1";
     self.testString = @"test2";

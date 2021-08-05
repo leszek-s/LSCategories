@@ -117,6 +117,21 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSData *)lsDataWithHexString:(NSString *)hexString;
 
 /**
+ Returns base32 string from data.
+
+ @return Base32 string from data.
+ */
+- (nullable NSString *)lsBase32String;
+
+/**
+ Returns data from given base32 string.
+
+ @param base32String Base32 string.
+ @return Data from given base32 string.
+ */
++ (nullable NSData *)lsDataWithBase32String:(NSString *)base32String;
+
+/**
  Returns content of given subdirectory in given directory.
 
  @param directory Directory (NSCachesDirectory, NSDocumentDirectory, NSLibraryDirectory)

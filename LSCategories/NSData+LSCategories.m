@@ -197,6 +197,158 @@
     return [data copy];
 }
 
+- (NSString *)lsBase32String
+{
+    if (self.length == 0)
+        return nil;
+    
+    NSInteger outputLength = ((self.length + 4) / 5) * 8;
+    NSMutableData *outputData = [[NSMutableData alloc] initWithLength:outputLength];
+    
+    char *table = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+    unsigned char *outputBytes = (unsigned char *)outputData.mutableBytes;
+    unsigned char *inputBytes = (unsigned char *)self.bytes;
+    
+    NSInteger length = self.length - 4;
+    
+    uint64_t part = 0;
+    
+    for (int i = 0; i < length; i += 5)
+    {
+        part = *inputBytes++;
+        part <<= 8;
+        part += *inputBytes++;
+        part <<= 8;
+        part += *inputBytes++;
+        part <<= 8;
+        part += *inputBytes++;
+        part <<= 8;
+        part += *inputBytes++;
+        
+        *outputBytes++ = table[(part >> 35) & 0x1FULL];
+        *outputBytes++ = table[(part >> 30) & 0x1FULL];
+        *outputBytes++ = table[(part >> 25) & 0x1FULL];
+        *outputBytes++ = table[(part >> 20) & 0x1FULL];
+        *outputBytes++ = table[(part >> 15) & 0x1FULL];
+        *outputBytes++ = table[(part >> 10) & 0x1FULL];
+        *outputBytes++ = table[(part >> 5) & 0x1FULL];
+        *outputBytes++ = table[part & 0x1FULL];
+    }
+    
+    unsigned char *stopByte = (unsigned char *)self.bytes + self.length;
+    NSInteger bytesLeft = stopByte - inputBytes;
+    
+    if (bytesLeft > 0)
+    {
+        part = (inputBytes < stopByte) ? *inputBytes++ : 0;
+        part <<= 8;
+        part += (inputBytes < stopByte) ? *inputBytes++ : 0;
+        part <<= 8;
+        part += (inputBytes < stopByte) ? *inputBytes++ : 0;
+        part <<= 8;
+        part += (inputBytes < stopByte) ? *inputBytes++ : 0;
+        part <<= 8;
+        part += (inputBytes < stopByte) ? *inputBytes++ : 0;
+        
+        *outputBytes++ = table[(part >> 35) & 0x1FULL];
+        *outputBytes++ = table[(part >> 30) & 0x1FULL];
+        *outputBytes++ = bytesLeft > 1 ? table[(part >> 25) & 0x1FULL] : '=';
+        *outputBytes++ = bytesLeft > 1 ? table[(part >> 20) & 0x1FULL] : '=';
+        *outputBytes++ = bytesLeft > 2 ? table[(part >> 15) & 0x1FULL] : '=';
+        *outputBytes++ = bytesLeft > 3 ? table[(part >> 10) & 0x1FULL] : '=';
+        *outputBytes++ = bytesLeft > 3 ? table[(part >> 5) & 0x1FULL] : '=';
+        *outputBytes++ = '=';
+    }
+    
+    return [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+}
+
++ (NSData *)lsDataWithBase32String:(NSString *)base32String
+{
+    NSData *inputData = [base32String dataUsingEncoding:NSUTF8StringEncoding];
+    
+    if (inputData.length == 0 || inputData.length % 8 != 0)
+        return nil;
+    
+    NSMutableData *outputData = [[NSMutableData alloc] initWithLength:inputData.length * 5 / 8];
+    unsigned char *inputBytes = (unsigned char *)inputData.bytes;
+    unsigned char *outputBytes = (unsigned char *)outputData.mutableBytes;
+    
+    char *table = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+    unsigned char reversedTable[256];
+    for (int i = 0; i < 256; i++)
+    {
+        reversedTable[i] = 0xFF;
+    }
+    for (int i = 0; i < 32; i++)
+    {
+        char character = table[i];
+        reversedTable[character] = i;
+    }
+    reversedTable['='] = 0;
+    
+    NSUInteger length = inputData.length;
+    
+    uint64_t part = 0;
+    
+    NSInteger paddingBytesCount = 0;
+    for (int i = 0; i < length; i++)
+    {
+        char byte = *inputBytes++;
+        if (reversedTable[byte] == 0xFF)
+            return nil;
+        if (byte == '=')
+            paddingBytesCount++;
+    }
+    
+    length = inputData.length - 7;
+    
+    inputBytes = (unsigned char *)inputData.bytes;
+    
+    for (int i = 0; i < length; i += 8)
+    {
+        part = reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        part <<= 5;
+        part += reversedTable[*inputBytes++];
+        
+        *outputBytes++ = (part >> 32) & 0xFFULL;
+        *outputBytes++ = (part >> 24) & 0xFFULL;
+        *outputBytes++ = (part >> 16) & 0xFFULL;
+        *outputBytes++ = (part >> 8) & 0xFFULL;
+        *outputBytes++ = part & 0xFFULL;
+    }
+    
+    NSInteger finalPaddingBytesCount = 0;
+    for (int i = 0; i < 8; i++)
+    {
+        inputBytes--;
+        if (*inputBytes == '=')
+            finalPaddingBytesCount++;
+        else
+            break;
+    }
+    
+    if (paddingBytesCount != finalPaddingBytesCount)
+        return nil;
+    
+    NSInteger bytesToCut = ceil(5.0 * (double)finalPaddingBytesCount / 8.0);
+    [outputData setLength:outputData.length - bytesToCut];
+    
+    return [outputData copy];
+}
+
 + (NSArray *)lsContentOfDirectory:(NSSearchPathDirectory)directory subDirectory:(NSString *)subDirectory
 {
     NSString *systemDirectory = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) objectAtIndex:0];
