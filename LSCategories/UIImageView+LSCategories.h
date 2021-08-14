@@ -33,6 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)lsFadeToImage:(UIImage *)image duration:(NSTimeInterval)duration completion:(void (^ _Nullable)(BOOL finished))completionBlock;
 
+/**
+ Sets image with from given url asynchronously optionally using cache.
+
+ @param url The URL from which to read image.
+ @param useCache If YES then image will be cached in memory and on next read from same url returned from cache.
+ @param useDiskCache If YES then image will be cached on disk and on next read from same url returned from disk cache if not available in memory cache.
+ */
+- (void)lsSetImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache;
+
 @end
 
 NS_ASSUME_NONNULL_END

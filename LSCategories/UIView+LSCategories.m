@@ -33,7 +33,12 @@ static UIView *lsSharedToastView = nil;
 
 + (void)lsShowSharedActivityIndicator
 {
-    [self lsShowSharedActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor] text:nil];
+    [self lsShowSharedActivityIndicatorWithText:nil];
+}
+
++ (void)lsShowSharedActivityIndicatorWithText:(NSString *)text
+{
+    [self lsShowSharedActivityIndicatorWithStyle:UIActivityIndicatorViewStyleWhiteLarge color:[UIColor whiteColor] backgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.6] coverColor:[UIColor clearColor] text:text];
 }
 
 + (void)lsShowSharedActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text
@@ -86,7 +91,7 @@ static UIView *lsSharedToastView = nil;
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
     [activityIndicator startAnimating];
     activityIndicator.color = color;
-    activityIndicator.center = [self convertPoint:self.center fromView:self.superview];
+    activityIndicator.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     activityIndicator.tag = lsAItag;
     
@@ -118,8 +123,12 @@ static UIView *lsSharedToastView = nil;
     [cover addSubview:background];
     [background addSubview:activityIndicator];
     [background addSubview:label];
-    activityIndicator.center = [self convertPoint:activityIndicator.center toView:background];
-    label.center = [self convertPoint:label.center toView:background];
+    activityIndicator.center = CGPointMake(background.bounds.size.width / 2, margin + activityIndicator.bounds.size.height / 2);
+    label.center = CGPointMake(background.bounds.size.width / 2, margin + activityIndicator.bounds.size.height + margin + label.bounds.size.height / 2);
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        cover.frame = self.bounds;
+        background.center = CGPointMake(cover.bounds.size.width / 2, cover.bounds.size.height / 2);
+    });
 }
 
 - (void)lsHideActivityIndicator

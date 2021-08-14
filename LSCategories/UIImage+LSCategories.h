@@ -35,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache handler:(void (^)(UIImage * _Nullable image, NSError * _Nullable error))handler;
 
 /**
+ Deletes images cached in memory.
+ */
++ (void)lsCleanCache;
+
+/**
  Deletes images cached on disk.
 
  @return YES if deleted, NO otherwise.

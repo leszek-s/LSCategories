@@ -19,6 +19,10 @@
 // THE SOFTWARE.
 
 #import "UIImageView+LSCategories.h"
+#import "UIImage+LSCategories.h"
+#import <objc/runtime.h>
+
+static char lsAssociatedImageUrlKey;
 
 @implementation UIImageView (LSCategories)
 
@@ -27,6 +31,19 @@
     [UIView transitionWithView:self duration:duration options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.image = image;
     } completion:completionBlock];
+}
+
+- (void)lsSetImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache
+{
+    objc_setAssociatedObject(self, &lsAssociatedImageUrlKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    __weak UIImageView *weakSelf = self;
+    [UIImage lsImageFromUrl:url useCache:useCache useDiskCache:useDiskCache handler:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        UIImageView *strongSelf = weakSelf;
+        NSURL *associatedUrl = objc_getAssociatedObject(self, &lsAssociatedImageUrlKey);
+        if (image && [associatedUrl.absoluteString isEqual:url.absoluteString]) {
+            strongSelf.image = image;
+        }
+    }];
 }
 
 @end

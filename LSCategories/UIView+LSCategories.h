@@ -30,6 +30,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lsShowSharedActivityIndicator;
 
 /**
+ Shows global activity indicator with text in the center of the view.
+
+ @param text Text to show below the activity indicator.
+ */
++ (void)lsShowSharedActivityIndicatorWithText:(nullable NSString *)text;
+
+/**
  Shows global activity indicator with custom style in the center of the screen.
 
  @param style Activity indicator style.

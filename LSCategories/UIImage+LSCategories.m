@@ -23,6 +23,8 @@
 #import "NSString+LSCategories.h"
 #import "UIColor+LSCategories.h"
 
+static NSCache *lsImagesCache = nil;
+
 @implementation UIImage (LSCategories)
 
 + (void)lsImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache handler:(void (^)(UIImage *image, NSError *error))handler
@@ -34,13 +36,12 @@
         return;
     }
     
-    static NSCache *cache = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        cache = [NSCache new];
-        cache.totalCostLimit = 1024 * 1024 * 30;
+        lsImagesCache = [NSCache new];
+        lsImagesCache.totalCostLimit = 1024 * 1024 * 30;
     });
-    UIImage *cached = [cache objectForKey:url];
+    UIImage *cached = [lsImagesCache objectForKey:url];
     if (useCache && cached)
     {
         handler(cached, nil);
@@ -56,7 +57,7 @@
             if (image)
             {
                 if (useCache)
-                    [cache setObject:image forKey:url cost:data.length];
+                    [lsImagesCache setObject:image forKey:url cost:data.length];
                 handler(image, nil);
                 return;
             }
@@ -66,7 +67,7 @@
     [NSData lsDataFromUrl:url handler:^(NSData *data, NSError *error) {
         UIImage *image = data ? [UIImage imageWithData:data] : nil;
         if (image && useCache)
-            [cache setObject:image forKey:url cost:data.length];
+            [lsImagesCache setObject:image forKey:url cost:data.length];
         if (image && useDiskCache)
         {
             NSString *cacheFileName = [NSString stringWithFormat:@"img-%@", url.absoluteString.lsMD5];
@@ -74,6 +75,11 @@
         }
         handler(image, error);
     }];
+}
+
++ (void)lsCleanCache
+{
+    [lsImagesCache removeAllObjects];
 }
 
 + (BOOL)lsCleanDiskCache
