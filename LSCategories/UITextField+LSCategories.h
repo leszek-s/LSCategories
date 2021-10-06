@@ -44,14 +44,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param allowedCharacterSet Allowed characters set.
  */
-- (void)lsSetAllowedCharacterSet:(NSCharacterSet *)allowedCharacterSet;
+- (void)lsSetAllowedCharacterSet:(nullable NSCharacterSet *)allowedCharacterSet;
 
 /**
  Sets regular expression which specifies what can be entered in the field.
 
  @param regex Regular expression which specifies what can be entered in the field.
  */
-- (void)lsSetAllowedRegex:(NSString *)regex;
+- (void)lsSetAllowedRegex:(nullable NSString *)regex;
 
 /**
  Sets the field in decimal mode for entering numbers only.
@@ -102,6 +102,32 @@ NS_ASSUME_NONNULL_BEGIN
  If there is no other text field below the current one then this automatic action will close the keyboard.
  */
 - (void)lsEnableAutomaticNextAndDoneButtonsOnKeyboard;
+
+/**
+ When automatic next and done buttons are enabled with lsEnableAutomaticNextAndDoneButtonsOnKeyboard method this
+ can be used to set a custom order of switching between text fields instead of switching according to the position on screen.
+ If set, text fields will be switched in the order based on the row from given indexPath. Additionally text fields will be switched
+ only to other text fields with same section from given indexPath which allows to split text fields into different groups which are
+ handled separately from each other.
+ 
+ @param indexPath IndexPath with row and section.
+ */
+- (void)lsSetCustomOrderIndexPath:(nullable NSIndexPath *)indexPath;
+
+/**
+ Returns previously set custom order index path.
+ 
+ @return Custom order index path.
+ */
+- (nullable NSIndexPath *)lsCustomOrderIndexPath;
+
+/**
+ Returns next field in current view hierarchy which is either found automatically based on the position on screen or based on
+ previously set custom order index path.
+ 
+ @return Next field in current view hierarchy.
+ */
+- (nullable UITextField *)lsNextFieldInCurrentViewHierarchy;
 
 @end
 

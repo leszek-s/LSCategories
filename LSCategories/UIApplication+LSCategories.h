@@ -63,6 +63,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)lsAskForAppRatingIfReachedMinimumDaysOfUse:(NSInteger)minimumDaysOfUse minimumSignificantEvents:(NSInteger)minimumSignificantEvents;
 
+/**
+ Resets all previously saved informations related to app rating.
+ */
+- (void)lsResetAppRatingData;
+
 @end
 
 NS_ASSUME_NONNULL_END

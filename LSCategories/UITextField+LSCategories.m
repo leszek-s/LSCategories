@@ -26,6 +26,7 @@
 static char lsAssociatedMaxLengthKey;
 static char lsAssociatedAllowedCharacterSetKey;
 static char lsAssociatedAllowedRegexKey;
+static char lsAssociatedCustomOrderIndexPathKey;
 
 @implementation UITextField (LSCategories)
 
@@ -157,7 +158,7 @@ static char lsAssociatedAllowedRegexKey;
 
 - (void)lsEnableAutomaticNextAndDoneButtonsOnKeyboard
 {
-    if ([self lsAutomaticNextFieldInCurrentViewHierarchy])
+    if ([self lsNextFieldInCurrentViewHierarchy])
     {
         self.returnKeyType = UIReturnKeyNext;
     }
@@ -168,15 +169,42 @@ static char lsAssociatedAllowedRegexKey;
     [self addTarget:self action:@selector(lsTextFieldEditingDidEndOnExitAutomaticNextAndDone) forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
-- (UITextField *)lsAutomaticNextFieldInCurrentViewHierarchy
+- (void)lsSetCustomOrderIndexPath:(NSIndexPath *)indexPath
+{
+    objc_setAssociatedObject(self, &lsAssociatedCustomOrderIndexPathKey, indexPath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSIndexPath *)lsCustomOrderIndexPath
+{
+    return objc_getAssociatedObject(self, &lsAssociatedCustomOrderIndexPathKey);
+}
+
+- (UITextField *)lsNextFieldInCurrentViewHierarchy
 {
     UIView *rootView = [self lsRootSuperview];
     NSArray *textFields = [rootView lsSubviewsWithClass:[UITextField class] recursive:YES];
-    textFields = [textFields sortedArrayUsingComparator:^NSComparisonResult(UITextField *textField1, UITextField *textField2) {
-        CGPoint point1 = [rootView convertPoint:CGPointZero fromView:textField1];
-        CGPoint point2 = [rootView convertPoint:CGPointZero fromView:textField2];
-        return point1.y > point2.y;
-    }];
+
+    NSIndexPath *customOrderIndexPath = [self lsCustomOrderIndexPath];
+    if (customOrderIndexPath)
+    {
+        textFields = [textFields filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(UITextField *textField, NSDictionary *bindings) {
+            NSIndexPath *indexPath = [textField lsCustomOrderIndexPath];
+            return indexPath != nil && indexPath.section == customOrderIndexPath.section;
+        }]];
+        textFields = [textFields sortedArrayUsingComparator:^NSComparisonResult(UITextField *textField1, UITextField *textField2) {
+            NSIndexPath *indexPath1 = [textField1 lsCustomOrderIndexPath];
+            NSIndexPath *indexPath2 = [textField2 lsCustomOrderIndexPath];
+            return indexPath1.row > indexPath2.row;
+        }];
+    }
+    else
+    {
+        textFields = [textFields sortedArrayUsingComparator:^NSComparisonResult(UITextField *textField1, UITextField *textField2) {
+            CGPoint point1 = [rootView convertPoint:CGPointZero fromView:textField1];
+            CGPoint point2 = [rootView convertPoint:CGPointZero fromView:textField2];
+            return point1.y > point2.y;
+        }];
+    }
     NSUInteger index = [textFields indexOfObject:self];
     if (index == NSNotFound || index + 1 >= textFields.count)
     {
@@ -187,7 +215,7 @@ static char lsAssociatedAllowedRegexKey;
 
 - (void)lsTextFieldEditingDidEndOnExitAutomaticNextAndDone
 {
-    UITextField *nextField = [self lsAutomaticNextFieldInCurrentViewHierarchy];
+    UITextField *nextField = [self lsNextFieldInCurrentViewHierarchy];
     if (nextField)
     {
         [nextField becomeFirstResponder];

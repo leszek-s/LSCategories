@@ -59,8 +59,11 @@ static char lsAssociatedInitialScrollIndicatorInset;
     NSInteger keyboardOverlap = CGRectGetMaxY(self.frame) - CGRectGetMinY(keyboardRectConverted);
     if (keyboardOverlap >= 0)
     {
-        self.contentInset = UIEdgeInsetsMake(0, 0, keyboardOverlap + 20, 0);
-        self.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardOverlap, 0);
+        NSValue *initialContentInset = objc_getAssociatedObject(self, &lsAssociatedInitialContentInset);
+        NSValue *scrollIndicatorInsets = objc_getAssociatedObject(self, &lsAssociatedInitialScrollIndicatorInset);
+        
+        self.contentInset = UIEdgeInsetsMake(initialContentInset.UIEdgeInsetsValue.top, initialContentInset.UIEdgeInsetsValue.left, keyboardOverlap + 80, initialContentInset.UIEdgeInsetsValue.right);
+        self.scrollIndicatorInsets = UIEdgeInsetsMake(scrollIndicatorInsets.UIEdgeInsetsValue.top, scrollIndicatorInsets.UIEdgeInsetsValue.left, keyboardOverlap, scrollIndicatorInsets.UIEdgeInsetsValue.right);
     }
     #endif
 }

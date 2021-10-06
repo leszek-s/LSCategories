@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param useCache If YES then image will be cached in memory and on next read from same url returned from cache.
  @param useDiskCache If YES then image will be cached on disk and on next read from same url returned from disk cache if not available in memory cache.
  */
-- (void)lsSetImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache;
+- (void)lsSetImageFromUrl:(nullable NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache;
 
 @end
 

@@ -134,6 +134,19 @@
     return [ranges copy];
 }
 
+- (NSArray *)lsAllSubstringsBetweenStartString:(NSString *)startString endString:(NSString *)endString
+{
+    NSArray *ranges = [self lsRangesOfAllSubstringsBetweenStartString:startString endString:endString];
+    NSMutableArray *subStrings = [NSMutableArray new];
+    for (NSValue *range in ranges)
+    {
+        NSRange rangeValue = range.rangeValue;
+        NSString *subString = [self substringWithRange:rangeValue];
+        [subStrings addObject:subString];
+    }
+    return [subStrings copy];
+}
+
 - (NSAttributedString *)lsAttributedString
 {
     return [[NSAttributedString alloc] initWithString:self];

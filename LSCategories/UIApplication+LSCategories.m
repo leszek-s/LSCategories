@@ -86,13 +86,21 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
             BOOL isNetworkSlow = ABS([[NSDate new] timeIntervalSinceDate:testStart]) > 5;
             if (isNetworkAvailable && !isNetworkSlow)
             {
-                [SKStoreReviewController requestReview];
                 [NSUserDefaults.standardUserDefaults setObject:@YES forKey:lsAppRatingKeyIsDisabled];
                 [NSUserDefaults.standardUserDefaults synchronize];
+                [SKStoreReviewController requestReview];
             }
         }];
     }
     #endif
+}
+
+- (void)lsResetAppRatingData
+{
+    [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeyIsDisabled];
+    [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeyFirstLaunchDate];
+    [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeySignificantEvents];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
 @end

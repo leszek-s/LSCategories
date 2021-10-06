@@ -85,6 +85,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSValue *> *)lsRangesOfAllSubstringsBetweenStartString:(NSString *)startString endString:(NSString *)endString;
 
 /**
+ Returns array with all substrings between given start string and end string or empty array if not found.
+
+ @param startString Start string.
+ @param endString End string.
+ @return Array with all substrings between given start string and end string or empty array if not found.
+ */
+- (NSArray<NSString *> *)lsAllSubstringsBetweenStartString:(NSString *)startString endString:(NSString *)endString;
+
+/**
  Returns attributed string.
 
  @return Attributed string.

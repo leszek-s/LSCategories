@@ -36,6 +36,8 @@ static char lsAssociatedImageUrlKey;
 - (void)lsSetImageFromUrl:(NSURL *)url useCache:(BOOL)useCache useDiskCache:(BOOL)useDiskCache
 {
     objc_setAssociatedObject(self, &lsAssociatedImageUrlKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (!url)
+        return;
     __weak UIImageView *weakSelf = self;
     [UIImage lsImageFromUrl:url useCache:useCache useDiskCache:useDiskCache handler:^(UIImage * _Nullable image, NSError * _Nullable error) {
         UIImageView *strongSelf = weakSelf;
