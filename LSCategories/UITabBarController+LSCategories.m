@@ -29,7 +29,7 @@
     self.tabBar.translucent = NO;
     self.tabBar.barTintColor = barColor;
     self.tabBar.tintColor = selectedItemColor;
-    if (@available(iOS 10.0, *)) {
+    if (@available(iOS 10.0, tvOS 10.0, *)) {
         self.tabBar.unselectedItemTintColor = itemColor;
     }
     for (UIViewController *vc in self.viewControllers)

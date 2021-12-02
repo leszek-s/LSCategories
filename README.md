@@ -283,6 +283,12 @@ Enable automatic keyboard handling which includes automatic scroll of scrollview
 [self.scrollView lsEnableAutomaticScrollAdjustmentsWhenKeyboardAppear];
 ```
 
+Use autolayout views which automatically calculate their height for tableHeaderView and tableFooterView in any UITableView easily with a single line of code:
+```objc
+[self.tableView lsSetAutolayoutTableHeaderView:autolayoutHeaderView];
+[self.tableView lsSetAutolayoutTableFooterView:autolayoutFooterView];
+```
+
 Easily add asking for rating in the app store to your application when specific conditions are met to get the best ratings from your app users in the app store:
 ```objc
 // in app delegate log app launch...

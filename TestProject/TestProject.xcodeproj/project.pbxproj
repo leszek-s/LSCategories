@@ -25,6 +25,7 @@
 		1BCD8EF824B265B00030F557 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCD8EF724B265B00030F557 /* ScrollViewController.m */; };
 		1BD24287206432BB00147372 /* NSAttributedString+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */; };
 		1BF6507422ED7228008640D5 /* NSTimer+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */; };
+		1BFA1466274EC08A00499C6E /* UITableView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA1464274EC08A00499C6E /* UITableView+LSCategories.m */; };
 		1BFCB05C1E44F3E700357597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05B1E44F3E700357597 /* main.m */; };
 		1BFCB05F1E44F3E700357597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB05E1E44F3E700357597 /* AppDelegate.m */; };
 		1BFCB0621E44F3E700357597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0611E44F3E700357597 /* ViewController.m */; };
@@ -81,6 +82,8 @@
 		1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+LSCategories.m"; sourceTree = "<group>"; };
 		1BF6507222ED7227008640D5 /* NSTimer+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+LSCategories.h"; sourceTree = "<group>"; };
 		1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+LSCategories.m"; sourceTree = "<group>"; };
+		1BFA1464274EC08A00499C6E /* UITableView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LSCategories.m"; sourceTree = "<group>"; };
+		1BFA1465274EC08A00499C6E /* UITableView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LSCategories.h"; sourceTree = "<group>"; };
 		1BFCB0571E44F3E700357597 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFCB05B1E44F3E700357597 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BFCB05D1E44F3E700357597 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				1BCD8EF324B256DA0030F557 /* UIScrollView+LSCategories.m */,
 				1B56502323A502DE00898008 /* UITabBarController+LSCategories.h */,
 				1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */,
+				1BFA1465274EC08A00499C6E /* UITableView+LSCategories.h */,
+				1BFA1464274EC08A00499C6E /* UITableView+LSCategories.m */,
 				1B0BEC1820000A7700EFC5FF /* UITextField+LSCategories.h */,
 				1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */,
 				1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */,
@@ -317,6 +322,7 @@
 				1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */,
 				1BF6507422ED7228008640D5 /* NSTimer+LSCategories.m in Sources */,
 				1BFCB0891E44F40300357597 /* NSArray+LSCategories.m in Sources */,
+				1BFA1466274EC08A00499C6E /* UITableView+LSCategories.m in Sources */,
 				1BFCB0901E44F40300357597 /* UIFont+LSCategories.m in Sources */,
 				1BFCB08F1E44F40300357597 /* UIColor+LSCategories.m in Sources */,
 				1B56502523A502DF00898008 /* UITabBarController+LSCategories.m in Sources */,

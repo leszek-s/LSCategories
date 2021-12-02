@@ -21,8 +21,10 @@
 #import "UIScrollView+LSCategories.h"
 #import <objc/runtime.h>
 
+#if !TARGET_OS_TV
 static char lsAssociatedInitialContentInset;
 static char lsAssociatedInitialScrollIndicatorInset;
+#endif
 
 @implementation UIScrollView (LSCategories)
 

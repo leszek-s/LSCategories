@@ -118,7 +118,10 @@
     NSLog(@"lsStringUTF8: %@", [data2 lsStringUTF8]);
     NSString *hexString = [[data2 lsHexString] lowercaseString];
     NSLog(@"lsHexString: %@", hexString);
+    NSString *hexStringWithSpaces = [[data2 lsHexStringWithSpaces] lowercaseString];
+    NSLog(@"lsHexStringWithSpaces: %@", hexStringWithSpaces);
     NSLog(@"lsDataWithHexString: %@", [NSData lsDataWithHexString:hexString]);
+    NSLog(@"lsDataWithHexStringWithSpaces: %@", [NSData lsDataWithHexStringWithSpaces:hexStringWithSpaces]);
     NSLog(@"lsContentOfDirectory: %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);
     [NSData lsCleanDirectory:NSDocumentDirectory subDirectory:@"LSDATA"];
     NSLog(@"lsContentOfDirectory: %@", [NSData lsContentOfDirectory:NSDocumentDirectory subDirectory:@"LSDATA"]);

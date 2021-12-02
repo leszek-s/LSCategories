@@ -27,7 +27,6 @@
 #define lsAItag 0x6c734149
 #define lsTOtag 0x6c73544f
 
-static NSInteger lsSharedHudCounter = 0;
 static UIView *lsSharedHudView = nil;
 static UIView *lsSharedToastView = nil;
 
@@ -43,11 +42,7 @@ static UIView *lsSharedToastView = nil;
 
 + (void)lsShowSharedActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text
 {
-    lsSharedHudCounter++;
-    if (lsSharedHudView)
-        return;
-    
-    UIView *hv = [[UIApplication sharedApplication] keyWindow];
+    UIView *hv = lsSharedHudView ? lsSharedHudView : [[UIApplication sharedApplication] keyWindow];
     if (hv)
     {
         lsSharedHudView = hv;
@@ -57,18 +52,8 @@ static UIView *lsSharedToastView = nil;
 
 + (void)lsHideSharedActivityIndicator
 {
-    lsSharedHudCounter--;
-    if (lsSharedHudCounter < 0)
-        lsSharedHudCounter = 0;
-    
-    if (lsSharedHudCounter != 0)
-        return;
-    
-    if (lsSharedHudView)
-    {
-        [lsSharedHudView lsHideActivityIndicator];
-        lsSharedHudView = nil;
-    }
+    [lsSharedHudView lsHideActivityIndicator];
+    lsSharedHudView = nil;
 }
 
 + (UIView *)lsSharedActivityIndicatorView
@@ -88,14 +73,24 @@ static UIView *lsSharedToastView = nil;
 
 - (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(NSString *)text
 {
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+    UIView *existingActivityView = [self lsActivityIndicatorView];
+    UIView *cover = existingActivityView ? existingActivityView : [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *background = existingActivityView ? [cover viewWithTag:lsAItag + 1] : [[UIView alloc] initWithFrame:CGRectZero];
+    UIActivityIndicatorView *activityIndicator = existingActivityView ? [background viewWithTag:lsAItag + 2] : [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
+    UILabel *label = existingActivityView ? [background viewWithTag:lsAItag + 3] : [UILabel new];
+    cover.frame = CGRectZero;
+    background.frame = CGRectZero;
+    activityIndicator.frame = CGRectZero;
+    label.frame = CGRectZero;
+    
     [activityIndicator startAnimating];
+    activityIndicator.activityIndicatorViewStyle = style;
     activityIndicator.color = color;
+    [activityIndicator sizeToFit];
     activityIndicator.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
-    activityIndicator.tag = lsAItag;
+    activityIndicator.tag = lsAItag + 2;
     
-    UILabel *label = [UILabel new];
     CGFloat margin = 16;
     label.text = text;
     label.numberOfLines = 0;
@@ -105,24 +100,27 @@ static UIView *lsSharedToastView = nil;
     [label sizeToFit];
     label.center = CGPointMake(activityIndicator.center.x, activityIndicator.center.y + activityIndicator.bounds.size.height / 2 + label.bounds.size.height / 2 + margin);
     label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
-    label.tag = lsAItag;
+    label.tag = lsAItag + 3;
     
     CGRect bgRect = CGRectMake(MIN(label.frame.origin.x, activityIndicator.frame.origin.x) - margin, activityIndicator.frame.origin.y - margin, MAX(label.frame.size.width + margin + margin, activityIndicator.frame.size.width + margin + margin), margin + activityIndicator.frame.size.height + (label.text.length > 0 ? margin : 0) + label.frame.size.height + margin);
-    UIView *background = [[UIView alloc] initWithFrame:bgRect];
+    background.frame = bgRect;
     background.layer.cornerRadius = 6;
     background.backgroundColor = backgroundColor;
     background.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
-    background.tag = lsAItag;
+    background.tag = lsAItag + 1;
     
-    UIView *cover = [[UIView alloc] initWithFrame:self.bounds];
+    cover.frame = self.bounds;
     cover.backgroundColor = coverColor;
     cover.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     cover.tag = lsAItag;
     
-    [self addSubview:cover];
-    [cover addSubview:background];
-    [background addSubview:activityIndicator];
-    [background addSubview:label];
+    if (!existingActivityView) {
+        [self addSubview:cover];
+        [cover addSubview:background];
+        [background addSubview:activityIndicator];
+        [background addSubview:label];
+    }
+    
     activityIndicator.center = CGPointMake(background.bounds.size.width / 2, margin + activityIndicator.bounds.size.height / 2);
     label.center = CGPointMake(background.bounds.size.width / 2, margin + activityIndicator.bounds.size.height + margin + label.bounds.size.height / 2);
     dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -162,7 +160,7 @@ static UIView *lsSharedToastView = nil;
 
 + (void)lsShowSharedToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font margin:(NSInteger)margin duration:(NSTimeInterval)duration
 {
-    UIView *tv = [[UIApplication sharedApplication] keyWindow];
+    UIView *tv = lsSharedToastView ? lsSharedToastView : [[UIApplication sharedApplication] keyWindow];
     if (tv)
     {
         lsSharedToastView = tv;
@@ -172,11 +170,8 @@ static UIView *lsSharedToastView = nil;
 
 + (void)lsHideSharedToast
 {
-    if (lsSharedToastView)
-    {
-        [lsSharedToastView lsHideToast];
-        lsSharedToastView = nil;
-    }
+    [lsSharedToastView lsHideToast];
+    lsSharedToastView = nil;
 }
 
 + (UIView *)lsSharedToastView
@@ -191,7 +186,10 @@ static UIView *lsSharedToastView = nil;
 
 - (void)lsShowToastWithText:(NSString *)text color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor font:(UIFont *)font margin:(NSInteger)margin duration:(NSTimeInterval)duration
 {
-    UILabel *label = [UILabel new];
+    UIView *existingToastView = [self lsToastView];
+    UILabel *label = existingToastView ? (UILabel *)existingToastView : [UILabel new];
+    label.frame = CGRectZero;
+    
     label.text = text;
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
@@ -205,10 +203,11 @@ static UIView *lsSharedToastView = nil;
     label.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height - label.bounds.size.height / 2 - margin);
     label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     label.tag = lsTOtag;
-    [self addSubview:label];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [label removeFromSuperview];
-    });
+    if (!existingToastView) {
+        [self addSubview:label];
+    }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(lsHideToast) object:nil];
+    [self performSelector:@selector(lsHideToast) withObject:nil afterDelay:duration];
 }
 
 - (void)lsHideToast

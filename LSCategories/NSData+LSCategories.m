@@ -134,10 +134,17 @@
 
 - (NSString *)lsHexString
 {
+    NSString *hexStringWithSpaces = [self lsHexStringWithSpaces];
+    NSString *hexString = [hexStringWithSpaces stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return hexString;
+}
+
+- (NSString *)lsHexStringWithSpaces
+{
     if (self.length == 0)
         return nil;
     
-    NSMutableData *hexData = [[NSMutableData alloc] initWithLength:self.length * 2];
+    NSMutableData *hexData = [[NSMutableData alloc] initWithLength:self.length * 3 - 1];
     
     char *table = "0123456789ABCDEF";
     unsigned char *hexBytes = (unsigned char *)hexData.mutableBytes;
@@ -154,6 +161,10 @@
         *hexBytes = table[(byte & 0x0F)];
         hexBytes++;
         bytes++;
+        if (i < length - 1) {
+            *hexBytes = ' ';
+            hexBytes++;
+        }
     }
     return [[NSString alloc] initWithData:hexData encoding:NSUTF8StringEncoding];
 }
@@ -195,6 +206,13 @@
     }
     
     return [data copy];
+}
+
++ (NSData *)lsDataWithHexStringWithSpaces:(NSString *)hexStringWithSpaces
+{
+    NSString *hexString = [hexStringWithSpaces stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSData *data = [self lsDataWithHexString:hexString];
+    return data;
 }
 
 - (NSString *)lsBase32String

@@ -109,12 +109,27 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)lsHexString;
 
 /**
+ Returns hex string with spaces between bytes from data.
+
+ @return Hex string with spaces between bytes from data.
+ */
+- (nullable NSString *)lsHexStringWithSpaces;
+
+/**
  Returns data from given hex string.
 
  @param hexString Hex string.
  @return Data from given hex string.
 */
 + (nullable NSData *)lsDataWithHexString:(NSString *)hexString;
+
+/**
+ Returns data from given hex string with spaces between bytes.
+
+ @param hexStringWithSpaces Hex string with spaces between bytes.
+ @return Data from given hex string with spaces between bytes.
+*/
++ (nullable NSData *)lsDataWithHexStringWithSpaces:(NSString *)hexStringWithSpaces;
 
 /**
  Returns base32 string from data.

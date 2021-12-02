@@ -30,14 +30,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)lsShowSharedActivityIndicator;
 
 /**
- Shows global activity indicator with text in the center of the view.
+ Shows global activity indicator with text in the center of the view. If this method is called multiple times
+ then instead of presenting a new activity indicator existing one will be updated.
 
  @param text Text to show below the activity indicator.
  */
 + (void)lsShowSharedActivityIndicatorWithText:(nullable NSString *)text;
 
 /**
- Shows global activity indicator with custom style in the center of the screen.
+ Shows global activity indicator with custom style in the center of the screen. If this method is called multiple times
+ then instead of presenting a new activity indicator existing one will be updated.
 
  @param style Activity indicator style.
  @param color Activity indicator and text color.
@@ -65,14 +67,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lsShowActivityIndicator;
 
 /**
- Shows activity indicator with text in the center of the view.
+ Shows activity indicator with text in the center of the view. If this method is called multiple times
+ then instead of presenting a new activity indicator existing one will be updated.
 
  @param text Text to show below the activity indicator.
  */
 - (void)lsShowActivityIndicatorWithText:(nullable NSString *)text;
 
 /**
- Shows activity indicator with custom style in the center of the view.
+ Shows activity indicator with custom style in the center of the view. If this method is called multiple times
+ then instead of presenting a new activity indicator existing one will be updated.
 
  @param style Activity indicator style.
  @param color Activity indicator and text color.
@@ -81,6 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param text Text to show below the activity indicator.
  */
 - (void)lsShowActivityIndicatorWithStyle:(UIActivityIndicatorViewStyle)style color:(UIColor *)color backgroundColor:(UIColor *)backgroundColor coverColor:(UIColor *)coverColor text:(nullable NSString *)text;
+
 /**
  Hides activity indicator showed on the view.
  */
@@ -94,14 +99,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable UIView *)lsActivityIndicatorView;
 
 /**
- Shows global toast with given text on the bottom of the view.
+ Shows global toast with given text on the bottom of the view. If this method
+ is called multiple times then instead of presenting a new toast view existing one will be updated.
 
  @param text Text message.
  */
 + (void)lsShowSharedToastWithText:(NSString *)text;
 
 /**
- Shows shared toast with given text, color, background color, bottom margin and duration.
+ Shows shared toast with given text, color, background color, bottom margin and duration. If this method
+ is called multiple times then instead of presenting a new toast view existing one will be updated.
  
  @param text Text message.
  @param color Text color.
