@@ -248,11 +248,11 @@
     UIImage *heartImage = [heartPath lsImageWithStrokeColor:[UIColor blueColor] fillColor:[UIColor colorWithPatternImage:heartImageSmall] backgroundColor:nil];
     [self.stackView addArrangedSubview:[[UIImageView alloc] initWithImage:heartImage]];
     
-    [self.navigationController lsSetNavigationBarColor:[UIColor redColor] titleColor:[UIColor whiteColor] buttonsColor:[UIColor whiteColor] borderColor:[UIColor blackColor]];
+    [self.navigationController lsSetNavigationBarColor:[UIColor redColor] titleColor:[UIColor yellowColor] buttonsColor:[UIColor yellowColor] borderColor:[UIColor greenColor]];
     
     UIImage *item1 = [UIImage lsImageWithText:@"\U0001F999" textColor:[UIColor redColor] backgroundColor:[UIColor clearColor] font:[UIFont systemFontOfSize:50] size:CGSizeMake(50, 50)];
     UIImage *item2 = [UIImage lsImageWithText:@"\U0001F340" textColor:[UIColor redColor] backgroundColor:[UIColor clearColor] font:[UIFont systemFontOfSize:50] size:CGSizeMake(50, 50)];
-    [self.tabBarController lsSetTabBarColor:[UIColor redColor] itemColor:[[UIColor whiteColor] colorWithAlphaComponent:0.7] selectedItemColor:[UIColor whiteColor] borderColor:[UIColor blackColor]];
+    [self.tabBarController lsSetTabBarColor:[UIColor redColor] itemColor:[[UIColor yellowColor] colorWithAlphaComponent:0.7] selectedItemColor:[UIColor yellowColor] borderColor:[UIColor greenColor]];
     [self.tabBarController lsSetTabBarButtonWithIndex:0 title:@"Hello" image:[item1 lsResizedProportionalImageWithHeight:22] selectedImage:[item1 lsResizedProportionalImageWithHeight:28]];
     [self.tabBarController lsSetTabBarButtonWithIndex:1 title:@"World" image:[item2 lsResizedProportionalImageWithHeight:22] selectedImage:[item2 lsResizedProportionalImageWithHeight:28]];
     

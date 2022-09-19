@@ -44,6 +44,7 @@
 #import "UIColor+LSCategories.h"
 #import "UIControl+LSCategories.h"
 #import "UIDatePicker+LSCategories.h"
+#import "UIDevice+LSCategories.h"
 #import "UIFont+LSCategories.h"
 #import "UIImage+LSCategories.h"
 #import "UIImageView+LSCategories.h"

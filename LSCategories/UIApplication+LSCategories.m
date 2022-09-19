@@ -20,6 +20,7 @@
 
 #import "UIApplication+LSCategories.h"
 #import "NSDate+LSCategories.h"
+#import "UIDevice+LSCategories.h"
 #import <StoreKit/StoreKit.h>
 
 static NSString * const lsAppRatingKeyFirstLaunchDate = @"lsAppRatingKeyFirstLaunchDate";
@@ -78,19 +79,18 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
     if (daysOfUse < minimumDaysOfUse || significantEvents < minimumSignificantEvents)
         return;
     
+    if (![UIDevice connectedToWiFiNetwork]) {
+        return;
+    }
+    
     if (@available(iOS 10.3, *))
     {
-        NSDate *testStart = [NSDate new];
-        [NSDate lsDateFromOnlineServerWithHandler:^(NSDate * _Nullable date) {
-            BOOL isNetworkAvailable = date != nil;
-            BOOL isNetworkSlow = ABS([[NSDate new] timeIntervalSinceDate:testStart]) > 5;
-            if (isNetworkAvailable && !isNetworkSlow)
-            {
-                [NSUserDefaults.standardUserDefaults setObject:@YES forKey:lsAppRatingKeyIsDisabled];
-                [NSUserDefaults.standardUserDefaults synchronize];
-                [SKStoreReviewController requestReview];
-            }
-        }];
+        [NSUserDefaults.standardUserDefaults setObject:@YES forKey:lsAppRatingKeyIsDisabled];
+        [NSUserDefaults.standardUserDefaults synchronize];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [SKStoreReviewController requestReview];
+        });
     }
     #endif
 }

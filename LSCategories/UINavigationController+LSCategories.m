@@ -35,6 +35,23 @@
         [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = [UIImage lsImageWithColor:borderColor];
     }
+    
+    #if !TARGET_OS_TV
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+        appearance.backgroundColor = barColor;
+        appearance.backgroundImage = [UIImage new];
+        appearance.shadowImage = [UIImage lsImageWithColor:borderColor];
+        appearance.titleTextAttributes = @{ NSForegroundColorAttributeName : titleColor };
+        appearance.largeTitleTextAttributes = @{ NSForegroundColorAttributeName : titleColor };
+        self.navigationBar.standardAppearance = appearance;
+        self.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationBar.compactAppearance = appearance;
+        if (@available(iOS 15.0, *)) {
+            self.navigationBar.compactScrollEdgeAppearance = appearance;
+        }
+    }
+    #endif
 }
 
 - (void)lsPushViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^)(void))completionBlock

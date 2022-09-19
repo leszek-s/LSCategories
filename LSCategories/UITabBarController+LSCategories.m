@@ -43,6 +43,21 @@
         self.tabBar.clipsToBounds = YES;
         [self.tabBar lsAddBorderOnEdge:UIRectEdgeTop color:borderColor width:1];
     }
+    
+    #if !TARGET_OS_TV
+    if (@available(iOS 13.0, *)) {
+        UITabBarAppearance *appearance = [UITabBarAppearance new];
+        appearance.backgroundColor = barColor;
+        appearance.stackedLayoutAppearance.normal.iconColor = itemColor;
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = @{ NSForegroundColorAttributeName : itemColor };
+        appearance.stackedLayoutAppearance.selected.iconColor = selectedItemColor;
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = @{ NSForegroundColorAttributeName : selectedItemColor };
+        self.tabBar.standardAppearance = appearance;
+        if (@available(iOS 15.0, *)) {
+            self.tabBar.scrollEdgeAppearance = appearance;
+        }
+    }
+    #endif
 }
 
 - (void)lsSetTabBarButtonWithIndex:(NSUInteger)index title:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage

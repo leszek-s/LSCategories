@@ -14,8 +14,45 @@
 		1B24BCD520879FDB00BDD64D /* UIDatePicker+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */; };
 		1B26178123A299BC008F182C /* UIBezierPath+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26177F23A299BC008F182C /* UIBezierPath+LSCategories.m */; };
 		1B33D216204F504200285E6F /* UIWindow+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33D215204F504200285E6F /* UIWindow+LSCategories.m */; };
+		1B3BE30E28D4FBB500B97840 /* UIDevice+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3BE30D28D4FBB500B97840 /* UIDevice+LSCategories.m */; };
 		1B56502523A502DF00898008 /* UITabBarController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */; };
 		1B800D6A1FB8CC9A00B7DDB9 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
+		1B8148E228D8D495004E50C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8148E128D8D495004E50C3 /* AppDelegate.m */; };
+		1B8148E528D8D495004E50C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8148E428D8D495004E50C3 /* ViewController.m */; };
+		1B8148E828D8D495004E50C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B8148E628D8D495004E50C3 /* Main.storyboard */; };
+		1B8148EA28D8D497004E50C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B8148E928D8D497004E50C3 /* Assets.xcassets */; };
+		1B8148ED28D8D497004E50C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B8148EB28D8D497004E50C3 /* LaunchScreen.storyboard */; };
+		1B8148EF28D8D497004E50C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8148EE28D8D497004E50C3 /* main.m */; };
+		1B8148F328D8D4D2004E50C3 /* UIFont+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0821E44F40300357597 /* UIFont+LSCategories.m */; };
+		1B8148F428D8D4D2004E50C3 /* NSException+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB07506206844B600ECB592 /* NSException+LSCategories.m */; };
+		1B8148F528D8D4D2004E50C3 /* UIControl+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */; };
+		1B8148F628D8D4D2004E50C3 /* NSDictionary+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB07A1E44F40200357597 /* NSDictionary+LSCategories.m */; };
+		1B8148F728D8D4D2004E50C3 /* UIDevice+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3BE30D28D4FBB500B97840 /* UIDevice+LSCategories.m */; };
+		1B8148F828D8D4D2004E50C3 /* NSAttributedString+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD24286206432BB00147372 /* NSAttributedString+LSCategories.m */; };
+		1B8148F928D8D4D2004E50C3 /* UIView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0881E44F40300357597 /* UIView+LSCategories.m */; };
+		1B8148FA28D8D4D2004E50C3 /* UIViewController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA0FBA7217E6761002F52CB /* UIViewController+LSCategories.m */; };
+		1B8148FB28D8D4D2004E50C3 /* NSString+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB07E1E44F40300357597 /* NSString+LSCategories.m */; };
+		1B8148FC28D8D4D2004E50C3 /* UILabel+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0861E44F40300357597 /* UILabel+LSCategories.m */; };
+		1B8148FD28D8D4D2004E50C3 /* NSArray+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0741E44F40200357597 /* NSArray+LSCategories.m */; };
+		1B8148FE28D8D4D2004E50C3 /* NSData+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0761E44F40200357597 /* NSData+LSCategories.m */; };
+		1B8148FF28D8D4D2004E50C3 /* UITabBarController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */; };
+		1B81490028D8D4D2004E50C3 /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
+		1B81490128D8D4D2004E50C3 /* UITableView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA1464274EC08A00499C6E /* UITableView+LSCategories.m */; };
+		1B81490228D8D4D2004E50C3 /* UIApplication+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1113AB1F89FE67007C97BE /* UIApplication+LSCategories.m */; };
+		1B81490328D8D4D2004E50C3 /* NSDate+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0781E44F40200357597 /* NSDate+LSCategories.m */; };
+		1B81490428D8D4D2004E50C3 /* UIBezierPath+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26177F23A299BC008F182C /* UIBezierPath+LSCategories.m */; };
+		1B81490528D8D4D2004E50C3 /* UIButton+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1F4C75206051F4005DF1E7 /* UIButton+LSCategories.m */; };
+		1B81490628D8D4D2004E50C3 /* UIDatePicker+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */; };
+		1B81490728D8D4D2004E50C3 /* UIPickerView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4268C20B743570006E155 /* UIPickerView+LSCategories.m */; };
+		1B81490828D8D4D2004E50C3 /* UIScrollView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCD8EF324B256DA0030F557 /* UIScrollView+LSCategories.m */; };
+		1B81490928D8D4D2004E50C3 /* UIImage+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0841E44F40300357597 /* UIImage+LSCategories.m */; };
+		1B81490A28D8D4D2004E50C3 /* UIWindow+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B33D215204F504200285E6F /* UIWindow+LSCategories.m */; };
+		1B81490B28D8D4D2004E50C3 /* UIImageView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */; };
+		1B81490C28D8D4D2004E50C3 /* UITextView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */; };
+		1B81490D28D8D4D2004E50C3 /* UIColor+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB0801E44F40300357597 /* UIColor+LSCategories.m */; };
+		1B81490E28D8D4D2004E50C3 /* UITextField+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0BEC1920000A7700EFC5FF /* UITextField+LSCategories.m */; };
+		1B81490F28D8D4D2004E50C3 /* NSObject+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFCB07C1E44F40200357597 /* NSObject+LSCategories.m */; };
+		1B81491028D8D4D2004E50C3 /* NSTimer+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF6507322ED7228008640D5 /* NSTimer+LSCategories.m */; };
 		1B8A8FD91E47BE8F00973F3B /* UINavigationController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */; };
 		1BA0FBA8217E6762002F52CB /* UIViewController+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA0FBA7217E6761002F52CB /* UIViewController+LSCategories.m */; };
 		1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA3458A1FBAEDC60088B514 /* UIImageView+LSCategories.m */; };
@@ -60,10 +97,21 @@
 		1B26178023A299BC008F182C /* UIBezierPath+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+LSCategories.h"; sourceTree = "<group>"; };
 		1B33D214204F504200285E6F /* UIWindow+LSCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LSCategories.h"; sourceTree = "<group>"; };
 		1B33D215204F504200285E6F /* UIWindow+LSCategories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LSCategories.m"; sourceTree = "<group>"; };
+		1B3BE30C28D4FBB500B97840 /* UIDevice+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LSCategories.h"; sourceTree = "<group>"; };
+		1B3BE30D28D4FBB500B97840 /* UIDevice+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LSCategories.m"; sourceTree = "<group>"; };
 		1B56502323A502DE00898008 /* UITabBarController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+LSCategories.h"; sourceTree = "<group>"; };
 		1B56502423A502DE00898008 /* UITabBarController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+LSCategories.m"; sourceTree = "<group>"; };
 		1B800D681FB8CC9A00B7DDB9 /* UITextView+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LSCategories.h"; sourceTree = "<group>"; };
 		1B800D691FB8CC9A00B7DDB9 /* UITextView+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LSCategories.m"; sourceTree = "<group>"; };
+		1B8148DE28D8D495004E50C3 /* TVTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B8148E028D8D495004E50C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1B8148E128D8D495004E50C3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1B8148E328D8D495004E50C3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1B8148E428D8D495004E50C3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1B8148E728D8D495004E50C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1B8148E928D8D497004E50C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B8148EC28D8D497004E50C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1B8148EE28D8D497004E50C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B8A8FD71E47BE8F00973F3B /* UINavigationController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+LSCategories.h"; sourceTree = "<group>"; };
 		1B8A8FD81E47BE8F00973F3B /* UINavigationController+LSCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+LSCategories.m"; sourceTree = "<group>"; };
 		1BA0FBA6217E6761002F52CB /* UIViewController+LSCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LSCategories.h"; sourceTree = "<group>"; };
@@ -120,6 +168,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1B8148DB28D8D495004E50C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BFCB0541E44F3E700357597 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -130,11 +185,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B8148DF28D8D495004E50C3 /* TVTestProject */ = {
+			isa = PBXGroup;
+			children = (
+				1B8148E028D8D495004E50C3 /* AppDelegate.h */,
+				1B8148E128D8D495004E50C3 /* AppDelegate.m */,
+				1B8148E328D8D495004E50C3 /* ViewController.h */,
+				1B8148E428D8D495004E50C3 /* ViewController.m */,
+				1B8148E628D8D495004E50C3 /* Main.storyboard */,
+				1B8148E928D8D497004E50C3 /* Assets.xcassets */,
+				1B8148EB28D8D497004E50C3 /* LaunchScreen.storyboard */,
+				1B8148EE28D8D497004E50C3 /* main.m */,
+			);
+			path = TVTestProject;
+			sourceTree = "<group>";
+		};
 		1BFCB04E1E44F3E700357597 = {
 			isa = PBXGroup;
 			children = (
 				1BFCB0711E44F40200357597 /* LSCategories */,
 				1BFCB0591E44F3E700357597 /* TestProject */,
+				1B8148DF28D8D495004E50C3 /* TVTestProject */,
 				1BFCB0581E44F3E700357597 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				1BFCB0571E44F3E700357597 /* TestProject.app */,
+				1B8148DE28D8D495004E50C3 /* TVTestProject.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,6 +279,8 @@
 				1B24BCD120879E6C00BDD64D /* UIControl+LSCategories.m */,
 				1B24BCD320879FDB00BDD64D /* UIDatePicker+LSCategories.h */,
 				1B24BCD420879FDB00BDD64D /* UIDatePicker+LSCategories.m */,
+				1B3BE30C28D4FBB500B97840 /* UIDevice+LSCategories.h */,
+				1B3BE30D28D4FBB500B97840 /* UIDevice+LSCategories.m */,
 				1BFCB0811E44F40300357597 /* UIFont+LSCategories.h */,
 				1BFCB0821E44F40300357597 /* UIFont+LSCategories.m */,
 				1BFCB0831E44F40300357597 /* UIImage+LSCategories.h */,
@@ -243,6 +317,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1B8148DD28D8D495004E50C3 /* TVTestProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B8148F228D8D497004E50C3 /* Build configuration list for PBXNativeTarget "TVTestProject" */;
+			buildPhases = (
+				1B8148DA28D8D495004E50C3 /* Sources */,
+				1B8148DB28D8D495004E50C3 /* Frameworks */,
+				1B8148DC28D8D495004E50C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVTestProject;
+			productName = TVTestProject;
+			productReference = 1B8148DE28D8D495004E50C3 /* TVTestProject.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1BFCB0561E44F3E700357597 /* TestProject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BFCB06E1E44F3E700357597 /* Build configuration list for PBXNativeTarget "TestProject" */;
@@ -269,6 +360,10 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = LS;
 				TargetAttributes = {
+					1B8148DD28D8D495004E50C3 = {
+						CreatedOnToolsVersion = 13.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					1BFCB0561E44F3E700357597 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -290,11 +385,22 @@
 			projectRoot = "";
 			targets = (
 				1BFCB0561E44F3E700357597 /* TestProject */,
+				1B8148DD28D8D495004E50C3 /* TVTestProject */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1B8148DC28D8D495004E50C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B8148ED28D8D497004E50C3 /* LaunchScreen.storyboard in Resources */,
+				1B8148EA28D8D497004E50C3 /* Assets.xcassets in Resources */,
+				1B8148E828D8D495004E50C3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BFCB0551E44F3E700357597 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +414,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1B8148DA28D8D495004E50C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B81490928D8D4D2004E50C3 /* UIImage+LSCategories.m in Sources */,
+				1B81490E28D8D4D2004E50C3 /* UITextField+LSCategories.m in Sources */,
+				1B8148FA28D8D4D2004E50C3 /* UIViewController+LSCategories.m in Sources */,
+				1B8148FD28D8D4D2004E50C3 /* NSArray+LSCategories.m in Sources */,
+				1B8148FE28D8D4D2004E50C3 /* NSData+LSCategories.m in Sources */,
+				1B81490D28D8D4D2004E50C3 /* UIColor+LSCategories.m in Sources */,
+				1B81490228D8D4D2004E50C3 /* UIApplication+LSCategories.m in Sources */,
+				1B81490628D8D4D2004E50C3 /* UIDatePicker+LSCategories.m in Sources */,
+				1B81490C28D8D4D2004E50C3 /* UITextView+LSCategories.m in Sources */,
+				1B81490728D8D4D2004E50C3 /* UIPickerView+LSCategories.m in Sources */,
+				1B81490528D8D4D2004E50C3 /* UIButton+LSCategories.m in Sources */,
+				1B8148F728D8D4D2004E50C3 /* UIDevice+LSCategories.m in Sources */,
+				1B81490B28D8D4D2004E50C3 /* UIImageView+LSCategories.m in Sources */,
+				1B8148F928D8D4D2004E50C3 /* UIView+LSCategories.m in Sources */,
+				1B81491028D8D4D2004E50C3 /* NSTimer+LSCategories.m in Sources */,
+				1B8148FC28D8D4D2004E50C3 /* UILabel+LSCategories.m in Sources */,
+				1B81490828D8D4D2004E50C3 /* UIScrollView+LSCategories.m in Sources */,
+				1B81490A28D8D4D2004E50C3 /* UIWindow+LSCategories.m in Sources */,
+				1B81490328D8D4D2004E50C3 /* NSDate+LSCategories.m in Sources */,
+				1B8148F628D8D4D2004E50C3 /* NSDictionary+LSCategories.m in Sources */,
+				1B81490028D8D4D2004E50C3 /* UINavigationController+LSCategories.m in Sources */,
+				1B8148F528D8D4D2004E50C3 /* UIControl+LSCategories.m in Sources */,
+				1B8148E528D8D495004E50C3 /* ViewController.m in Sources */,
+				1B81490128D8D4D2004E50C3 /* UITableView+LSCategories.m in Sources */,
+				1B8148FB28D8D4D2004E50C3 /* NSString+LSCategories.m in Sources */,
+				1B8148F428D8D4D2004E50C3 /* NSException+LSCategories.m in Sources */,
+				1B81490428D8D4D2004E50C3 /* UIBezierPath+LSCategories.m in Sources */,
+				1B81490F28D8D4D2004E50C3 /* NSObject+LSCategories.m in Sources */,
+				1B8148F328D8D4D2004E50C3 /* UIFont+LSCategories.m in Sources */,
+				1B8148F828D8D4D2004E50C3 /* NSAttributedString+LSCategories.m in Sources */,
+				1B8148EF28D8D497004E50C3 /* main.m in Sources */,
+				1B8148FF28D8D4D2004E50C3 /* UITabBarController+LSCategories.m in Sources */,
+				1B8148E228D8D495004E50C3 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BFCB0531E44F3E700357597 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,6 +476,7 @@
 				1B1F4C77206051F5005DF1E7 /* UIButton+LSCategories.m in Sources */,
 				1B0BEC1A20000A7700EFC5FF /* UITextField+LSCategories.m in Sources */,
 				1BFCB08A1E44F40300357597 /* NSData+LSCategories.m in Sources */,
+				1B3BE30E28D4FBB500B97840 /* UIDevice+LSCategories.m in Sources */,
 				1BA3458B1FBAEDC60088B514 /* UIImageView+LSCategories.m in Sources */,
 				1B24BCD520879FDB00BDD64D /* UIDatePicker+LSCategories.m in Sources */,
 				1B1113AC1F89FE67007C97BE /* UIApplication+LSCategories.m in Sources */,
@@ -351,6 +498,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1B8148E628D8D495004E50C3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B8148E728D8D495004E50C3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1B8148EB28D8D497004E50C3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B8148EC28D8D497004E50C3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		1BFCB0631E44F3E700357597 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -370,6 +533,81 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1B8148F028D8D497004E50C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ls.TVTestProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		1B8148F128D8D497004E50C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ls.TVTestProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		1BFCB06C1E44F3E700357597 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -489,6 +727,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1B8148F228D8D497004E50C3 /* Build configuration list for PBXNativeTarget "TVTestProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B8148F028D8D497004E50C3 /* Debug */,
+				1B8148F128D8D497004E50C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1BFCB0521E44F3E700357597 /* Build configuration list for PBXProject "TestProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
