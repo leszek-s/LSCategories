@@ -9,6 +9,8 @@ To integrate LSCategories into your Xcode project you can use [CocoaPods](https:
 pod 'LSCategories'
 ```
 
+You can also integrate LSCategories into your project using Swift Package Manager.
+
 ## Features
 Some things which can be easily done with LSCategories are listed below.
 
