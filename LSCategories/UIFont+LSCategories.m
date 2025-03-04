@@ -42,6 +42,11 @@
     return [UIFont fontWithDescriptor:[self.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold | UIFontDescriptorTraitItalic] size:self.pointSize];
 }
 
+- (UIFont *)lsMonospacedFont
+{
+    return [UIFont fontWithDescriptor:[self.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitMonoSpace] size:self.pointSize];
+}
+
 - (UIFont *)lsNormalFontWithSize:(CGFloat)size
 {
     return [UIFont fontWithDescriptor:self.fontDescriptor size:size];
@@ -60,6 +65,11 @@
 - (UIFont *)lsBoldItalicFontWithSize:(CGFloat)size
 {
     return [UIFont fontWithDescriptor:[self.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold | UIFontDescriptorTraitItalic] size:size];
+}
+
+- (UIFont *)lsMonospacedFontWithSize:(CGFloat)size
+{
+    return [UIFont fontWithDescriptor:[self.fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitMonoSpace] size:size];
 }
 
 @end

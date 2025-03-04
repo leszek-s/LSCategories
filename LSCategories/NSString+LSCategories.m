@@ -188,6 +188,47 @@
     return [attributedString copy];
 }
 
+- (NSString *)lsDefaultTagStringFromMarkdown
+{
+    NSString *output = [@"<!startMarkdown!>\n" stringByAppendingString:self];
+    output = [output stringByReplacingOccurrencesOfString:@"\\*" withString:@"<!escapedAsterisk!>"];
+    output = [output stringByReplacingOccurrencesOfString:@"\\~" withString:@"<!escapedTilde!>"];
+    output = [output stringByReplacingOccurrencesOfString:@"\\`" withString:@"<!escapedBacktick!>"];
+    output = [output lsStringByReplacingRegexPattern:@"\\*\\*\\*(.*?)\\*\\*\\*" templateString:@"<boldItalic>$1</boldItalic>"];
+    output = [output lsStringByReplacingRegexPattern:@"\\*\\*(.*?)\\*\\*" templateString:@"<strong>$1</strong>"];
+    output = [output lsStringByReplacingRegexPattern:@"\\*(.*?)\\*" templateString:@"<em>$1</em>"];
+    output = [output lsStringByReplacingRegexPattern:@"\\~\\~(.*?)\\~\\~" templateString:@"<del>$1</del>"];
+    output = [output lsStringByReplacingRegexPattern:@"`(.*?)`" templateString:@"<code>$1</code>"];
+    output = [output lsStringByReplacingRegexPattern:@"!\\[([^\\]]+)\\]\\(data:image/[a-z]+;base64,([^\\)]+)\\)" templateString:@"<textAttachment>$2</textAttachment>"];
+    output = [output lsStringByReplacingRegexPattern:@"\\[([^\\]]+)\\]\\(([^\\)]+)\\)" templateString:@"<link>$1</link>"];
+    output = [output lsStringByReplacingRegexPattern:@"\n###### (.*)" templateString:@"\n<h6>$1</h6>"];
+    output = [output lsStringByReplacingRegexPattern:@"\n##### (.*)" templateString:@"\n<h5>$1</h5>"];
+    output = [output lsStringByReplacingRegexPattern:@"\n#### (.*)" templateString:@"\n<h4>$1</h4>"];
+    output = [output lsStringByReplacingRegexPattern:@"\n### (.*)" templateString:@"\n<h3>$1</h3>"];
+    output = [output lsStringByReplacingRegexPattern:@"\n## (.*)" templateString:@"\n<h2>$1</h2>"];
+    output = [output lsStringByReplacingRegexPattern:@"\n# (.*)" templateString:@"\n<h1>$1</h1>"];
+    output = [output stringByReplacingOccurrencesOfString:@"<!escapedAsterisk!>" withString:@"*"];
+    output = [output stringByReplacingOccurrencesOfString:@"<!escapedTilde!>" withString:@"~"];
+    output = [output stringByReplacingOccurrencesOfString:@"<!escapedBacktick!>" withString:@"`"];
+    output = [output stringByReplacingOccurrencesOfString:@"<!startMarkdown!>\n" withString:@""];
+    return output;
+}
+
+- (NSString *)lsDefaultTagStringFromHtml
+{
+    NSString *output = [self lsStringByReplacingRegexPattern:@"<b>(.*?)</b>" templateString:@"<strong>$1</strong>"];
+    output = [output lsStringByReplacingRegexPattern:@"<i>(.*?)</i>" templateString:@"<em>$1</em>"];
+    output = [output lsStringByReplacingRegexPattern:@"<strong>(.*?)<em>(.*?)</em>(.*?)</strong>" templateString:@"<strong>$1</strong><boldItalic>$2</boldItalic><strong>$3</strong>"];
+    output = [output lsStringByReplacingRegexPattern:@"<em>(.*?)<strong>(.*?)</strong>(.*?)</em>" templateString:@"<em>$1</em><boldItalic>$2</boldItalic><em>$3</em>"];
+    output = [output lsStringByReplacingRegexPattern:@"<img +src=\"data:image/[a-z]+;base64,([^\"]+)[^>]+>" templateString:@"<textAttachment>$1</textAttachment>"];
+    output = [output lsStringByReplacingRegexPattern:@"<a +href=\"([^\"]+)\">([^<]+)</a>" templateString:@"<link>$2</link>"];
+    output = [output lsStringByReplacingRegexPattern:@"<p +align=\"center\">(.*?)</p>" templateString:@"<center>$1</center>"];
+    output = [output lsStringByReplacingRegexPattern:@"<p +align=\"left\">(.*?)</p>" templateString:@"<left>$1</left>"];
+    output = [output lsStringByReplacingRegexPattern:@"<p +align=\"right\">(.*?)</p>" templateString:@"<right>$1</right>"];
+    output = [output lsStringByReplacingRegexPattern:@"<p +align=\"justify\">(.*?)</p>" templateString:@"<justify>$1</justify>"];
+    return output;
+}
+
 - (NSAttributedString *)lsAttributedStringWithDefaultTagStylesheet
 {
     return [self lsAttributedStringWithDefaultTagStylesheetAndBaseFont:[UIFont systemFontOfSize:14]];
@@ -195,10 +236,29 @@
 
 - (NSAttributedString *)lsAttributedStringWithDefaultTagStylesheetAndBaseFont:(UIFont *)baseFont
 {
+    NSMutableParagraphStyle *paragraphStyleCenter = [NSMutableParagraphStyle new];
+    paragraphStyleCenter.alignment = NSTextAlignmentCenter;
+    NSMutableParagraphStyle *paragraphStyleLeft = [NSMutableParagraphStyle new];
+    paragraphStyleLeft.alignment = NSTextAlignmentLeft;
+    NSMutableParagraphStyle *paragraphStyleRight = [NSMutableParagraphStyle new];
+    paragraphStyleRight.alignment = NSTextAlignmentRight;
+    NSMutableParagraphStyle *paragraphStyleJustified = [NSMutableParagraphStyle new];
+    paragraphStyleJustified.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraphStyleJustified.alignment = NSTextAlignmentJustified;
+    
     NSDictionary *stylesheet = @{ @"default" : @{ NSFontAttributeName : [baseFont lsNormalFont] },
                                   @"textAttachment" : @{ NSAttachmentAttributeName : [NSTextAttachment new] },
+                                  @"boldItalic" : @{ NSFontAttributeName : [baseFont lsBoldItalicFont ] },
+                                  @"center" : @{ NSParagraphStyleAttributeName : paragraphStyleCenter },
+                                  @"left" : @{ NSParagraphStyleAttributeName : paragraphStyleLeft },
+                                  @"right" : @{ NSParagraphStyleAttributeName : paragraphStyleRight },
+                                  @"justify" : @{ NSParagraphStyleAttributeName : paragraphStyleJustified, NSBaselineOffsetAttributeName : @0 },
+                                  @"code" : @{ NSFontAttributeName : [baseFont lsMonospacedFont] },
+                                  @"link" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) },
                                   @"strong" : @{ NSFontAttributeName : [baseFont lsBoldFont] },
                                   @"em" : @{ NSFontAttributeName : [baseFont lsItalicFont ] },
+                                  @"ins" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) },
+                                  @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
                                   @"b" : @{ NSFontAttributeName : [baseFont lsBoldFont ] },
                                   @"i" : @{ NSFontAttributeName : [baseFont lsItalicFont] },
                                   @"u" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) },

@@ -35,9 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lsAnimateCounterWithStartValue:(NSInteger)startValue endValue:(NSInteger)endValue duration:(NSTimeInterval)duration completionBlock:(void (^ _Nullable)(void))completionBlock;
 
 /**
- Parses string with basic html tags such as strong, em, b, i etc. and updates the label with styled attributed string. 
+ Parses string with basic html tags such as strong, em, b, i etc. and updates the label with styled attributed string.
  */
 - (void)lsParseBasicHTMLTags;
+
+/**
+ Parses string with basic markdown and updates the label with styled attributed string.
+ */
+- (void)lsParseBasicMarkdown;
 
 @end
 

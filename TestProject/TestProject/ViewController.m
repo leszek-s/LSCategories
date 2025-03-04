@@ -175,7 +175,7 @@
     UIImage *cropped = [gradient lsCroppedImageWithRect:CGRectMake(0, 20, 60, 20)];
     UIImage *croppedWithInsets = [gradient lsCroppedImageWithInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     UIImage *circleMask = [[UIImage lsEllipseImageWithColor:[UIColor whiteColor] size:gradient.size] lsInvertedImage];
-    gradient = [gradient lsMaskedImageWithMaskImage:circleMask];
+    gradient = [[gradient lsMaskedImageWithMaskImage:circleMask] lsResizedProportionalImageWithHeight:40];
     NSLog(@"lsImageWithColor: %@", green);
     NSLog(@"lsTriangleImageWithColor: %@", triangle);
     NSLog(@"lsGradientImageWithSize: %@", gradient);
@@ -213,8 +213,11 @@
     UIImageView *rotatedImageView = self.stackView.arrangedSubviews.lastObject;
     
     UILabel *label1 = [UILabel new];
+    label1.layer.borderWidth = 1;
+    label1.layer.borderColor = UIColor.greenColor.CGColor;
+    label1.numberOfLines = 0;
     [self.stackView addArrangedSubview:label1];
-    label1.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>tags</em> <u>and</u> <textAttachment>iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAS1BMVEX///8AVo3w9fjF2eU0eaQtc6G80+GgwNVGha3y9/rs8vfq8fbo8PXA1eOvytuQtc15psNkmbpakrVTjbJCgqs6fKcfa5sUY5YKXZEIH/n7AAAAe0lEQVQY033OVw4DIQxFUT/AML23/a80MgomEya5P6Ajy0D/6/sH3LbSLGALrIDqYVBGi8GPUWPDtPKF2MXrFKyhlvEVt0SNu5tr4gJ3M/Neu2fbxWL1keyoSTsTntk6aJ2iz+gVR3nVe/nFqDiDBzkHxqy4hHQLC/3qBVhXAytZYZD/AAAAAElFTkSuQmCC</textAttachment> <h6>attachment</h6>";
+    label1.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>tags</em>\n<u><center>and</center></u>\n<code>also</code> <strong><em>with</em></strong> <img  src=\"data:image/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAARVBMVEUAAAAAV7kAVbwAV7oAVrsAVrkAV7sAU7kAVrkAV7oAV7oAV7kAVrkAVrkAVrkAVrkAV7kAVroAVrkAV7oAVrkAWbwAVrnk5zIcAAAAFnRSTlMA0Q5BOslfFPXr4MW9urespZuGb1AXRC/CFAAAAHdJREFUGNN9zlsSgCAIQFERs/e72P9SCyegyer+qGcc1P2H+IJdl1sgChn2RP3LxfzqwDjIyYe4jFBRqoJxicG7EugRlM7UjAcUdyv8NbY1a5MlbcSa06RasDbbSdsV0RAVV34VkX+xKs4EG68b0Kw4RdnFyX11AKu+C+2yqSskAAAAAElFTkSuQmCC\"> <h6>image</h6>";
     [label1 lsParseBasicHTMLTags];
     
     UILabel *label2 = [UILabel new];
@@ -229,6 +232,12 @@
         [label3 lsStartInfiniteRotationWithDuration:2 clockwise:YES];
         [self.stackView.arrangedSubviews.firstObject lsStartInfiniteRotationWithDuration:2 clockwise:NO];
     }];
+    
+    UILabel *label4 = [UILabel new];
+    label4.numberOfLines = 0;
+    [self.stackView addArrangedSubview:label4];
+    label4.text = @"# Markdown\n## Test\nWith ~~some~~ **basic** *tags* and `code` and ***inline*** ![Inline image](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAARVBMVEUAAAAAV7kAVbwAV7oAVrsAVrkAV7sAU7kAVrkAV7oAV7oAV7kAVrkAVrkAVrkAVrkAV7kAVroAVrkAV7oAVrkAWbwAVrnk5zIcAAAAFnRSTlMA0Q5BOslfFPXr4MW9urespZuGb1AXRC/CFAAAAHdJREFUGNN9zlsSgCAIQFERs/e72P9SCyegyer+qGcc1P2H+IJdl1sgChn2RP3LxfzqwDjIyYe4jFBRqoJxicG7EugRlM7UjAcUdyv8NbY1a5MlbcSa06RasDbbSdsV0RAVV34VkX+xKs4EG68b0Kw4RdnFyX11AKu+C+2yqSskAAAAAElFTkSuQmCC) image, escaped **2 \\* 2 \\* 2 = 8**";
+    [label4 lsParseBasicMarkdown];
     
     [UIView lsRepeatWithDuration:2 delay:3 framesPerSecond:60 block:^(CGFloat progress) {
         CGFloat p = progress > 0.5 ? 1 - progress : progress;

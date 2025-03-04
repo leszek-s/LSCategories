@@ -146,6 +146,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSAttributedString *)lsAttributedStringByReplacingCharactersInRange:(NSRange)range withImage:(UIImage *)image verticalOffset:(CGFloat)verticalOffset;
 
 /**
+ Returns string with default tags from basic markdown.
+
+ @return String with default tags from basic markdown.
+ */
+- (NSString *)lsDefaultTagStringFromMarkdown;
+
+/**
+ Returns string with default tags from basic html.
+
+ @return String with default tags from basic html.
+ */
+- (NSString *)lsDefaultTagStringFromHtml;
+
+/**
  Returns attributed string created with default tag stylesheet.
 
  @return Attributed string created with default tag stylesheet.

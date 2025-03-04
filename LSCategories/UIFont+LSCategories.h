@@ -53,6 +53,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIFont *)lsBoldItalicFont;
 
 /**
+ Returns monospaced font with same size.
+ 
+ @return Monospaced font with same size.
+ */
+- (UIFont *)lsMonospacedFont;
+
+/**
  Returns normal font with given size.
 
  @param size Font size.
@@ -83,6 +90,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return Bold italic font with given size.
  */
 - (UIFont *)lsBoldItalicFontWithSize:(CGFloat)size;
+
+/**
+ Returns monospaced font with given size.
+ 
+ @param size Font size.
+ @return Monospaced font with given size.
+ */
+- (UIFont *)lsMonospacedFontWithSize:(CGFloat)size;
 
 @end
 

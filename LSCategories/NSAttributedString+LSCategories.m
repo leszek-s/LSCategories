@@ -43,4 +43,36 @@
     return [result copy];
 }
 
+- (NSAttributedString *)lsAttributedStringByResizingImagesToMaxWidth:(CGFloat)maxWidth
+{
+    return [self lsAttributedStringByResizingImagesToMaxWidth:maxWidth maxHeight:0];
+}
+
+- (NSAttributedString *)lsAttributedStringByResizingImagesToMaxHeight:(CGFloat)maxHeight
+{
+    return [self lsAttributedStringByResizingImagesToMaxWidth:0 maxHeight:maxHeight];
+}
+
+- (NSAttributedString *)lsAttributedStringByResizingImagesToMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight
+{
+    NSMutableAttributedString *result = [self mutableCopy];
+    [result enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, result.length) options:0 usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+        if ([value isKindOfClass:[NSTextAttachment class]])
+        {
+            NSTextAttachment *attachment = (NSTextAttachment *)value;
+            if (maxWidth >= 1 && attachment.bounds.size.width > maxWidth)
+            {
+                CGFloat scale = attachment.bounds.size.width / maxWidth;
+                attachment.bounds = CGRectMake(attachment.bounds.origin.x, attachment.bounds.origin.y, maxWidth, MAX(1, attachment.bounds.size.height / scale));
+            }
+            if (maxHeight >= 1 && attachment.bounds.size.height > maxHeight)
+            {
+                CGFloat scale = attachment.bounds.size.height / maxHeight;
+                attachment.bounds = CGRectMake(attachment.bounds.origin.x, attachment.bounds.origin.y, MAX(1, attachment.bounds.size.width / scale), maxHeight);
+            }
+        }
+    }];
+    return [result copy];
+}
+
 @end

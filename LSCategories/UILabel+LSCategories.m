@@ -34,7 +34,11 @@
 
 - (void)lsParseBasicHTMLTags
 {
-    self.attributedText = [self.text lsAttributedStringWithDefaultTagStylesheetAndBaseFont:self.font];
+    self.attributedText = [[self.text lsDefaultTagStringFromHtml] lsAttributedStringWithDefaultTagStylesheetAndBaseFont:self.font];
 }
 
+- (void)lsParseBasicMarkdown
+{
+    self.attributedText = [[self.text lsDefaultTagStringFromMarkdown] lsAttributedStringWithDefaultTagStylesheetAndBaseFont:self.font];
+}
 @end

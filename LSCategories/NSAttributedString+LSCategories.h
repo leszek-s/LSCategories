@@ -49,6 +49,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSAttributedString *)lsAttributedStringByAppendingAttributedString:(NSAttributedString *)attributedString;
 
+/**
+ Returns attributed string with adjusted images.
+
+ @param maxWidth Max width.
+ @return Attributed string with adjusted images.
+ */
+- (NSAttributedString *)lsAttributedStringByResizingImagesToMaxWidth:(CGFloat)maxWidth;
+
+/**
+ Returns attributed string with adjusted images.
+
+ @param maxHeight Max height.
+ @return Attributed string with adjusted images.
+ */
+- (NSAttributedString *)lsAttributedStringByResizingImagesToMaxHeight:(CGFloat)maxHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

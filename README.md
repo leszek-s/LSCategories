@@ -159,7 +159,7 @@ Get NSData, NSString with HTML, NSDictionary from JSON or UIImage from given URL
 }];
 ```
 
-Easily set attributed text on UILabel from HTML tags or create attributed strings with HTML tags or your custom tags:
+Easily set attributed text on UILabel from basic HTML tags or markdown or create attributed strings with HTML tags or your custom tags:
 ```objc
 self.label.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>html</em> <u>tags</u>";
 [self.label lsParseBasicHTMLTags];
@@ -167,6 +167,9 @@ self.label.text = @"test <h1>with</h1> <s>some</s> <strong>basic</strong> <em>ht
 NSAttributedString *attributedString = [@"Text with <strong>basic</strong> <em>HTML</em>" lsAttributedStringWithDefaultTagStylesheet];
 
 NSAttributedString *withCustomTags = [@"Text with <custom>custom</custom> tag" lsAttributedStringWithTagStylesheet:@{ @"custom" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle), NSFontAttributeName : [UIFont systemFontOfSize:20] }}];
+
+self.label.text = @"# Markdown\n## Test\nWith ~~some~~ **simple** *basic* ***formatting***";
+[self.label lsParseBasicMarkdown];
 ```
 
 Add a border to UIView only on one edge:
