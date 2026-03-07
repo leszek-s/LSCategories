@@ -25,7 +25,7 @@
 
 static NSString * const lsAppRatingKeyFirstLaunchDate = @"lsAppRatingKeyFirstLaunchDate";
 static NSString * const lsAppRatingKeySignificantEvents = @"lsAppRatingKeySignificantEvents";
-static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
+static NSString * const lsAppRatingKeyNextMinimumDaysOfUse = @"lsAppRatingKeyNextMinimumDaysOfUse";
 
 @implementation UIApplication (LSCategories)
 
@@ -65,11 +65,8 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
 - (void)lsAskForAppRatingIfReachedMinimumDaysOfUse:(NSInteger)minimumDaysOfUse minimumSignificantEvents:(NSInteger)minimumSignificantEvents
 {
     #if !TARGET_OS_TV
-    NSNumber *disabled = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeyIsDisabled];
-    BOOL isDisabled = [disabled boolValue];
-    
-    if (isDisabled)
-        return;
+    NSNumber *nextMinimumDaysOfUse = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeyNextMinimumDaysOfUse];
+    NSInteger nextMinDays = [nextMinimumDaysOfUse integerValue];
     
     NSDate *firstLaunchDate = [NSUserDefaults.standardUserDefaults objectForKey:lsAppRatingKeyFirstLaunchDate];
     NSInteger daysOfUse = ABS([firstLaunchDate lsDaysDifferenceFromDate:[NSDate new]]);
@@ -79,13 +76,16 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
     if (daysOfUse < minimumDaysOfUse || significantEvents < minimumSignificantEvents)
         return;
     
+    if (daysOfUse < nextMinDays)
+        return;
+    
     if (![UIDevice connectedToWiFiNetwork]) {
         return;
     }
     
     if (@available(iOS 10.3, *))
     {
-        [NSUserDefaults.standardUserDefaults setObject:@YES forKey:lsAppRatingKeyIsDisabled];
+        [NSUserDefaults.standardUserDefaults setObject:@(daysOfUse + 7) forKey:lsAppRatingKeyNextMinimumDaysOfUse];
         [NSUserDefaults.standardUserDefaults synchronize];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -97,7 +97,7 @@ static NSString * const lsAppRatingKeyIsDisabled = @"lsAppRatingKeyIsDisabled";
 
 - (void)lsResetAppRatingData
 {
-    [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeyIsDisabled];
+    [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeyNextMinimumDaysOfUse];
     [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeyFirstLaunchDate];
     [NSUserDefaults.standardUserDefaults setObject:nil forKey:lsAppRatingKeySignificantEvents];
     [NSUserDefaults.standardUserDefaults synchronize];

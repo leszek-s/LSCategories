@@ -245,30 +245,52 @@
     NSMutableParagraphStyle *paragraphStyleJustified = [NSMutableParagraphStyle new];
     paragraphStyleJustified.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyleJustified.alignment = NSTextAlignmentJustified;
+    UIFont *normalFont = [baseFont lsNormalFont];
+    UIFont *boldFont = [baseFont lsBoldFont];
+    UIFont *italicFont = [baseFont lsItalicFont];
+    UIFont *boldItalicFont = [baseFont lsBoldItalicFont];
+    UIFont *monospacedFont = [baseFont lsMonospacedFont];
+    UIFont *h1Font = [baseFont lsNormalFontWithSize:baseFont.pointSize * 2];
+    UIFont *h2Font = [baseFont lsNormalFontWithSize:baseFont.pointSize * 1.5];
+    UIFont *h3Font = [baseFont lsNormalFontWithSize:baseFont.pointSize * 1.33];
+    UIFont *h4Font = [baseFont lsNormalFontWithSize:baseFont.pointSize * 1.17];
+    UIFont *h5Font = [baseFont lsNormalFontWithSize:baseFont.pointSize * 0.83];
+    UIFont *h6Font = [baseFont lsNormalFontWithSize:baseFont.pointSize * 0.67];
+    if (!normalFont) normalFont = baseFont;
+    if (!boldFont) boldFont = baseFont;
+    if (!italicFont) italicFont = baseFont;
+    if (!boldItalicFont) boldItalicFont = baseFont;
+    if (!monospacedFont) monospacedFont = baseFont;
+    if (!h1Font) h1Font = baseFont;
+    if (!h2Font) h2Font = baseFont;
+    if (!h3Font) h3Font = baseFont;
+    if (!h4Font) h4Font = baseFont;
+    if (!h5Font) h5Font = baseFont;
+    if (!h6Font) h6Font = baseFont;
     
-    NSDictionary *stylesheet = @{ @"default" : @{ NSFontAttributeName : [baseFont lsNormalFont] },
+    NSDictionary *stylesheet = @{ @"default" : @{ NSFontAttributeName : normalFont },
                                   @"textAttachment" : @{ NSAttachmentAttributeName : [NSTextAttachment new] },
-                                  @"boldItalic" : @{ NSFontAttributeName : [baseFont lsBoldItalicFont ] },
+                                  @"boldItalic" : @{ NSFontAttributeName : boldItalicFont },
                                   @"center" : @{ NSParagraphStyleAttributeName : paragraphStyleCenter },
                                   @"left" : @{ NSParagraphStyleAttributeName : paragraphStyleLeft },
                                   @"right" : @{ NSParagraphStyleAttributeName : paragraphStyleRight },
                                   @"justify" : @{ NSParagraphStyleAttributeName : paragraphStyleJustified, NSBaselineOffsetAttributeName : @0 },
-                                  @"code" : @{ NSFontAttributeName : [baseFont lsMonospacedFont] },
+                                  @"code" : @{ NSFontAttributeName : monospacedFont },
                                   @"link" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) },
-                                  @"strong" : @{ NSFontAttributeName : [baseFont lsBoldFont] },
-                                  @"em" : @{ NSFontAttributeName : [baseFont lsItalicFont ] },
+                                  @"strong" : @{ NSFontAttributeName : boldFont },
+                                  @"em" : @{ NSFontAttributeName : italicFont },
                                   @"ins" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) },
                                   @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
-                                  @"b" : @{ NSFontAttributeName : [baseFont lsBoldFont ] },
-                                  @"i" : @{ NSFontAttributeName : [baseFont lsItalicFont] },
+                                  @"b" : @{ NSFontAttributeName : boldFont },
+                                  @"i" : @{ NSFontAttributeName : italicFont },
                                   @"u" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle) },
                                   @"s" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
-                                  @"h1" : @{ NSFontAttributeName : [baseFont lsNormalFontWithSize:baseFont.pointSize * 2] },
-                                  @"h2" : @{ NSFontAttributeName : [baseFont lsNormalFontWithSize:baseFont.pointSize * 1.5] },
-                                  @"h3" : @{ NSFontAttributeName : [baseFont lsNormalFontWithSize:baseFont.pointSize * 1.33] },
-                                  @"h4" : @{ NSFontAttributeName : [baseFont lsNormalFontWithSize:baseFont.pointSize * 1.17] },
-                                  @"h5" : @{ NSFontAttributeName : [baseFont lsNormalFontWithSize:baseFont.pointSize * 0.83] },
-                                  @"h6" : @{ NSFontAttributeName : [baseFont lsNormalFontWithSize:baseFont.pointSize * 0.67] } };
+                                  @"h1" : @{ NSFontAttributeName : h1Font },
+                                  @"h2" : @{ NSFontAttributeName : h2Font },
+                                  @"h3" : @{ NSFontAttributeName : h3Font },
+                                  @"h4" : @{ NSFontAttributeName : h4Font },
+                                  @"h5" : @{ NSFontAttributeName : h5Font },
+                                  @"h6" : @{ NSFontAttributeName : h6Font } };
     return [self lsAttributedStringWithTagStylesheet:stylesheet];
 }
 
